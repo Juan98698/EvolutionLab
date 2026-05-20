@@ -3154,8 +3154,16 @@
             });
         }
 
+        // Ocultar el toast ANTES de clonar para que no se incluya en el export
+        const toastEl = document.getElementById('toast');
+        if (toastEl) { toastEl.classList.remove('show'); toastEl.className = ''; toastEl.textContent = ''; }
+
         const parser = new DOMParser();
         const cloneDoc = parser.parseFromString('<!DOCTYPE html><html lang="es">' + document.documentElement.innerHTML + '</html>', 'text/html');
+
+        // Asegurar que el toast del clon esté limpio
+        const cloneToast = cloneDoc.getElementById('toast');
+        if (cloneToast) { cloneToast.className = ''; cloneToast.textContent = ''; }
 
         // Eliminar el estado guardado del borrador para que no pese ni interfiera
         const savedStateScript = cloneDoc.getElementById('saved-state');
@@ -3217,7 +3225,7 @@
         initScript.textContent = "window.addEventListener('DOMContentLoaded', () => { setTimeout(() => { if (typeof switchTab === 'function') switchTab('plan'); if(typeof initTimer === 'function') initTimer(); }, 100); });";
         cloneDoc.head.appendChild(initScript);
 
-        const htmlFinal = '<!DOCTYPE html>\\n<html lang="es">\\n' + cloneDoc.documentElement.innerHTML + '\\n</html>';
+        const htmlFinal = '<!DOCTYPE html>\n<html lang="es">\n' + cloneDoc.documentElement.innerHTML + '\n</html>';
 
         const blob = new Blob([htmlFinal], { type: 'text/html;charset=utf-8' });
         const url = URL.createObjectURL(blob);
@@ -3745,7 +3753,7 @@ function addGlobalVariable() {
         stateScript.textContent = "window.__SAVED_STATE__ = " + JSON.stringify(state).replace(/</g, '\\u003c') + ";";
 
         // 3. Obtener el HTML de toda la página
-        const fullHtml = '<!DOCTYPE html>\\n<html lang="es">\\n' + document.documentElement.innerHTML + '\\n</html>';
+        const fullHtml = '<!DOCTYPE html>\n<html lang="es">\n' + document.documentElement.innerHTML + '\n</html>';
         
         // 4. Descargar el archivo
         const blob = new Blob([fullHtml], { type: 'text/html;charset=utf-8' });
