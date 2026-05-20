@@ -4124,7 +4124,7 @@ staticText.innerHTML = (value || '(Sin definir)').replace(/\n/g, '<br>');
                 const diffDays = Math.floor((hoy - startDate) / (1000 * 60 * 60 * 24));
                 if (diffDays >= 0) {
                     const semana = Math.floor(diffDays / 7) + 1;
-                    cicloStr = `Semana ${semana} · Día ${diffDays + 1} del plan`;
+                    cicloStr = `Semana ${semana} · ${diffDays + 1} días desde el inicio`;
                 }
             }
         }
