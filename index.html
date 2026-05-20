@@ -1586,16 +1586,16 @@
     </div>
   </div>
 
-  <div class="top-bar" style="margin-top:-0.5rem;">
-    <select id="ejercicioSelect" style="min-width:180px; flex:1; max-width:280px;">
-      <option value="">Todos los ejercicios</option>
-    </select>
-  </div>
-
-  <div class="metrics" id="metrics"></div>
-
   <!-- HISTORIAL -->
   <div id="panel-hist">
+    <div class="top-bar" style="margin-top:-0.5rem;">
+      <select id="ejercicioSelect" style="min-width:180px; flex:1; max-width:280px;">
+        <option value="">Todos los ejercicios</option>
+      </select>
+    </div>
+
+    <div class="metrics" id="metrics"></div>
+
     <!-- HOOK MOTIVACIONAL -->
     <div class="hook-banner">
       <span class="hook-quote-mark">&ldquo;</span>
@@ -3545,12 +3545,17 @@ let variableDefinitions = {
             };
         });
 
-        // Editar nombre del día
+        // Editar nombre del día (actualiza en tiempo real el selector de días de la semana)
         document.querySelectorAll('.day-name-input').forEach(inp => {
-            inp.onchange = (e) => {
+            inp.oninput = (e) => {
                 const idx = parseInt(inp.getAttribute('data-day-index'));
                 if (!isNaN(idx) && trainingDays[idx]) {
                     trainingDays[idx].name = inp.value;
+                    // Actualizar en tiempo real las opciones del selector de días de semana
+                    document.querySelectorAll('.weekday-select').forEach(sel => {
+                        const opt = sel.querySelector(`option[value="${idx}"]`);
+                        if (opt) opt.textContent = inp.value;
+                    });
                 }
             };
         });
