@@ -1859,10 +1859,10 @@
   const DEFAULT_CONFIG = {
     minSesiones: 3,          // mínimo de sesiones para evaluar un ejercicio
     ventana: 4,              // cuántas sesiones recientes mirar
-    diasDescansoExcesivo: 10,// días sin entrenar que activan regresión de peso
+    diasDescansoExcesivo: 14,// días sin entrenar que activan regresión de peso
     diasOptimo: 7,           // días entre sesiones considerados normales
     sesionesRegresionAlerta: 3,
-    semanasEstancamiento: 6, // semanas sin mejora de 1RM
+    semanasEstancamiento: 5, // semanas sin mejora de 1RM
   };
 
   // Reglas por defecto. Cada regla tiene:
@@ -1878,7 +1878,7 @@
       // RIR = Repeticiones en Reserva. 0 = fallo muscular, 1-2 = cerca del fallo, 3+ = demasiado margen.
       // Si el RIR promedio es ALTO (≥ umbral), el peso es demasiado fácil → sugerir subir peso.
       rir_umbral: 3,            // RIR promedio ≥ este valor = peso demasiado fácil → subir peso
-      sesiones_consecutivas: 2, // cuántas sesiones consecutivas cumplir
+      sesiones_consecutivas: 3, // cuántas sesiones consecutivas cumplir
       incremento_porciento: 5,  // % de incremento sugerido
       incremento_minimo_kg: 2.5, // mínimo absoluto de incremento (siempre redondea a 2.5)
     },
@@ -1891,8 +1891,8 @@
       // Umbrales de reps por ejercicio (editables desde el panel)
       reps_por_ejercicio: {
         "Press de banca": 10,
-        "Sentadilla": 12,
-        "Peso muerto": 10
+        "Sentadilla": 10,
+        "Peso muerto": 8
       },
       series_minimas_pct: 75,    // % mínimo de series que deben cumplir el umbral (ej: 75% = 3 de 4, 2 de 3, 2 de 2)
       sesiones_consecutivas: 2,  // sesiones seguidas que deben cumplir la condición
@@ -1905,7 +1905,7 @@
       activa: true,
       titulo: '⬆️ Agregar repeticiones',
       mensaje: 'En {ejercicio} tu volumen creció {porciento}% en las últimas sesiones. Considerá agregar 1-2 reps por serie antes de subir el peso.',
-      umbral_crecimiento_vol: 5, // % de crecimiento de volumen que activa esta sugerencia
+      umbral_crecimiento_vol: 8, // % de crecimiento de volumen que activa esta sugerencia
       sesiones_consecutivas: 2,
     },
     {
@@ -1914,8 +1914,8 @@
       activa: true,
       titulo: '= Mantener peso',
       mensaje: 'En {ejercicio} el volumen se mantuvo estable (±{valor}%). Seguí con {peso} kg y enfocate en mejorar la técnica o reducir el descanso.',
-      umbral_estabilidad: 3, // ±% para considerar "estable"
-      sesiones_consecutivas: 2,
+      umbral_estabilidad: 5, // ±% para considerar "estable"
+      sesiones_consecutivas: 3,
     },
     {
       id: 'bajar_peso_rir_alto',
@@ -1925,9 +1925,9 @@
       mensaje: 'En {ejercicio} el RIR promedio fue {valor} (muy cerca del fallo muscular) pero el volumen bajó. El peso puede ser demasiado alto para sostener la progresión. Considerá bajar un {porciento}% (~{peso} kg) para recuperar calidad de ejecución.',
       // RIR = Repeticiones en Reserva. 0=fallo muscular, 1=1 rep en reserva, 2=2 reps, etc.
       // RIR BAJO (≤ umbral) + volumen cayendo = el peso es demasiado alto → bajar peso
-      rir_umbral_bajo: 2,    // RIR ≤ este valor = entrenando muy cerca del fallo
-      reduccion_porciento: 10,
-      sesiones_consecutivas: 2,
+      rir_umbral_bajo: 1,    // RIR ≤ este valor = entrenando muy cerca del fallo
+      reduccion_porciento: 7,
+      sesiones_consecutivas: 3,
     },
     {
       id: 'bajar_peso_regresion',
@@ -1959,7 +1959,7 @@
       activa: true,
       titulo: '🔄 Posible estancamiento',
       mensaje: 'En {ejercicio} no hubo mejora en {valor} sesiones seguidas (mismo peso y repeticiones, sin progresar el 1RM estimado). Considerá cambiar el ángulo, el agarre, o sustituir por un ejercicio similar durante 2-3 semanas.',
-      sesiones_sin_mejora_peso_reps: 3, // sesiones consecutivas sin superar peso ni reps
+      sesiones_sin_mejora_peso_reps: 4, // sesiones consecutivas sin superar peso ni reps
     },
     {
       id: 'racha_positiva',
@@ -1975,6 +1975,21 @@
       activa: true,
       titulo: '🏁 Primera sesión registrada',
       mensaje: 'Registraste tu primera sesión de {ejercicio}. Necesitás al menos 3 sesiones para que el motor de progresión te dé sugerencias personalizadas.',
+    },
+    {
+      id: 'record_personal',
+      tipo: 'subir',
+      activa: true,
+      titulo: '🏆 ¡Nuevo Récord Personal!',
+      mensaje: '¡Excelente! En {ejercicio} lograste tu mejor 1RM estimado histórico ({valor} kg). Tu récord anterior era de {peso} kg.',
+    },
+    {
+      id: 'deload_sugerido',
+      tipo: 'descanso',
+      activa: true,
+      titulo: '📉 Deload Sugerido',
+      mensaje: 'Llevas entrenando {ejercicio} durante {valor} semanas consecutivas sin descansos largos. Considerá hacer una semana de descarga (bajar volumen/peso 40-50%) para disipar la fatiga acumulada y prevenir lesiones.',
+      semanas_consecutivas: 6,
     },
   ];
 
@@ -2279,6 +2294,46 @@
           })
         });
       }
+      // 10. RÉCORD PERSONAL
+      const rRecord = RULES.find(r => r.id === 'record_personal');
+      if (rRecord && rRecord.activa && n >= 2) {
+        const rm1MaxPrev = Math.max(...filas.slice(0, n-1).map(f => f.rm));
+        const rm1Ultima = ultima.rm;
+        if (rm1Ultima > rm1MaxPrev && (rm1Ultima - rm1MaxPrev) >= 0.5) {
+          notifs.push({
+            tipo: rRecord.tipo, titulo: rRecord.titulo,
+            mensaje: interpolar(rRecord.mensaje, {
+              ejercicio: nombre, valor: rm1Ultima.toFixed(1),
+              porciento: 0, peso: rm1MaxPrev.toFixed(1)
+            })
+          });
+        }
+      }
+
+      // 11. DELOAD SUGERIDO
+      const rDeload = RULES.find(r => r.id === 'deload_sugerido');
+      if (rDeload && rDeload.activa) {
+        const semanasDeload = rDeload.semanas_consecutivas || 6;
+        let fechaStreakStart = parsearFechaISO(ultima.fecha);
+        // Buscar racha sin huecos mayores a 14 días
+        for (let i = n - 1; i >= 1; i--) {
+          const d1 = parsearFechaISO(filas[i].fecha);
+          const d0 = parsearFechaISO(filas[i-1].fecha);
+          const diff = Math.round((d1 - d0) / (1000*60*60*24));
+          if (diff > 14) break; 
+          fechaStreakStart = d0;
+        }
+        const semanasConsecutivas = Math.round((parsearFechaISO(ultima.fecha) - fechaStreakStart) / (1000*60*60*24*7));
+        if (semanasConsecutivas >= semanasDeload) {
+          notifs.push({
+            tipo: rDeload.tipo, titulo: rDeload.titulo,
+            mensaje: interpolar(rDeload.mensaje, {
+              ejercicio: nombre, valor: semanasConsecutivas,
+              porciento: 0, peso: ultima.peso
+            })
+          });
+        }
+      }
     }
 
     return notifs;
@@ -2440,6 +2495,10 @@
       ],
       'estancamiento': [
         { param: 'sesiones_sin_mejora_peso_reps', label: 'Sesiones sin mejorar peso/reps', hint: 'Sesiones consecutivas sin superar el peso ni las repeticiones totales. Se combina con el parámetro global de semanas sin mejorar 1RM.' },
+      ],
+      'record_personal': [], // no params
+      'deload_sugerido': [
+        { param: 'semanas_consecutivas', label: 'Semanas consecutivas', hint: 'Cuántas semanas entrenando sin descansos de más de 14 días para sugerir una descarga.' },
       ],
     };
 
