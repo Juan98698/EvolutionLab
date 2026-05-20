@@ -2,7 +2,7 @@
   "name": "evolution-lab",
   "version": "1.0.0",
   "scripts": {
-    "build": "mkdir -p public && cp -R clientes public/clientes 2>/dev/null || true && html-minifier-terser --collapse-whitespace --remove-comments --minify-css true --minify-js true -o public/index.html index.html"
+    "build": "mkdir -p src_temp/clientes public && cp index.html src_temp/ && cp fondo.jpg public/ 2>/dev/null || true && cp -R clientes/* src_temp/clientes/ 2>/dev/null || true && html-minifier-terser --input-dir src_temp --output-dir public --file-ext html --collapse-whitespace --remove-comments --minify-css true --minify-js true"
   },
   "devDependencies": {
     "html-minifier-terser": "^7.2.0"
