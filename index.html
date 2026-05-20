@@ -1284,6 +1284,237 @@
     }
 }
     
+    /* ===== BANNER ENTRENAMIENTO DE HOY ===== */
+    .today-banner {
+      background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+      border-radius: var(--radius-lg);
+      padding: 1rem 1.25rem;
+      margin-bottom: 1rem;
+      border: 1px solid rgba(255,255,255,0.1);
+      color: #fff;
+      animation: slideIn 0.3s ease;
+    }
+    .today-banner.rest-day {
+      background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+    }
+    .today-banner-title {
+      font-size: 12px;
+      color: rgba(255,255,255,0.5);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+    .today-banner-day {
+      font-size: 17px;
+      font-weight: 800;
+      background: linear-gradient(135deg, #00d4ff, #7b2ff7);
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 2px;
+    }
+    .today-banner.rest-day .today-banner-day {
+      background: linear-gradient(135deg, #f0a830, #ff6b6b);
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .today-banner-meta {
+      font-size: 12px;
+      color: rgba(255,255,255,0.5);
+      margin-bottom: 10px;
+    }
+    .today-banner-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 18px;
+      background: linear-gradient(135deg, #00d4ff, #7b2ff7);
+      color: #fff;
+      border: none;
+      border-radius: 99px;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      font-family: inherit;
+      transition: all 0.2s;
+      -webkit-tap-highlight-color: transparent;
+      touch-action: manipulation;
+    }
+    .today-banner-btn:active { transform: scale(0.95); }
+
+    /* ===== TEMPORIZADOR DE DESCANSO ===== */
+    .rest-timer-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 10px 16px;
+      background: linear-gradient(135deg, #1e40af, #3b82f6);
+      color: #fff;
+      border: none;
+      border-radius: 40px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      cursor: pointer;
+      font-family: 'Inter', sans-serif;
+      transition: all 0.2s;
+      margin-top: 12px;
+      -webkit-tap-highlight-color: transparent;
+      touch-action: manipulation;
+    }
+    .rest-timer-btn:active { transform: scale(0.94); }
+    .rest-timer-active {
+      background: linear-gradient(135deg, #0f172a, #1e293b);
+      border-radius: 20px;
+      padding: 20px 16px;
+      margin-top: 12px;
+      text-align: center;
+      color: #fff;
+      border: 1px solid rgba(0,212,255,0.2);
+      animation: slideIn 0.3s ease;
+    }
+    .rest-timer-circle {
+      position: relative;
+      width: 130px;
+      height: 130px;
+      margin: 0 auto 12px;
+    }
+    .rest-timer-circle svg {
+      transform: rotate(-90deg);
+      width: 130px;
+      height: 130px;
+    }
+    .rest-timer-circle .timer-bg {
+      fill: none;
+      stroke: rgba(255,255,255,0.08);
+      stroke-width: 6;
+    }
+    .rest-timer-circle .timer-progress {
+      fill: none;
+      stroke: #00d4ff;
+      stroke-width: 6;
+      stroke-linecap: round;
+      transition: stroke-dashoffset 1s linear;
+    }
+    .rest-timer-time {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 32px;
+      font-weight: 800;
+      font-family: 'Orbitron', monospace;
+      color: #00d4ff;
+    }
+    .rest-timer-label {
+      font-size: 12px;
+      color: rgba(255,255,255,0.5);
+      margin-bottom: 10px;
+    }
+    .rest-timer-actions {
+      display: flex;
+      gap: 8px;
+      justify-content: center;
+      margin-top: 8px;
+    }
+    .rest-timer-actions button {
+      padding: 8px 18px;
+      border-radius: 40px;
+      border: none;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      font-family: inherit;
+      -webkit-tap-highlight-color: transparent;
+      touch-action: manipulation;
+    }
+    .rest-timer-actions .timer-pause {
+      background: rgba(255,255,255,0.15);
+      color: #fff;
+    }
+    .rest-timer-actions .timer-reset {
+      background: rgba(255,255,255,0.08);
+      color: rgba(255,255,255,0.6);
+    }
+    .rest-timer-done {
+      color: #10b981;
+      font-size: 16px;
+      font-weight: 700;
+    }
+    @keyframes timerPulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.03); }
+    }
+
+    /* ===== CONFIG DÍAS DE SEMANA ===== */
+    .weekday-config {
+      margin-top: 20px;
+      margin-bottom: 20px;
+      background: rgba(255, 255, 255, 0.20);
+      border-radius: 20px;
+      padding: 15px 20px;
+      border: 1px solid #e2e8f0;
+    }
+    .weekday-config-title {
+      font-weight: 700;
+      font-size: 0.95rem;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .weekday-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+    }
+    @media (min-width: 640px) {
+      .weekday-grid { grid-template-columns: repeat(7, 1fr); }
+    }
+    .weekday-item {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      min-width: 0;
+      overflow: hidden;
+    }
+    .weekday-item label {
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      color: #475569;
+      text-align: center;
+    }
+    .weekday-item select {
+      padding: 8px 4px;
+      border-radius: 12px;
+      border: 1px solid #000;
+      font-size: 0.68rem;
+      font-weight: 500;
+      background: rgba(255,255,255,0.40);
+      color: #000;
+      text-align: center;
+      width: 100%;
+      min-width: 0;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .weekday-item select.weekday-rest {
+      background: rgba(100,116,139,0.15);
+      color: #64748b;
+    }
+
+    /* ===== DAY HIGHLIGHT ANIMATION ===== */
+    .day-card-highlight {
+      animation: dayHighlightPulse 2.5s ease-out forwards;
+    }
+    @keyframes dayHighlightPulse {
+      0% { box-shadow: 0 0 0 4px #00d4ff, 0 0 30px rgba(0,212,255,0.5); }
+      70% { box-shadow: 0 0 0 4px #00d4ff, 0 0 20px rgba(0,212,255,0.3); }
+      100% { box-shadow: 0 4px 14px rgba(0,0,0,0.05); }
+    }
+
   /* ESTILOS DEL PLAN */
 </style>
 </head>
@@ -1293,7 +1524,7 @@
   <div class="brand">
     <div class="brand-name">Evolution Lab</div>
     <div class="brand-credit">
-      Developed by Juan Manuel Cardona
+      developed by Juan Manuel Cardona
       <a href="https://www.instagram.com/manuel_betancur" target="_blank" rel="noopener noreferrer" title="@manuel_betancur en Instagram">
         <svg class="ig-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
         @manuel_betancur
@@ -1322,6 +1553,9 @@
 </div>
 
 <div class="container">
+
+  <!-- Banner Tu Entrenamiento de Hoy -->
+  <div id="todayBanner" style="display:none;"></div>
 
   <div class="aviso-bloqueo" id="avisoBloqueo">
     🔒 Tu plan de 31 días ha finalizado. <a href="#" id="renovarLink">Contacta a tu entrenador para renovar</a>.
@@ -1490,6 +1724,13 @@
         <div style="margin-bottom: 20px;">
             <label style="font-weight:600;">📅 Fecha inicio</label>
             <input type="date" id="startDate" style="padding:10px; border-radius:20px; border: 1px solid #000;" value="2026-05-10">
+        </div>
+
+        <!-- Configuración de días de la semana -->
+        <div class="weekday-config" id="weekdayConfigSection">
+            <div class="weekday-config-title">📅 Días de entrenamiento por semana</div>
+            <p style="font-size:0.78rem; color:#475569; margin-bottom:12px;">Asigna cada día del plan a un día de la semana. El cliente verá automáticamente qué le toca hoy.</p>
+            <div class="weekday-grid" id="weekdayGrid"></div>
         </div>
 
         <!-- Nuevos campos para el elaborador / entrenador -->
@@ -2959,7 +3200,7 @@
 
         const cfgPayload = btoa(unescape(encodeURIComponent(JSON.stringify({ config: CONFIG, rules: RULES }))));
         const scriptIny = cloneDoc.createElement('script');
-        scriptIny.textContent = `window.INJECTED_CLIENT_CONFIG = "${cfgPayload}"; window.INJECTED_CLIENT_ID = "${id}";`;
+        scriptIny.textContent = `window.INJECTED_CLIENT_CONFIG = "${cfgPayload}"; window.INJECTED_CLIENT_ID = "${id}"; window.INJECTED_WEEKDAY_MAPPING = '${JSON.stringify(weekdayMapping)}';`;
         cloneDoc.head.appendChild(scriptIny);
         
         const panelGen = cloneDoc.getElementById('panelGenerarLink');
@@ -2967,9 +3208,13 @@
         const exportBtn = cloneDoc.getElementById('generarLinkBtn');
         if (exportBtn) exportBtn.remove();
         
+        // Ocultar configurador de días (solo para entrenador)
+        const weekdayCfg = cloneDoc.getElementById('weekdayConfigSection');
+        if (weekdayCfg) weekdayCfg.remove();
+        
         // Ensure starting tab is "plan" for clients
         const initScript = cloneDoc.createElement('script');
-        initScript.textContent = "window.addEventListener('DOMContentLoaded', () => { setTimeout(() => { if (typeof switchTab === 'function') switchTab('plan'); }, 100); });";
+        initScript.textContent = "window.addEventListener('DOMContentLoaded', () => { setTimeout(() => { if (typeof switchTab === 'function') switchTab('plan'); if(typeof initTimer === 'function') initTimer(); }, 100); });";
         cloneDoc.head.appendChild(initScript);
 
         const htmlFinal = '<!DOCTYPE html>\\n<html lang="es">\\n' + cloneDoc.documentElement.innerHTML + '\\n</html>';
@@ -3092,6 +3337,9 @@ let variableDefinitions = {
     "descanso": "El tiempo que esperas entre una serie y otra para recuperar energía. Ejemplo: Cronometrar 2 minutos sentado antes de empezar la siguiente serie."
 };
 
+    // Mapeo de días de la semana (0=Dom, 1=Lun, ..., 6=Sab) → índice de trainingDays (-1 = descanso)
+    let weekdayMapping = { 0: -1, 1: -1, 2: -1, 3: -1, 4: -1, 5: -1, 6: -1 };
+
     // Generar ejercicios con las variables actuales
     function createEmptyExercise(nameSuffix = 1) {
         let varValues = {};
@@ -3160,6 +3408,7 @@ let variableDefinitions = {
         renderGlobalVarsPanel();
 	renderDefinitions();
         renderDaysContainer();
+        renderWeekdayConfig();
         attachAllEvents();
     }
 
@@ -3488,6 +3737,7 @@ function addGlobalVariable() {
             globalVariables: globalVariables,
             variableDefinitions: variableDefinitions,
             trainingDays: trainingDays,
+            weekdayMapping: weekdayMapping,
             trackerConfig: typeof CONFIG !== 'undefined' ? CONFIG : null,
             trackerRules: typeof RULES !== 'undefined' ? RULES : null
         };
@@ -3643,15 +3893,339 @@ staticText.innerHTML = (value || '(Sin definir)').replace(/\n/g, '<br>');
     URL.revokeObjectURL(url);
 }
 
+    // ==============================================================
+    // ===== PARSEO DE DESCANSO =====
+    // ==============================================================
+    function parseDescanso(valor) {
+        if (!valor && valor !== 0) return 0;
+        const str = String(valor).trim();
+        if (!str) return 0;
+        const num = parseFloat(str);
+        if (isNaN(num)) return 0;
+        // Si tiene punto: izquierda=minutos, derecha=segundos (ej: 1.30 = 1min 30seg)
+        if (str.includes('.')) {
+            const parts = str.split('.');
+            const mins = parseInt(parts[0]) || 0;
+            const secs = parseInt(parts[1]) || 0;
+            return mins * 60 + secs;
+        }
+        // Si > 10: interpretar como segundos
+        if (num > 10) return Math.round(num);
+        // Si <= 10: interpretar como minutos
+        return Math.round(num * 60);
+    }
+
+    function formatTimerDisplay(totalSec) {
+        const m = Math.floor(totalSec / 60);
+        const s = totalSec % 60;
+        return (m > 0 ? m + ':' + String(s).padStart(2, '0') : s + 's');
+    }
+
+    // ==============================================================
+    // ===== TEMPORIZADOR DE DESCANSO =====
+    // ==============================================================
+    let activeTimerInterval = null;
+
+    function initRestTimers() {
+        // Buscar todas las exercise-card en el panel-plan
+        const cards = document.querySelectorAll('#panel-plan .exercise-card');
+        cards.forEach(card => {
+            // Buscar el valor de descanso en las variables
+            const varItems = card.querySelectorAll('.var-item');
+            let descansoVal = null;
+            varItems.forEach(item => {
+                const label = item.querySelector('label');
+                if (label && label.textContent.toUpperCase().includes('DESCANSO')) {
+                    const input = item.querySelector('input');
+                    const staticVal = item.querySelector('.static-value');
+                    if (input) descansoVal = input.value;
+                    else if (staticVal) descansoVal = staticVal.textContent.trim();
+                }
+            });
+            // También buscar en variables-row por static-value
+            if (!descansoVal) {
+                const row = card.querySelector('.variables-row');
+                if (row) {
+                    row.querySelectorAll('.var-item').forEach(item => {
+                        const label = item.querySelector('label');
+                        if (label && label.textContent.toUpperCase().includes('DESCANSO')) {
+                            const sv = item.querySelector('.static-value, input');
+                            if (sv) descansoVal = (sv.value || sv.textContent || '').trim();
+                        }
+                    });
+                }
+            }
+            if (!descansoVal) return;
+            const totalSec = parseDescanso(descansoVal);
+            if (totalSec <= 0) return;
+
+            // No agregar duplicados
+            if (card.querySelector('.rest-timer-btn')) return;
+
+            const btn = document.createElement('button');
+            btn.className = 'rest-timer-btn';
+            btn.innerHTML = `⏱ Iniciar descanso (${formatTimerDisplay(totalSec)})`;
+            btn.onclick = function(e) {
+                e.preventDefault();
+                startRestTimer(card, btn, totalSec);
+            };
+            // Insertar después de variables-row o al final de la card
+            const varsRow = card.querySelector('.variables-row');
+            if (varsRow) varsRow.after(btn);
+            else card.appendChild(btn);
+        });
+    }
+
+    function startRestTimer(card, triggerBtn, totalSec) {
+        // Limpiar timer previo si existe
+        if (activeTimerInterval) clearInterval(activeTimerInterval);
+        const existing = card.querySelector('.rest-timer-active');
+        if (existing) existing.remove();
+        triggerBtn.style.display = 'none';
+
+        const circumference = 2 * Math.PI * 54;
+        let remaining = totalSec;
+        let paused = false;
+
+        const timerDiv = document.createElement('div');
+        timerDiv.className = 'rest-timer-active';
+        timerDiv.innerHTML = `
+            <div class="rest-timer-label">Descanso entre series</div>
+            <div class="rest-timer-circle">
+                <svg viewBox="0 0 120 120">
+                    <circle class="timer-bg" cx="60" cy="60" r="54"/>
+                    <circle class="timer-progress" cx="60" cy="60" r="54"
+                        stroke-dasharray="${circumference}"
+                        stroke-dashoffset="0"/>
+                </svg>
+                <div class="rest-timer-time">${formatTimerDisplay(remaining)}</div>
+            </div>
+            <div class="rest-timer-actions">
+                <button class="timer-pause">⏸ Pausar</button>
+                <button class="timer-reset">↺ Reiniciar</button>
+            </div>
+        `;
+        triggerBtn.after(timerDiv);
+        timerDiv.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+        const progressCircle = timerDiv.querySelector('.timer-progress');
+        const timeDisplay = timerDiv.querySelector('.rest-timer-time');
+        const pauseBtn = timerDiv.querySelector('.timer-pause');
+        const resetBtn = timerDiv.querySelector('.timer-reset');
+
+        function updateDisplay() {
+            timeDisplay.textContent = formatTimerDisplay(remaining);
+            const offset = circumference * (1 - remaining / totalSec);
+            progressCircle.style.strokeDashoffset = offset;
+            // Color shifts to green when almost done
+            if (remaining <= 5) progressCircle.style.stroke = '#10b981';
+            else if (remaining <= 10) progressCircle.style.stroke = '#f0a830';
+            else progressCircle.style.stroke = '#00d4ff';
+        }
+
+        activeTimerInterval = setInterval(() => {
+            if (paused) return;
+            remaining--;
+            updateDisplay();
+            if (remaining <= 0) {
+                clearInterval(activeTimerInterval);
+                activeTimerInterval = null;
+                // Done!
+                timerDiv.innerHTML = `
+                    <div class="rest-timer-done" style="animation: timerPulse 0.5s ease;">✅ ¡Listo! Siguiente serie</div>
+                    <div class="rest-timer-actions" style="margin-top:12px;">
+                        <button class="timer-reset">↺ Repetir descanso</button>
+                    </div>
+                `;
+                timerDiv.querySelector('.timer-reset').onclick = () => {
+                    timerDiv.remove();
+                    triggerBtn.style.display = '';
+                    startRestTimer(card, triggerBtn, totalSec);
+                };
+                // Vibrar si es posible
+                if (navigator.vibrate) navigator.vibrate([200, 100, 200]);
+                // Sonido sutil
+                try {
+                    const ctx = new (window.AudioContext || window.webkitAudioContext)();
+                    const osc = ctx.createOscillator();
+                    const gain = ctx.createGain();
+                    osc.connect(gain); gain.connect(ctx.destination);
+                    osc.frequency.value = 800; gain.gain.value = 0.3;
+                    osc.start(); osc.stop(ctx.currentTime + 0.3);
+                } catch(e) {}
+            }
+        }, 1000);
+
+        pauseBtn.onclick = () => {
+            paused = !paused;
+            pauseBtn.textContent = paused ? '▶ Reanudar' : '⏸ Pausar';
+        };
+        resetBtn.onclick = () => {
+            clearInterval(activeTimerInterval);
+            activeTimerInterval = null;
+            timerDiv.remove();
+            triggerBtn.style.display = '';
+        };
+    }
+
+    // ==============================================================
+    // ===== BANNER TU ENTRENAMIENTO DE HOY =====
+    // ==============================================================
+    function renderTodayBanner() {
+        const container = document.getElementById('todayBanner');
+        if (!container) return;
+        // Solo mostrar si hay mapeo configurado
+        const hasConfig = Object.values(weekdayMapping).some(v => v !== -1);
+        if (!hasConfig) { container.style.display = 'none'; return; }
+
+        const hoy = new Date();
+        const diaSemana = hoy.getDay();
+        const diaIndex = weekdayMapping[diaSemana];
+        const diasSemana = ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'];
+        const hoyStr = hoy.toLocaleDateString('es-ES', { weekday: 'long', day: 'numeric', month: 'long' });
+
+        // Calcular ciclo
+        let cicloStr = '';
+        const startEl = document.getElementById('startDate');
+        let startVal = '';
+        if (startEl) {
+            startVal = startEl.value || startEl.textContent || '';
+            // Si es un static-value div en modo cliente
+            if (!startVal && startEl.querySelector) {
+                const sv = startEl.querySelector('.static-value');
+                if (sv) startVal = sv.textContent.trim();
+            }
+        }
+        // Buscar también en la portada por el label "Fecha inicio"
+        if (!startVal) {
+            document.querySelectorAll('#panel-plan .static-value, #panel-plan input[type=date]').forEach(el => {
+                const prev = el.previousElementSibling;
+                if (prev && prev.textContent && prev.textContent.includes('Fecha inicio')) {
+                    startVal = el.value || el.textContent || '';
+                }
+            });
+        }
+        if (startVal) {
+            const startDate = parsearFechaISO(startVal.trim());
+            if (startDate && !isNaN(startDate.getTime())) {
+                const diffDays = Math.floor((hoy - startDate) / (1000 * 60 * 60 * 24));
+                if (diffDays >= 0) {
+                    const semana = Math.floor(diffDays / 7) + 1;
+                    cicloStr = `Semana ${semana} · Día ${diffDays + 1} del plan`;
+                }
+            }
+        }
+
+        // Obtener nombres de los días del plan desde el DOM
+        function getDayName(idx) {
+            const dayCards = document.querySelectorAll('#daysContainer .day-card');
+            if (dayCards[idx]) {
+                const nameInput = dayCards[idx].querySelector('.day-name-input');
+                const nameStatic = dayCards[idx].querySelector('.day-title .static-value');
+                const titleInput = dayCards[idx].querySelector('.day-title input');
+                return (nameInput ? nameInput.value : (nameStatic ? nameStatic.textContent : (titleInput ? titleInput.value : ''))) || '';
+            }
+            if (typeof trainingDays !== 'undefined' && trainingDays[idx]) return trainingDays[idx].name;
+            return 'Día ' + (idx + 1);
+        }
+
+        container.style.display = 'block';
+
+        if (diaIndex === -1 || diaIndex === undefined || diaIndex === null) {
+            // Día de descanso — buscar próximo entrenamiento
+            let nextInfo = '';
+            for (let i = 1; i <= 7; i++) {
+                const nextDow = (diaSemana + i) % 7;
+                const nextIdx = weekdayMapping[nextDow];
+                if (nextIdx !== -1 && nextIdx !== undefined && nextIdx !== null) {
+                    const nextName = getDayName(nextIdx);
+                    const nextDia = diasSemana[nextDow];
+                    nextInfo = `Próximo: <strong>${nextName}</strong> (${nextDia})`;
+                    break;
+                }
+            }
+            container.className = 'today-banner rest-day';
+            container.innerHTML = `
+                <div class="today-banner-title">📅 ${hoyStr}</div>
+                <div class="today-banner-day">🛌 Hoy es día de descanso</div>
+                <div class="today-banner-meta">${cicloStr}${nextInfo ? ' · ' + nextInfo : ''}</div>
+            `;
+        } else {
+            const dayName = getDayName(diaIndex);
+            container.className = 'today-banner';
+            container.innerHTML = `
+                <div class="today-banner-title">📅 Tu entrenamiento de hoy · ${hoyStr}</div>
+                <div class="today-banner-day">${dayName}</div>
+                <div class="today-banner-meta">${cicloStr}</div>
+                <button class="today-banner-btn" onclick="scrollToDayAndHighlight(${diaIndex})">Ver ejercicios →</button>
+            `;
+        }
+    }
+
+    function scrollToDayAndHighlight(dayIndex) {
+        // Cambiar a tab plan
+        if (typeof switchTab === 'function') switchTab('plan');
+        setTimeout(() => {
+            const dayCards = document.querySelectorAll('#daysContainer .day-card');
+            if (dayCards[dayIndex]) {
+                const card = dayCards[dayIndex];
+                card.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                card.classList.add('day-card-highlight');
+                setTimeout(() => card.classList.remove('day-card-highlight'), 3000);
+            }
+        }, 200);
+    }
+    window.scrollToDayAndHighlight = scrollToDayAndHighlight;
+
+    // ==============================================================
+    // ===== RENDER CONFIGURACIÓN DÍAS DE SEMANA =====
+    // ==============================================================
+    function renderWeekdayConfig() {
+        const grid = document.getElementById('weekdayGrid');
+        if (!grid) return;
+        const diasNombres = ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'];
+        const orden = [1, 2, 3, 4, 5, 6, 0]; // Lunes a Domingo
+        let html = '';
+        orden.forEach(diaNum => {
+            const nombre = diasNombres[diaNum];
+            const isRest = weekdayMapping[diaNum] === -1;
+            let options = `<option value="-1"${isRest ? ' selected' : ''}>🛌 Descanso</option>`;
+            trainingDays.forEach((day, idx) => {
+                const sel = weekdayMapping[diaNum] === idx ? ' selected' : '';
+                options += `<option value="${idx}"${sel}>${escapeHtml(day.name)}</option>`;
+            });
+            html += `<div class="weekday-item">
+                <label>${nombre.substring(0, 3)}</label>
+                <select class="weekday-select${isRest ? ' weekday-rest' : ''}" data-dia="${diaNum}">${options}</select>
+            </div>`;
+        });
+        grid.innerHTML = html;
+        grid.querySelectorAll('.weekday-select').forEach(sel => {
+            sel.onchange = () => {
+                weekdayMapping[parseInt(sel.dataset.dia)] = parseInt(sel.value);
+                sel.classList.toggle('weekday-rest', sel.value === '-1');
+            };
+        });
+    }
+
     // Inicialización
     function initPlan() {
         // CRÍTICO: Si es un cliente, no renderizamos la app editable. Dejamos el HTML estático intacto.
-        if (typeof MODO_CLIENTE !== 'undefined' && MODO_CLIENTE) return;
+        if (typeof MODO_CLIENTE !== 'undefined' && MODO_CLIENTE) {
+            // En modo cliente: cargar weekdayMapping inyectado, renderizar banner y timers
+            if (window.INJECTED_WEEKDAY_MAPPING) {
+                try { weekdayMapping = JSON.parse(window.INJECTED_WEEKDAY_MAPPING); } catch(e) {}
+            }
+            renderTodayBanner();
+            setTimeout(() => initRestTimers(), 300);
+            return;
+        }
 
         if (window.__SAVED_STATE__) {
             globalVariables = window.__SAVED_STATE__.globalVariables || globalVariables;
             variableDefinitions = window.__SAVED_STATE__.variableDefinitions || variableDefinitions;
             trainingDays = window.__SAVED_STATE__.trainingDays || trainingDays;
+            if (window.__SAVED_STATE__.weekdayMapping) weekdayMapping = window.__SAVED_STATE__.weekdayMapping;
             if (window.__SAVED_STATE__.trackerConfig) {
                 CONFIG = window.__SAVED_STATE__.trackerConfig;
                 RULES = window.__SAVED_STATE__.trackerRules;
@@ -3660,6 +4234,7 @@ staticText.innerHTML = (value || '(Sin definir)').replace(/\n/g, '<br>');
             }
         }
         renderFullApp();
+        renderWeekdayConfig();
         const printBtn = document.getElementById('printAsPdfBtn');
         if (printBtn) printBtn.onclick = printToPdf;
         const addVarToolbar = document.getElementById('addCustomVarBtn');
