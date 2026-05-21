@@ -832,13 +832,69 @@
             backdrop-filter: blur(8px);
             -webkit-backdrop-filter: blur(8px);
             border: 1px solid var(--border2);
+        }
+
+        /* Modal 1RM */
+        .modal-overlay {
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0,0,0,0.7);
+            backdrop-filter: blur(5px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10000;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s;
+        }
+        .modal-overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+        .modal-content {
+            background: linear-gradient(135deg, rgba(30, 41, 59, 0.95), rgba(15, 23, 42, 0.95));
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 20px;
+            padding: 24px;
+            width: 90%;
+            max-width: 500px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+            color: white;
+            position: relative;
+        }
+        .modal-close {
+            position: absolute;
+            top: 16px; right: 16px;
+            background: none; border: none; color: #94a3b8; font-size: 24px; cursor: pointer;
+        }
+        .modal-close:hover { color: white; }
+        .rm-form {
+            display: flex; gap: 12px; margin-bottom: 20px;
+        }
+        .rm-form input, .rm-form select {
+            flex: 1; padding: 10px; border-radius: 12px;
+            background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); color: white;
+        }
+        .rm-form button {
+            background: #3b82f6; color: white; border: none; border-radius: 12px; padding: 10px 16px; font-weight: 600; cursor: pointer;
+        }
+        .rm-form button:hover { background: #2563eb; }
+        .rm-result-table {
+            width: 100%; border-collapse: collapse; text-align: left; font-size: 0.9rem;
+        }
+        .rm-result-table th, .rm-result-table td {
+            padding: 10px; border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+        .rm-result-table th { color: #94a3b8; font-weight: 600; }
+        .rm-highlight { background: rgba(59, 130, 246, 0.1); font-weight: bold; color: #60a5fa; }
+        
+        .cover-page {
+            /* Mantenemos el estilo de cover-page general de glassmorphism */
             border-radius: 24px;
             margin-bottom: 40px;
             padding: 25px 30px;
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-        }
-        .cover-page {
-            /* Mantenemos el estilo de cover-page general de glassmorphism */
         }
         .social-row {
             display: flex;
@@ -1762,6 +1818,7 @@
 <div class="document-container" id="trainingPlanContainer">
     <!-- Toolbar -->
     <div class="toolbar">
+        <button id="open1rmBtn" style="background:#8b5cf6;">🧮 Calculadora 1RM</button>
         <button id="printAsPdfBtn" class="btn-print">🖨️ Vista previa / Exportar PDF (Ctrl+P)</button>
         <button id="addGlobalDayBtn">➕ Añadir día</button>
         <button id="addCustomVarBtn">➕ Añadir variable global</button>
@@ -3157,7 +3214,8 @@ Un registro completo convierte cada sesi&oacute;n en informaci&oacute;n &uacute;
       if (ej.rpe === '' || ej.rpe === undefined || isNaN(ej.rpe) || Number(ej.rpe) < 0 || Number(ej.rpe) > 10) {
         mostrarError(`Ejercicio ${num} ("${ej.nombre}"): el RIR debe estar entre 0 y 10.`); highlightField('rpe', i); return;
       }
-      if (!ej.descanso || Number(ej.descanso) < 30) { mostrarError(`Ejercicio ${num} ("${ej.nombre}"): el descanso mínimo es 30 segundos.`); highlightField('descanso', i); return; }
+      if (!ej.descanso || Number(ej.descanso) < 30) { mostrarError(`Ejercicio ${num} ("${ej.nombre}"): el descanso mínimo es 30 segundos.`); highlightField('descanso', i); return;
+      }
     }
     if (sesiones.length === 0 && !obtenerFechaInicioCiclo()) establecerFechaInicioCiclo(fecha);
     const ejerciciosGuardar = tempEjercicios.map(ej => {
@@ -4602,6 +4660,115 @@ cloneContainer.querySelectorAll('.definition-input').forEach(el => {
     }
 
 initPlan();
-</script>
+
+        // --- Lógica de la Calculadora 1RM ---
+        const open1rmBtn = document.getElementById('open1rmBtn');
+        const rmModal = document.getElementById('rmModal');
+        const closeRmModal = document.getElementById('closeRmModal');
+        const btnCalculateRm = document.getElementById('btnCalculateRm');
+
+        if (open1rmBtn) open1rmBtn.addEventListener('click', () => rmModal.classList.add('active'));
+        if (closeRmModal) closeRmModal.addEventListener('click', () => rmModal.classList.remove('active'));
+
+        if (btnCalculateRm) {
+            btnCalculateRm.addEventListener('click', () => {
+                const weight = parseFloat(document.getElementById('rmWeight').value);
+                const reps = parseInt(document.getElementById('rmReps').value);
+                const formula = document.getElementById('rmFormula').value;
+
+                if (isNaN(weight) || isNaN(reps) || weight <= 0 || reps <= 0) {
+                    alert('Por favor, ingresa un peso y repeticiones válidos.');
+                    return;
+                }
+
+                let brzycki = weight * (36 / (37 - reps));
+                let epley = weight * (1 + (reps / 30));
+                let rm1 = 0;
+
+                if (reps === 1) {
+                    rm1 = weight;
+                } else if (formula === 'brzycki') {
+                    rm1 = brzycki;
+                } else if (formula === 'epley') {
+                    rm1 = epley;
+                } else {
+                    rm1 = (brzycki + epley) / 2; // Promedio
+                }
+
+                document.getElementById('rm100').innerText = rm1.toFixed(1);
+
+                const percentages = [
+                    { p: 100, reps: '1 rep' },
+                    { p: 95, reps: '2 reps' },
+                    { p: 90, reps: '3-4 reps' },
+                    { p: 85, reps: '5-6 reps' },
+                    { p: 80, reps: '7-8 reps' },
+                    { p: 75, reps: '9-10 reps' },
+                    { p: 70, reps: '11-12 reps' },
+                    { p: 65, reps: '13-15 reps' },
+                    { p: 60, reps: '16-20 reps' },
+                ];
+
+                const tbody = document.getElementById('rmTableBody');
+                tbody.innerHTML = '';
+                percentages.forEach(item => {
+                    const row = document.createElement('tr');
+                    if (item.p === 100) row.className = 'rm-highlight';
+                    const calcWeight = (rm1 * (item.p / 100)).toFixed(1);
+                    row.innerHTML = `
+                        <td>${item.p}%</td>
+                        <td>${item.reps}</td>
+                        <td style="font-weight:bold;">${calcWeight}</td>
+                    `;
+                    tbody.appendChild(row);
+                });
+
+                document.getElementById('rmResults').style.display = 'block';
+            });
+        }
+        
+        // Modal de 1RM al final del body
+        const rmModalHtml = `
+        <div class="modal-overlay" id="rmModal">
+            <div class="modal-content">
+                <button class="modal-close" id="closeRmModal">&times;</button>
+                <h2 style="font-size:1.4rem; margin-bottom: 16px; margin-top: 0;">🧮 Calculadora de 1RM</h2>
+                <p style="font-size:0.85rem; color:#94a3b8; margin-bottom: 16px;">Calcula tu repetición máxima y pesos equivalentes usando la fórmula de Brzycki o Epley.</p>
+                
+                <div class="rm-form">
+                    <input type="number" id="rmWeight" placeholder="Peso (ej. 100)">
+                    <input type="number" id="rmReps" placeholder="Reps (ej. 5)">
+                    <select id="rmFormula">
+                        <option value="avg">Promedio (Recomendado)</option>
+                        <option value="brzycki">Brzycki</option>
+                        <option value="epley">Epley</option>
+                    </select>
+                </div>
+                <div class="rm-form" style="margin-bottom: 24px;">
+                    <button id="btnCalculateRm" style="width:100%;">Calcular Cargas</button>
+                </div>
+
+                <div id="rmResults" style="display:none;">
+                    <h3 style="font-size:1.1rem; margin-bottom: 12px; text-align: center; color: #60a5fa;">Tu 1RM es: <span id="rm100">--</span></h3>
+                    <div style="background:rgba(0,0,0,0.2); border-radius:12px; padding: 12px;">
+                        <table class="rm-result-table">
+                            <thead>
+                                <tr>
+                                    <th>% 1RM</th>
+                                    <th>Reps Sugeridas</th>
+                                    <th>Carga Estimada</th>
+                                </tr>
+                            </thead>
+                            <tbody id="rmTableBody">
+                            </tbody>
+                        </table>
+                    </div>
+                    <p style="font-size:0.7rem; color:#64748b; margin-top:12px; text-align:center;">Estos valores son aproximados. Ajusta según el RIR o la fatiga diaria.</p>
+                </div>
+            </div>
+        </div>`;
+        document.body.insertAdjacentHTML('beforeend', rmModalHtml);
+
+    </script>
 </body>
 </html>
