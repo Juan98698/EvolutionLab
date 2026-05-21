@@ -3440,6 +3440,7 @@ Un registro completo convierte cada sesi&oacute;n en informaci&oacute;n &uacute;
     
     document.getElementById('saveConfigBtn').click();
     toast('Generando archivo HTML...', 'info');
+    document.getElementById('toast').classList.remove('show');
 
     try {
         const originalContainer = document.getElementById('trainingPlanContainer');
@@ -3715,6 +3716,7 @@ let variableDefinitions = {
         renderWeekdayConfig();
         attachAllEvents();
         initChecklist();
+        initRestTimers();
     }
 
     function renderGlobalVarsPanel() {
@@ -4036,6 +4038,10 @@ function addGlobalVariable() {
         // Asegurar que las reglas están actualizadas antes de guardar el borrador
         const btnGuardar = document.getElementById('saveConfigBtn');
         if(btnGuardar) btnGuardar.click();
+        
+        // Quitar la clase show del toast para que no quede incrustado en el HTML exportado
+        const toastEl = document.getElementById('toast');
+        if (toastEl) toastEl.classList.remove('show');
 
         // 2. Guardar el estado JSON en un script en el head
         let stateScript = document.getElementById('saved-state');
