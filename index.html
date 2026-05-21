@@ -374,6 +374,10 @@
       backdrop-filter: blur(4px);
       -webkit-backdrop-filter: blur(4px);
     }
+    .ejercicio-group select option, select option {
+      background-color: #1e293b !important;
+      color: #ffffff !important;
+    }
     .ejercicio-group input:focus, .ejercicio-group select:focus, .ejercicio-group textarea:focus {
       background: rgba(255, 255, 255, 0.06) !important;
       border-color: var(--blue) !important;
@@ -3630,9 +3634,23 @@ Un registro completo convierte cada sesi&oacute;n en informaci&oacute;n &uacute;
 
         const cloneContainer = cloneDoc.getElementById('trainingPlanContainer');
         if (cloneContainer) {
+            // Extraer el div del footer de marca antes de eliminar la barra de herramientas
+            const originalFooter = cloneContainer.querySelector('.toolbar div');
+            let footerClone = null;
+            if (originalFooter) {
+                footerClone = originalFooter.cloneNode(true);
+            }
+
+            // Eliminar la barra de herramientas (.toolbar) por completo para el cliente
+            const toolbar = cloneContainer.querySelector('.toolbar');
+            if (toolbar) toolbar.remove();
+
             const editElements = cloneContainer.querySelectorAll('#addGlobalDayBtn, #addCustomVarBtn, #exportHtmlBtn, .add-day-btn, .btn-remove-day, .exercise-actions, .btn-add-ex, .btn-rem-ex, .img-upload-label, .global-vars-panel button, #quickAddVarBtn, .remove-var-btn, .hidden-file-upload, .video-url-input');
             editElements.forEach(el => el.remove());
             
+            // Limpiar temporizadores activos o botones de temporizador estáticos
+            cloneContainer.querySelectorAll('.rest-timer-active, .rest-timer-btn').forEach(el => el.remove());
+
             cloneContainer.querySelectorAll('input, textarea').forEach(el => {
                 const parent = el.parentNode;
                 const value = el.value;
@@ -3662,7 +3680,15 @@ Un registro completo convierte cada sesi&oacute;n en informaci&oacute;n &uacute;
                 link.setAttribute('rel', 'noopener noreferrer');
                 link.style.cssText = 'display: inline-block; margin-top: 8px; padding: 8px 12px; background: #e6f0ff; border-radius: 40px; color: #1e40af; text-decoration: none; font-weight: 600; text-align: center; border: 1px solid #3b82f6;';
             });
-            cloneContainer.querySelectorAll('button:not(#calc1RMBtn):not(#printAsPdfBtn)').forEach(btn => btn.remove());
+            
+            // Eliminar cualquier otro botón de manera segura (el cliente no debe tener botones en el plan principal)
+            cloneContainer.querySelectorAll('button').forEach(btn => btn.remove());
+
+            // Agregar el pie de página de marca al final del contenedor principal
+            if (footerClone) {
+                footerClone.style.cssText = 'text-align: center; margin-top: 50px; padding-top: 25px; border-top: 1px solid rgba(255, 255, 255, 0.08); font-size: 0.8rem; color: var(--text3);';
+                cloneContainer.appendChild(footerClone);
+            }
         }
 
         const cfgPayload = btoa(unescape(encodeURIComponent(JSON.stringify({ config: CONFIG, rules: RULES }))));
@@ -4976,7 +5002,9 @@ cloneContainer.querySelectorAll('.definition-input').forEach(el => {
         });
     }
 
-initPlan();
+document.addEventListener('DOMContentLoaded', () => {
+    initPlan();
+});
 </script>
 
 <!-- Modal de Calculadora 1RM (Dark Glassmorphism) -->
