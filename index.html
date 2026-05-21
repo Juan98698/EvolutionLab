@@ -334,9 +334,11 @@
     .center { text-align: center; }
 
     .chart-card {
-      background: var(--bg);
+      background: linear-gradient(135deg, rgba(255,255,255,0.03), transparent);
       border-radius: var(--radius-lg);
-      border: 1px solid var(--border);
+      border: 1px solid var(--border2);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
       padding: 1.25rem;
     }
     .chart-legend { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 12px; font-size: 12px; }
@@ -1613,25 +1615,28 @@
 
   <!-- HISTORIAL -->
   <div id="panel-hist">
-    <div class="top-bar" style="margin-top:-0.5rem;">
-      <select id="ejercicioSelect" style="min-width:180px; flex:1; max-width:280px;">
+    <div class="top-bar" style="margin-top:-0.5rem; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px;">
+      <div id="dashboardGreeting" style="font-size: 18px; font-weight: 700; color: var(--text); flex:1;">Hola 👋</div>
+      <select id="ejercicioSelect" style="min-width:180px; max-width:280px;">
         <option value="">Todos los ejercicios</option>
       </select>
     </div>
 
     <div class="metrics" id="metrics"></div>
 
+    <div id="strongestExercisePanel" style="margin-top: 1rem; padding: 12px 16px; background: var(--bg2); border-radius: var(--radius-lg); border: 1px solid var(--border); display: none;">
+      <div style="font-size: 11px; color: var(--text2); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 4px;">Tu ejercicio más fuerte</div>
+      <div id="strongestExerciseText" style="font-weight: 600; font-size: 15px; color: var(--accent);"></div>
+    </div>
+
     <!-- HOOK MOTIVACIONAL -->
-    <div class="hook-banner">
+    <div class="hook-banner" id="dynamicHookBanner">
       <span class="hook-quote-mark">&ldquo;</span>
-      <p class="hook-text">
-        <strong>Lo que no se mide, no se puede mejorar.</strong>
-        La sobrecarga progresiva &mdash; el principio m&aacute;s importante del entrenamiento de fuerza &mdash;
-        requiere que sepas exactamente qu&eacute; y cu&aacute;nto hiciste la &uacute;ltima vez para poder superarlo.
-        Sin esa informaci&oacute;n, ese esfuerzo se pierde en el aire.
-        Un registro completo convierte cada sesi&oacute;n en informaci&oacute;n &uacute;til en la toma de decisiones acertadas.
+      <p class="hook-text" id="dynamicHookText">
+        <strong>Lo que no se mide, no se puede mejorar.</strong><br>
+        La sobrecarga progresiva requiere que sepas exactamente qué y cuánto hiciste la última vez.
       </p>
-      <span class="hook-closing">&#9888;&#65039; Sin historial no hay progresi&oacute;n inteligente, registra tu entrenamiento hoy y super&aacute;te ma&ntilde;ana.&#128293;</span>
+      <span class="hook-closing" id="dynamicHookSubtext">&#9888;&#65039; Registra tu entrenamiento hoy y supérate mañana.&#128293;</span>
     </div>
 
     <div class="section-title">Historial de sesiones</div>
@@ -2712,22 +2717,90 @@
   function renderMetrics() {
     const ejercicioFiltro = document.getElementById('ejercicioSelect').value;
     const filas = obtenerFilas(ejercicioFiltro);
-    let mejor1RMGlobal = 0, ultimoVolumen = 0, ejerciciosUnicos = new Set(), sumaRPE = 0, countRPE = 0;
-    for (let f of filas) {
+    let mejor1RMGlobal = 0, ultimoVolumen = 0, penultimoVolumen = 0, ejerciciosUnicos = new Set(), sumaRPE = 0, countRPE = 0;
+    
+    // Para el dashboard
+    let bestExName = '';
+    let bestExRM = 0;
+
+    for (let i = 0; i < filas.length; i++) {
+      let f = filas[i];
       if (f.rm > mejor1RMGlobal) mejor1RMGlobal = f.rm;
+      if (f.rm > bestExRM) {
+        bestExRM = f.rm;
+        bestExName = f.ejercicio;
+      }
       ejerciciosUnicos.add(f.ejercicio);
       sumaRPE += f.rpe; countRPE++;
-      if (f === filas[filas.length-1]) ultimoVolumen = f.volumen;
+      if (i === filas.length - 1) ultimoVolumen = f.volumen;
+      if (i === filas.length - 2 && ejercicioFiltro) penultimoVolumen = f.volumen; // Si hay filtro, calculamos tendencia
     }
-    const avgRpe = countRPE ? (sumaRPE / countRPE).toFixed(1) : '—';
+    const avgRpe = countRPE ? (sumaRPE / countRPE).toFixed(1) : '-';
     const count = ejercicioFiltro ? filas.length : ejerciciosUnicos.size;
+
+    let trendHtml = '';
+    if (ejercicioFiltro && ultimoVolumen && penultimoVolumen) {
+      const diff = ultimoVolumen - penultimoVolumen;
+      const percent = (diff / penultimoVolumen) * 100;
+      if (percent > 0) trendHtml = `<span style="color:var(--green); font-size:12px; margin-left:6px; font-weight:700;">↑ +${percent.toFixed(1)}%</span>`;
+      else if (percent < 0) trendHtml = `<span style="color:var(--red); font-size:12px; margin-left:6px; font-weight:700;">↓ ${percent.toFixed(1)}%</span>`;
+    }
+
     document.getElementById('metrics').innerHTML = `
-      <div class="mcard"><div class="mcard-label">Mejor 1RM estimado</div><div class="mcard-value">${mejor1RMGlobal > 0 ? mejor1RMGlobal.toFixed(1) : '—'} kg</div></div>
-      <div class="mcard"><div class="mcard-label">Volumen última sesión</div><div class="mcard-value">${ultimoVolumen > 0 ? ultimoVolumen.toLocaleString() : '—'} kg</div></div>
-      <div class="mcard"><div class="mcard-label">${ejercicioFiltro ? 'Sesiones' : 'Ejercicios'}</div><div class="mcard-value">${count}</div></div>
-      <div class="mcard"><div class="mcard-label">RIR promedio</div><div class="mcard-value">${avgRpe}</div></div>
+      <div class="mcard" style="background: linear-gradient(135deg, rgba(255,255,255,0.03), transparent); border: 1px solid var(--border2); backdrop-filter: blur(8px);"><div class="mcard-label">Mejor 1RM estimado</div><div class="mcard-value" style="color: var(--accent);">${mejor1RMGlobal > 0 ? mejor1RMGlobal.toFixed(1) : '-'} <span style="font-size:14px; color:var(--text);">kg</span> 🏆</div></div>
+      <div class="mcard" style="background: linear-gradient(135deg, rgba(255,255,255,0.03), transparent); border: 1px solid var(--border2); backdrop-filter: blur(8px);"><div class="mcard-label">Volumen última sesión</div><div class="mcard-value">${ultimoVolumen > 0 ? ultimoVolumen.toLocaleString() : '-'} <span style="font-size:14px; color:var(--text);">kg</span>${trendHtml}</div></div>
+      <div class="mcard" style="background: linear-gradient(135deg, rgba(255,255,255,0.03), transparent); border: 1px solid var(--border2); backdrop-filter: blur(8px);"><div class="mcard-label">${ejercicioFiltro ? 'Sesiones' : 'Ejercicios'}</div><div class="mcard-value">${count} 📈</div></div>
+      <div class="mcard" style="background: linear-gradient(135deg, rgba(255,255,255,0.03), transparent); border: 1px solid var(--border2); backdrop-filter: blur(8px);"><div class="mcard-label">RIR promedio</div><div class="mcard-value">${avgRpe} 🎯</div></div>
     `;
-    document.getElementById('headerCount').textContent = sesiones.length + ' sesión' + (sesiones.length !== 1 ? 'es' : '');
+
+    // Update Strongest Exercise
+    const panelStrong = document.getElementById('strongestExercisePanel');
+    const textStrong = document.getElementById('strongestExerciseText');
+    if (panelStrong && textStrong) {
+      if (!ejercicioFiltro && bestExRM > 0) {
+        panelStrong.style.display = 'block';
+        textStrong.innerHTML = `${bestExName} <span style="float:right; color:var(--text);">${bestExRM.toFixed(1)} kg 1RM</span>`;
+      } else {
+        panelStrong.style.display = 'none';
+      }
+    }
+
+    // Update Greeting
+    const greetingEl = document.getElementById('dashboardGreeting');
+    if (greetingEl) {
+      const nombreCli = document.getElementById('inputNombreCliente') ? document.getElementById('inputNombreCliente').value : '';
+      const nombreMostrar = nombreCli ? nombreCli.split(' ')[0] : 'Atleta';
+      
+      let semana = 1;
+      if (sesiones.length > 0) {
+          const firstDate = new Date(sesiones[0].fecha + 'T00:00:00');
+          const today = new Date();
+          const diffTime = Math.abs(today - firstDate);
+          const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+          semana = Math.floor(diffDays / 7) + 1;
+      }
+      
+      greetingEl.innerHTML = `Hola, ${nombreMostrar} 👋 <div style="font-size: 11px; font-weight: 500; color: var(--text2); margin-top: 2px;">Semana ${semana > 0 ? semana : 1} de entrenamiento</div>`;
+    }
+
+    // Update dynamic banner
+    const dynamicHookBanner = document.getElementById('dynamicHookBanner');
+    const dynamicHookText = document.getElementById('dynamicHookText');
+    const dynamicHookSubtext = document.getElementById('dynamicHookSubtext');
+    if (dynamicHookBanner && dynamicHookText && dynamicHookSubtext) {
+        if (sesiones.length === 0) {
+            dynamicHookBanner.style.background = '#111110';
+            dynamicHookBanner.style.border = 'none';
+            dynamicHookText.innerHTML = `<strong>Lo que no se mide, no se puede mejorar.</strong><br>La sobrecarga progresiva requiere que sepas exactamente qué y cuánto hiciste la última vez.`;
+            dynamicHookSubtext.innerHTML = `&#9888;&#65039; Registra tu entrenamiento hoy y supérate mañana.&#128293;`;
+        } else {
+            const countSesiones = sesiones.length;
+            dynamicHookBanner.style.background = 'linear-gradient(135deg, rgba(0,212,255,0.08) 0%, rgba(123,47,247,0.08) 100%)';
+            dynamicHookBanner.style.border = '1px solid rgba(123,47,247,0.2)';
+            dynamicHookText.innerHTML = `<strong style="font-size:18px;">🔥 ${countSesiones} sesiones completadas</strong>`;
+            dynamicHookSubtext.innerHTML = `¡Sigue así! El progreso se construye día a día. 🚀`;
+        }
+    }
   }
 
   // ===== HISTORIAL =====
@@ -3324,12 +3397,6 @@
         cloneDoc.head.appendChild(initScript);
 
         let htmlFinal = '<!DOCTYPE html>\n<html lang="es">\n' + cloneDoc.documentElement.innerHTML + '\n</html>';
-
-        // Reemplazar /fondo.jpg por base64 si es posible
-        const base64Bg = await getBgBase64();
-        if (base64Bg) {
-            htmlFinal = htmlFinal.replace(/\/fondo\.jpg/g, base64Bg);
-        }
 
         const blob = new Blob([htmlFinal], { type: 'text/html;charset=utf-8' });
         const url = URL.createObjectURL(blob);
