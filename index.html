@@ -1277,27 +1277,52 @@
     }
 }
 
-/* Fix Definitivo para iOS (Safari/iPhone/iPad): iOS tiene un bug crónico con 'fixed' que hace que el fondo desaparezca o salte. */
-@supports (-webkit-touch-callout: none) {
-    body {
-        background-attachment: scroll !important;
-    }
-}
-    
-    /* ===== BANNER ENTRENAMIENTO DE HOY ===== */
-    .today-banner {
-      background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
-      border-radius: var(--radius-lg);
-      padding: 1rem 1.25rem;
-      margin-bottom: 1rem;
-      border: 1px solid rgba(255,255,255,0.1);
-      color: #fff;
-      animation: slideIn 0.3s ease;
-    }
-    .today-banner.rest-day {
-      background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
-    }
-    .today-banner-title {
+      body {
+      background-color: #1a1a2e !important;
+          border: 1px solid #000 !important;
+      }
+      /* Fix para iOS y Mobile: Se usa un seudoelemento fijo para el fondo, ya que background-attachment: fixed falla en iPhone */
+      body::before {
+          content: "";
+          position: fixed;
+          top: 0;
+          left: 0;
+          width: 100vw;
+          height: 100vh;
+          background-image: url('/fondo.jpg') !important;
+          background-size: cover !important;
+          background-position: center !important;
+          z-index: -999;
+          pointer-events: none;
+      }
+      #panel-plan {
+          /* background-image: url('/fondo.jpg') !important; */
+  	background-repeat: repeat !important;
+          background-size: auto !important;
+  	background-attachment: scroll !important;
+      }
+
+      /* Fix Definitivo para iOS (Safari/iPhone/iPad) */
+      @supports (-webkit-touch-callout: none) {
+          body {
+              background-attachment: scroll !important;
+          }
+      }
+      
+      /* ===== BANNER ENTRENAMIENTO DE HOY ===== */
+      .today-banner {
+        background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+        border-radius: var(--radius-lg);
+        padding: 1rem 1.25rem;
+        margin-bottom: 1rem;
+        border: 1px solid rgba(255,255,255,0.1);
+        color: #fff;
+        animation: slideIn 0.3s ease;
+      }
+      .today-banner.rest-day {
+        background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+      }
+      .today-banner-title {
       font-size: 12px;
       color: rgba(255,255,255,0.5);
       text-transform: uppercase;
@@ -3194,7 +3219,21 @@
   function abrirPanelLink() { document.getElementById('panelGenerarLink').style.display = 'block'; document.getElementById('inputNombreCliente').focus(); }
   function cerrarPanelLink() { document.getElementById('panelGenerarLink').style.display = 'none'; }
   function sanitizarNombre(nombre) { return nombre.trim().toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/\s+/g,'-').replace(/[^a-z0-9_-]/g,'').substring(0,40); }
-  
+  // Función auxiliar para obtener el fondo como Base64 y que funcione offline
+  async function getBgBase64() {
+      try {
+          const res = await fetch('/fondo.jpg');
+          if (!res.ok) return null;
+          const blob = await res.blob();
+          return new Promise((resolve) => {
+              const reader = new FileReader();
+              reader.onloadend = () => resolve(reader.result);
+              reader.readAsDataURL(blob);
+          });
+      } catch(e) {
+          return null; // Puede fallar si ya es un archivo local file://
+      }
+  }
   
   async function exportarHTMLCliente() {
     const nombre = document.getElementById('inputNombreCliente').value || 'Cliente';
@@ -3284,7 +3323,13 @@
         initScript.textContent = "window.addEventListener('DOMContentLoaded', () => { setTimeout(() => { if (typeof switchTab === 'function') switchTab('plan'); if(typeof initTimer === 'function') initTimer(); }, 100); });";
         cloneDoc.head.appendChild(initScript);
 
-        const htmlFinal = '<!DOCTYPE html>\n<html lang="es">\n' + cloneDoc.documentElement.innerHTML + '\n</html>';
+        let htmlFinal = '<!DOCTYPE html>\n<html lang="es">\n' + cloneDoc.documentElement.innerHTML + '\n</html>';
+
+        // Reemplazar /fondo.jpg por base64 si es posible
+        const base64Bg = await getBgBase64();
+        if (base64Bg) {
+            htmlFinal = htmlFinal.replace(/\/fondo\.jpg/g, base64Bg);
+        }
 
         const blob = new Blob([htmlFinal], { type: 'text/html;charset=utf-8' });
         const url = URL.createObjectURL(blob);
@@ -3787,7 +3832,7 @@ function addGlobalVariable() {
         window.print();
     }
 	
-    function exportToHtml() {
+    async function exportToHtml() {
         // 1. Sincronizar valores actuales de inputs y textareas al atributo value
         document.querySelectorAll('input, textarea').forEach(el => {
             if (el.value !== undefined) el.setAttribute('value', el.value);
@@ -3817,8 +3862,14 @@ function addGlobalVariable() {
         stateScript.textContent = "window.__SAVED_STATE__ = " + JSON.stringify(state).replace(/</g, '\\u003c') + ";";
 
         // 3. Obtener el HTML de toda la página
-        const fullHtml = '<!DOCTYPE html>\n<html lang="es">\n' + document.documentElement.innerHTML + '\n</html>';
+        let fullHtml = '<!DOCTYPE html>\n<html lang="es">\n' + document.documentElement.innerHTML + '\n</html>';
         
+        // Incrustar fondo en Base64 para que el borrador funcione localmente
+        const base64Bg = await getBgBase64();
+        if (base64Bg) {
+            fullHtml = fullHtml.replace(/\/fondo\.jpg/g, base64Bg);
+        }
+
         // 4. Descargar el archivo
         const blob = new Blob([fullHtml], { type: 'text/html;charset=utf-8' });
         const url = URL.createObjectURL(blob);
