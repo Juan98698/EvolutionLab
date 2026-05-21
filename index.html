@@ -14,6 +14,7 @@
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
+      --bg-image-url: url('/fondo.jpg');
       --bg: #ffffff; --bg2: #f5f5f3; --bg3: #eeede8; --text: #1a1a18;
       --text2: #6b6b67; --text3: #a0a09c; --border: rgba(0,0,0,0.1);
       --border2: rgba(0,0,0,0.18); --radius: 8px; --radius-lg: 12px;
@@ -348,19 +349,35 @@
     .legend-sq { width: 10px; height: 10px; border-radius: 2px; display: inline-block; }
 
     .form-section {
-      background: var(--bg);
+      background: linear-gradient(135deg, rgba(255,255,255,0.03), transparent);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
       border-radius: var(--radius-lg);
-      border: 1px solid var(--border);
+      border: 1px solid var(--border2);
       padding: 1.25rem;
     }
 
     .ejercicio-group {
-      background: var(--bg2);
+      background: rgba(255, 255, 255, 0.03);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
       border-radius: var(--radius);
       padding: 1rem;
       margin-bottom: 1.25rem;
-      border: 1px solid var(--border);
+      border: 1px solid rgba(255, 255, 255, 0.08);
       position: relative;
+    }
+    .ejercicio-group input, .ejercicio-group select, .ejercicio-group textarea {
+      background: rgba(255, 255, 255, 0.02) !important;
+      border: 1px solid rgba(255, 255, 255, 0.08) !important;
+      color: var(--text) !important;
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
+    }
+    .ejercicio-group input:focus, .ejercicio-group select:focus, .ejercicio-group textarea:focus {
+      background: rgba(255, 255, 255, 0.06) !important;
+      border-color: var(--blue) !important;
+      box-shadow: 0 0 0 3px rgba(56,138,221,0.2) !important;
     }
 
     .remove-ejercicio {
@@ -769,7 +786,7 @@
           }
         body {
     background-color: #1a1a2e !important;
-    background-image: url('/fondo.jpg') !important;
+    background-image: var(--bg-image-url) !important;
     background-size: cover !important;
     background-position: center !important;
     background-attachment: fixed !important;
@@ -1257,7 +1274,7 @@
         border: 1px solid #000 !important;
     }
     #panel-plan {
-        background-image: url('/fondo.jpg') !important;
+        background-image: var(--bg-image-url) !important;
 	background-repeat: repeat !important;
         background-size: auto !important;
 	background-attachment: scroll !important;
@@ -1351,14 +1368,13 @@
           left: 0;
           width: 100vw;
           height: 100vh;
-          background-image: url('/fondo.jpg') !important;
+          background-image: var(--bg-image-url) !important;
           background-size: cover !important;
           background-position: center !important;
           z-index: -999;
           pointer-events: none;
       }
       #panel-plan {
-          /* background-image: url('/fondo.jpg') !important; */
   	background-repeat: repeat !important;
           background-size: auto !important;
   	background-attachment: scroll !important;
@@ -1602,6 +1618,193 @@
       100% { box-shadow: 0 4px 14px rgba(0,0,0,0.05); }
     }
 
+    /* ===== MODAL CALCULADORA 1RM (GLASSMORPHISM) ===== */
+    #modal-1rm {
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 23, 42, 0.65);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      z-index: 2000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+    #modal-1rm.open {
+      opacity: 1;
+      pointer-events: all;
+    }
+    .modal-1rm-box {
+      background: rgba(30, 41, 59, 0.85);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 24px;
+      width: 100%;
+      max-width: 480px;
+      padding: 24px;
+      color: #f8fafc;
+      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5), 0 10px 10px -5px rgba(0, 0, 0, 0.4);
+      transform: scale(0.95);
+      transition: transform 0.3s ease;
+    }
+    #modal-1rm.open .modal-1rm-box {
+      transform: scale(1);
+    }
+    .modal-1rm-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      padding-bottom: 12px;
+      margin-bottom: 20px;
+    }
+    .modal-1rm-title {
+      font-family: 'Orbitron', sans-serif;
+      font-weight: 700;
+      font-size: 1.15rem;
+      letter-spacing: 0.05em;
+      background: linear-gradient(135deg, #00d4ff 0%, #7b2ff7 100%);
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .modal-1rm-close {
+      background: none;
+      border: none;
+      color: #94a3b8;
+      font-size: 28px;
+      cursor: pointer;
+      line-height: 1;
+      transition: color 0.2s;
+    }
+    .modal-1rm-close:hover {
+      color: #f1f5f9;
+    }
+    .modal-1rm-form {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-bottom: 20px;
+    }
+    .modal-1rm-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .modal-1rm-group.full-width {
+      grid-column: 1 / -1;
+    }
+    .modal-1rm-group label {
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      color: #a0a09c;
+      letter-spacing: 0.05em;
+    }
+    .modal-1rm-group input, .modal-1rm-group select {
+      background: rgba(15, 23, 42, 0.6);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      color: #f1f5f9;
+      border-radius: 12px;
+      padding: 10px 14px;
+      font-size: 0.95rem;
+      outline: none;
+      transition: all 0.2s;
+    }
+    .modal-1rm-group input:focus, .modal-1rm-group select:focus {
+      border-color: #00d4ff;
+      box-shadow: 0 0 0 3px rgba(0, 212, 255, 0.25);
+    }
+    .modal-1rm-result {
+      margin-top: 20px;
+      background: rgba(15, 23, 42, 0.4);
+      border-radius: 16px;
+      padding: 16px;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      display: none;
+    }
+    .modal-1rm-result-title {
+      font-size: 0.75rem;
+      color: #94a3b8;
+      font-weight: 700;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+    .modal-1rm-value-display {
+      font-size: 2.25rem;
+      font-weight: 800;
+      color: #2a7a0c;
+      font-family: 'Orbitron', sans-serif;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: baseline;
+      gap: 6px;
+    }
+    @media (prefers-color-scheme: dark) {
+      .modal-1rm-value-display { color: #7EC94A; }
+    }
+    .modal-1rm-value-display span {
+      font-size: 1rem;
+      color: #f1f5f9;
+      font-weight: 500;
+    }
+    .modal-1rm-table-container {
+      max-height: 180px;
+      overflow-y: auto;
+      margin-top: 12px;
+      border-radius: 8px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .modal-1rm-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.8rem;
+    }
+    .modal-1rm-table th {
+      background: rgba(15, 23, 42, 0.8);
+      color: #94a3b8;
+      padding: 8px;
+      text-align: left;
+      font-weight: 600;
+      position: sticky;
+      top: 0;
+    }
+    .modal-1rm-table td {
+      padding: 6px 8px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      color: #e2e8f0;
+    }
+    .modal-1rm-table tr:hover td {
+      background: rgba(255, 255, 255, 0.05);
+    }
+    .modal-1rm-btn-calc {
+      background: linear-gradient(135deg, #00d4ff 0%, #7b2ff7 100%);
+      color: #fff;
+      border: none;
+      border-radius: 12px;
+      padding: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+      font-family: inherit;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+    .modal-1rm-btn-calc:hover {
+      opacity: 0.95;
+      transform: translateY(-1px);
+    }
+    .modal-1rm-btn-calc:active {
+      transform: translateY(0);
+    }
+
   /* ESTILOS DEL PLAN */
 </style>
 </head>
@@ -1766,6 +1969,7 @@
         <button id="addGlobalDayBtn">➕ Añadir día</button>
         <button id="addCustomVarBtn">➕ Añadir variable global</button>
         <button id="exportHtmlBtn" class="btn-print" style="background:#4b5563;">💾 Guardar Borrador Editable</button>
+        <button id="calc1RMBtn" style="background:#7b2ff7;">🧮 Calculadora 1RM</button>
 
 <div style="text-align: center; margin-top: 40px; padding-top: 20px; border-top: 2px solid #e2e8f0; font-size: 0.75rem; color: #64748b;">
     🏋️ Plan generado con 💪 | wwwSERE.tuweb.com | No es el gimnasio, no es la rutina, no es el entrenador, eres tú.
@@ -2831,8 +3035,14 @@
     // Update Greeting
     const greetingEl = document.getElementById('dashboardGreeting');
     if (greetingEl) {
-      const nombreCli = document.getElementById('inputNombreCliente') ? document.getElementById('inputNombreCliente').value : '';
-      const nombreMostrar = nombreCli ? nombreCli.split(' ')[0] : 'Atleta';
+      let nombreMostrar = 'Atleta';
+      if (typeof MODO_CLIENTE !== 'undefined' && MODO_CLIENTE) {
+        const nombreVisible = _clienteId.replace(/-/g,' ').replace(/\b\w/g, c => c.toUpperCase());
+        nombreMostrar = nombreVisible ? nombreVisible.split(' ')[0] : 'Atleta';
+      } else {
+        const nombreCli = document.getElementById('inputNombreCliente') ? document.getElementById('inputNombreCliente').value : '';
+        nombreMostrar = nombreCli ? nombreCli.split(' ')[0] : 'Atleta';
+      }
       
       let semana = 1;
       if (sesiones.length > 0) {
@@ -3244,6 +3454,17 @@ Un registro completo convierte cada sesi&oacute;n en informaci&oacute;n &uacute;
     document.getElementById('tab-config').classList.toggle('active', tab === 'config');
     // Ocultar notificaciones en config
     document.getElementById('sp-notif-container').style.display = tab === 'config' ? 'none' : 'block';
+
+    // Mostrar/ocultar banner "Tu Entrenamiento de Hoy" sólo en pestaña "Mi Plan"
+    const todayBannerEl = document.getElementById('todayBanner');
+    if (todayBannerEl) {
+        if (tab === 'plan') {
+            renderTodayBanner();
+        } else {
+            todayBannerEl.style.display = 'none';
+        }
+    }
+
     if (tab === 'chart') renderChart();
     else if (tab === 'add') {
       if (tempEjercicios.length === 0) agregarEjercicioAlForm();
@@ -3409,7 +3630,7 @@ Un registro completo convierte cada sesi&oacute;n en informaci&oacute;n &uacute;
 
         const cloneContainer = cloneDoc.getElementById('trainingPlanContainer');
         if (cloneContainer) {
-            const editElements = cloneContainer.querySelectorAll('.toolbar, .add-day-btn, .btn-remove-day, .exercise-actions, .btn-add-ex, .btn-rem-ex, .img-upload-label, .global-vars-panel button, #quickAddVarBtn, .remove-var-btn, .hidden-file-upload, .video-url-input');
+            const editElements = cloneContainer.querySelectorAll('#addGlobalDayBtn, #addCustomVarBtn, #exportHtmlBtn, .add-day-btn, .btn-remove-day, .exercise-actions, .btn-add-ex, .btn-rem-ex, .img-upload-label, .global-vars-panel button, #quickAddVarBtn, .remove-var-btn, .hidden-file-upload, .video-url-input');
             editElements.forEach(el => el.remove());
             
             cloneContainer.querySelectorAll('input, textarea').forEach(el => {
@@ -3441,7 +3662,7 @@ Un registro completo convierte cada sesi&oacute;n en informaci&oacute;n &uacute;
                 link.setAttribute('rel', 'noopener noreferrer');
                 link.style.cssText = 'display: inline-block; margin-top: 8px; padding: 8px 12px; background: #e6f0ff; border-radius: 40px; color: #1e40af; text-decoration: none; font-weight: 600; text-align: center; border: 1px solid #3b82f6;';
             });
-            cloneContainer.querySelectorAll('button').forEach(btn => btn.remove());
+            cloneContainer.querySelectorAll('button:not(#calc1RMBtn):not(#printAsPdfBtn)').forEach(btn => btn.remove());
         }
 
         const cfgPayload = btoa(unescape(encodeURIComponent(JSON.stringify({ config: CONFIG, rules: RULES }))));
@@ -3464,6 +3685,12 @@ Un registro completo convierte cada sesi&oacute;n en informaci&oacute;n &uacute;
         cloneDoc.head.appendChild(initScript);
 
         let htmlFinal = '<!DOCTYPE html>\n<html lang="es">\n' + cloneDoc.documentElement.innerHTML + '\n</html>';
+
+        // Incrustar fondo en Base64 para que la exportación de cliente funcione localmente/offline
+        const base64Bg = await getBgBase64();
+        if (base64Bg) {
+            htmlFinal = htmlFinal.replace(/\/fondo\.jpg/g, base64Bg);
+        }
 
         const blob = new Blob([htmlFinal], { type: 'text/html;charset=utf-8' });
         const url = URL.createObjectURL(blob);
@@ -3842,7 +4069,7 @@ let variableDefinitions = {
 
         // Cambiar valores de variables
         document.querySelectorAll('.var-input').forEach(inp => {
-            inp.onchange = (e) => {
+            inp.oninput = (e) => {
                 const exId = inp.getAttribute('data-ex-id');
                 const varId = inp.getAttribute('data-var-id');
                 const newVal = inp.value;
@@ -3851,6 +4078,39 @@ let variableDefinitions = {
                     if (ex) {
                         ex.variables[varId] = newVal;
                         break;
+                    }
+                }
+                
+                // Si la variable editada es de Descanso, actualizar el temporizador de esa tarjeta en tiempo real
+                const label = inp.closest('.var-item').querySelector('label');
+                if (label && label.textContent.toUpperCase().includes('DESCANSO')) {
+                    const card = inp.closest('.exercise-card');
+                    if (card) {
+                        // Eliminar temporizador activo si existe, para que no interfiera
+                        if (activeTimerInterval) {
+                            clearInterval(activeTimerInterval);
+                            activeTimerInterval = null;
+                        }
+                        const activeTimerDiv = card.querySelector('.rest-timer-active');
+                        if (activeTimerDiv) activeTimerDiv.remove();
+                        
+                        // Eliminar botón viejo si existe
+                        const oldBtn = card.querySelector('.rest-timer-btn');
+                        if (oldBtn) oldBtn.remove();
+                        
+                        const totalSec = parseDescanso(newVal);
+                        if (totalSec > 0) {
+                            const btn = document.createElement('button');
+                            btn.className = 'rest-timer-btn';
+                            btn.innerHTML = `⏱ Iniciar descanso (${formatTimerDisplay(totalSec)})`;
+                            btn.onclick = function(e) {
+                                e.preventDefault();
+                                startRestTimer(card, btn, totalSec);
+                            };
+                            const varsRow = card.querySelector('.variables-row');
+                            if (varsRow) varsRow.after(btn);
+                            else card.appendChild(btn);
+                        }
                     }
                 }
             };
@@ -4341,6 +4601,11 @@ cloneContainer.querySelectorAll('.definition-input').forEach(el => {
     function renderTodayBanner() {
         const container = document.getElementById('todayBanner');
         if (!container) return;
+        // Solo mostrar en la pestaña "Mi Plan"
+        if (typeof activeTab !== 'undefined' && activeTab !== 'plan') {
+            container.style.display = 'none';
+            return;
+        }
         // Solo mostrar si hay mapeo configurado
         const hasConfig = Object.values(weekdayMapping).some(v => v !== -1);
         if (!hasConfig) { container.style.display = 'none'; return; }
@@ -4485,6 +4750,7 @@ cloneContainer.querySelectorAll('.definition-input').forEach(el => {
             }
             renderTodayBanner();
             setTimeout(() => initRestTimers(), 300);
+            init1RMCalculator();
             return;
         }
 
@@ -4533,6 +4799,115 @@ cloneContainer.querySelectorAll('.definition-input').forEach(el => {
         };
         trainerNameInput.addEventListener('input', updateTrainerName);
         updateTrainerName();
+        }
+
+        // Sincronizar saludo "Hola Atleta" en tiempo real con inputNombreCliente
+        const inputNombreCli = document.getElementById('inputNombreCliente');
+        if (inputNombreCli) {
+            inputNombreCli.addEventListener('input', () => {
+                const greetingEl = document.getElementById('dashboardGreeting');
+                if (greetingEl) {
+                    const nombreCli = inputNombreCli.value;
+                    const nombreMostrar = nombreCli ? nombreCli.split(' ')[0] : 'Atleta';
+                    let semana = 1;
+                    if (sesiones.length > 0) {
+                        const firstDate = new Date(sesiones[0].fecha + 'T00:00:00');
+                        const today = new Date();
+                        const diffTime = Math.abs(today - firstDate);
+                        const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+                        semana = Math.floor(diffDays / 7) + 1;
+                    }
+                    greetingEl.innerHTML = `Hola, ${nombreMostrar} 👋 <div style="font-size: 11px; font-weight: 500; color: var(--text2); margin-top: 2px;">Semana ${semana > 0 ? semana : 1} de entrenamiento</div>`;
+                }
+            });
+        }
+
+        // Inicializar Calculadora 1RM
+        init1RMCalculator();
+    }
+
+    // ===== LÓGICA DE LA CALCULADORA 1RM =====
+    function init1RMCalculator() {
+        const calcBtn = document.getElementById('calc1RMBtn');
+        const modal = document.getElementById('modal-1rm');
+        const closeBtn = document.getElementById('close1RMBtn');
+        const btnCalcular = document.getElementById('btn1RMCalcular');
+        
+        if (calcBtn && modal) {
+            calcBtn.addEventListener('click', () => {
+                modal.classList.add('open');
+                document.getElementById('input1RMPeso').focus();
+            });
+        }
+        
+        if (closeBtn && modal) {
+            closeBtn.addEventListener('click', () => {
+                modal.classList.remove('open');
+            });
+        }
+        
+        if (modal) {
+            window.addEventListener('click', (e) => {
+                if (e.target === modal) {
+                    modal.classList.remove('open');
+                }
+            });
+        }
+        
+        if (btnCalcular) {
+            btnCalcular.addEventListener('click', () => {
+                const peso = parseFloat(document.getElementById('input1RMPeso').value);
+                const reps = parseInt(document.getElementById('input1RMReps').value);
+                const formula = document.getElementById('select1RMFormula').value;
+                
+                if (isNaN(peso) || peso <= 0 || isNaN(reps) || reps <= 0) {
+                    toast('Por favor, ingresa un peso y repeticiones válidos', 'error');
+                    return;
+                }
+                
+                if (reps > 30) {
+                    toast('Las fórmulas no son precisas para más de 30 repeticiones', 'error');
+                    return;
+                }
+                
+                let rm = 0;
+                if (formula === 'brzycki') {
+                    rm = peso / (1.0278 - 0.0278 * reps);
+                } else if (formula === 'epley') {
+                    rm = peso * (1 + reps / 30);
+                } else { // promedio
+                    const b = peso / (1.0278 - 0.0278 * reps);
+                    const e = peso * (1 + reps / 30);
+                    rm = (b + e) / 2;
+                }
+                
+                const percentages = [
+                    { pct: 100, reps: '1 rep' },
+                    { pct: 95, reps: '2 reps' },
+                    { pct: 90, reps: '3-4 reps' },
+                    { pct: 85, reps: '5-6 reps' },
+                    { pct: 80, reps: '7-8 reps' },
+                    { pct: 75, reps: '9-10 reps' },
+                    { pct: 70, reps: '11-12 reps' },
+                    { pct: 65, reps: '13-15 reps' }
+                ];
+                
+                let rowsHtml = '';
+                percentages.forEach(item => {
+                    const carga = rm * (item.pct / 100);
+                    rowsHtml += `
+                        <tr>
+                            <td style="font-weight:600; color:#00d4ff; padding: 6px 8px;">${item.pct}%</td>
+                            <td style="font-weight:700; color:#7EC94A; padding: 6px 8px;">${carga.toFixed(1)} kg</td>
+                            <td style="padding: 6px 8px;">${item.reps}</td>
+                        </tr>
+                    `;
+                });
+                
+                document.getElementById('value1RMEst').textContent = rm.toFixed(1);
+                document.getElementById('table1RMBody').innerHTML = rowsHtml;
+                document.getElementById('result1RMContainer').style.display = 'block';
+            });
         }
     }
     	
@@ -4603,5 +4978,55 @@ cloneContainer.querySelectorAll('.definition-input').forEach(el => {
 
 initPlan();
 </script>
+
+<!-- Modal de Calculadora 1RM (Dark Glassmorphism) -->
+<div id="modal-1rm">
+  <div class="modal-1rm-box">
+    <div class="modal-1rm-header">
+      <div class="modal-1rm-title">🧮 CALCULADORA 1RM</div>
+      <button class="modal-1rm-close" id="close1RMBtn">&times;</button>
+    </div>
+    <div class="modal-1rm-form">
+      <div class="modal-1rm-group">
+        <label for="input1RMPeso">PESO LEVANTADO (KG)</label>
+        <input type="number" id="input1RMPeso" min="1" step="any" placeholder="Ej: 80">
+      </div>
+      <div class="modal-1rm-group">
+        <label for="input1RMReps">REPETICIONES</label>
+        <input type="number" id="input1RMReps" min="1" max="30" placeholder="Ej: 5">
+      </div>
+      <div class="modal-1rm-group full-width">
+        <label for="select1RMFormula">FÓRMULA</label>
+        <select id="select1RMFormula">
+          <option value="promedio">Promedio Automático (Recomendado)</option>
+          <option value="brzycki">Brzycki</option>
+          <option value="epley">Epley</option>
+        </select>
+      </div>
+      <button class="modal-1rm-btn-calc full-width" id="btn1RMCalcular">🧮 Calcular 1RM</button>
+    </div>
+    
+    <div class="modal-1rm-result" id="result1RMContainer">
+      <div class="modal-1rm-result-title">1RM Estimado</div>
+      <div class="modal-1rm-value-display">
+        <span id="value1RMEst">0</span> <span>kg</span>
+      </div>
+      <div style="font-size: 0.75rem; color: #94a3b8; margin-bottom: 8px;">Tabla de Porcentajes de Carga</div>
+      <div class="modal-1rm-table-container">
+        <table class="modal-1rm-table">
+          <thead>
+            <tr>
+              <th>%</th>
+              <th>Carga (kg)</th>
+              <th>Repeticiones sugeridas</th>
+            </tr>
+          </thead>
+          <tbody id="table1RMBody"></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
 </body>
 </html>
