@@ -1140,12 +1140,43 @@
             font-size: 0.8rem;
         }
         .badge-var {
-            background: #e2e8f0;	    
+            background: rgba(0, 0, 0, 0.45);
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
+            border: 1px solid var(--border2);
+            color: #ffffff;
             border-radius: 30px;
-            padding: 4px 12px;
+            padding: 5px 14px;
             display: inline-flex;
             align-items: center;
             gap: 8px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.5);
+        }
+        #quickAddVarBtn {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
+            border: 1px dashed var(--border2);
+            color: #ffffff;
+            border-radius: 40px;
+            padding: 5px 14px;
+            font-size: 0.8rem;
+            font-family: inherit;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+        }
+        #quickAddVarBtn:hover {
+            background: rgba(255, 255, 255, 0.18);
+            border-color: #60a5fa;
+            transform: translateY(-1px);
+        }
+        #quickAddVarBtn:active {
+            transform: translateY(0px);
         }
         .remove-var-btn {
             background: none;
@@ -3645,6 +3676,10 @@ Un registro completo convierte cada sesi&oacute;n en informaci&oacute;n &uacute;
             const toolbar = cloneContainer.querySelector('.toolbar');
             if (toolbar) toolbar.remove();
 
+            // Eliminar el panel de variables activas de la versión final del cliente
+            const globalVarsPanel = cloneContainer.querySelector('#globalVarsPanelContainer');
+            if (globalVarsPanel) globalVarsPanel.remove();
+
             const editElements = cloneContainer.querySelectorAll('#addGlobalDayBtn, #addCustomVarBtn, #exportHtmlBtn, .add-day-btn, .btn-remove-day, .exercise-actions, .btn-add-ex, .btn-rem-ex, .img-upload-label, .global-vars-panel button, #quickAddVarBtn, .remove-var-btn, .hidden-file-upload, .video-url-input');
             editElements.forEach(el => el.remove());
             
@@ -3922,7 +3957,7 @@ let variableDefinitions = {
                         <button class="remove-var-btn" data-var-id="${v.id}">✖</button>
                      </div>`;
         });
-        html += `<button id="quickAddVarBtn" style="background:#e6f0ff; border:none; border-radius:40px; padding:4px 14px; cursor:pointer;">+ Nueva variable</button>
+        html += `<button id="quickAddVarBtn">+ Nueva variable</button>
                 </div>`;
         container.innerHTML = html;
     }
@@ -4317,6 +4352,10 @@ function exportToReadOnlyHtml() {
     });
     
     const cloneContainer = originalContainer.cloneNode(true);
+    
+    // Eliminar el panel de variables activas de la versión final del cliente
+    const globalVarsPanel = cloneContainer.querySelector('#globalVarsPanelContainer');
+    if (globalVarsPanel) globalVarsPanel.remove();
     
     // Eliminar elementos de edición
     const editElements = cloneContainer.querySelectorAll('.toolbar, .add-day-btn, .btn-remove-day, .exercise-actions, .btn-add-ex, .btn-rem-ex, .img-upload-label, .global-vars-panel button, #quickAddVarBtn, .remove-var-btn, .hidden-file-upload, .video-url-input');
