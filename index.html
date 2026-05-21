@@ -10,6 +10,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
@@ -605,7 +606,10 @@
 
     /* ===== HOOK MOTIVACIONAL ===== */
     .hook-banner {
-      background: #111110;
+      background: linear-gradient(135deg, rgba(255,255,255,0.03), transparent);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border: 1px solid var(--border2);
       color: #fff;
       border-radius: var(--radius-lg);
       padding: 1.25rem 1.25rem 1.1rem;
@@ -895,6 +899,36 @@
             padding: 20px;
             margin-bottom: 20px;
             border: 1px solid #000;
+            transition: opacity 0.3s ease;
+        }
+        .exercise-card.completed {
+            opacity: 0.5;
+        }
+        .exercise-card.completed .exercise-name-input,
+        .exercise-card.completed .static-value {
+            text-decoration: line-through !important;
+            color: #888 !important;
+        }
+        .exercise-checkbox {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            border: 2px solid var(--accent);
+            cursor: pointer;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+        .exercise-checkbox.checked {
+            background-color: var(--accent);
+        }
+        .exercise-checkbox.checked::after {
+            content: '✓';
+            color: white;
+            font-size: 14px;
+            font-weight: bold;
         }
         .exercise-header {
             display: flex;
@@ -1634,9 +1668,12 @@
       <span class="hook-quote-mark">&ldquo;</span>
       <p class="hook-text" id="dynamicHookText">
         <strong>Lo que no se mide, no se puede mejorar.</strong><br>
-        La sobrecarga progresiva requiere que sepas exactamente qué y cuánto hiciste la última vez.
+        La sobrecarga progresiva &mdash; el principio m&aacute;s importante del entrenamiento de fuerza &mdash;
+        requiere que sepas exactamente qu&eacute; y cu&aacute;nto hiciste la &uacute;ltima vez para poder superarlo.
+        Sin esa informaci&oacute;n, ese esfuerzo se pierde en el aire.
+        Un registro completo convierte cada sesi&oacute;n en informaci&oacute;n &uacute;til en la toma de decisiones acertadas.
       </p>
-      <span class="hook-closing" id="dynamicHookSubtext">&#9888;&#65039; Registra tu entrenamiento hoy y supérate mañana.&#128293;</span>
+      <span class="hook-closing" id="dynamicHookSubtext">&#9888;&#65039; Sin historial no hay progresi&oacute;n inteligente, registra tu entrenamiento hoy y super&aacute;te ma&ntilde;ana.&#128293;</span>
     </div>
 
     <div class="section-title">Historial de sesiones</div>
@@ -2789,10 +2826,14 @@
     const dynamicHookSubtext = document.getElementById('dynamicHookSubtext');
     if (dynamicHookBanner && dynamicHookText && dynamicHookSubtext) {
         if (sesiones.length === 0) {
-            dynamicHookBanner.style.background = '#111110';
-            dynamicHookBanner.style.border = 'none';
-            dynamicHookText.innerHTML = `<strong>Lo que no se mide, no se puede mejorar.</strong><br>La sobrecarga progresiva requiere que sepas exactamente qué y cuánto hiciste la última vez.`;
-            dynamicHookSubtext.innerHTML = `&#9888;&#65039; Registra tu entrenamiento hoy y supérate mañana.&#128293;`;
+            dynamicHookBanner.style.background = ''; // Remover para usar la clase CSS con glassmorphism
+            dynamicHookBanner.style.border = ''; // Remover para usar la clase CSS
+            dynamicHookText.innerHTML = `<strong>Lo que no se mide, no se puede mejorar.</strong><br>
+La sobrecarga progresiva &mdash; el principio m&aacute;s importante del entrenamiento de fuerza &mdash;
+requiere que sepas exactamente qu&eacute; y cu&aacute;nto hiciste la &uacute;ltima vez para poder superarlo.
+Sin esa informaci&oacute;n, ese esfuerzo se pierde en el aire.
+Un registro completo convierte cada sesi&oacute;n en informaci&oacute;n &uacute;til en la toma de decisiones acertadas.`;
+            dynamicHookSubtext.innerHTML = `&#9888;&#65039; Sin historial no hay progresi&oacute;n inteligente, registra tu entrenamiento hoy y super&aacute;te ma&ntilde;ana.&#128293;`;
         } else {
             const countSesiones = sesiones.length;
             dynamicHookBanner.style.background = 'linear-gradient(135deg, rgba(0,212,255,0.08) 0%, rgba(123,47,247,0.08) 100%)';
@@ -3393,7 +3434,7 @@
         
         // Ensure starting tab is "plan" for clients
         const initScript = cloneDoc.createElement('script');
-        initScript.textContent = "window.addEventListener('DOMContentLoaded', () => { setTimeout(() => { if (typeof switchTab === 'function') switchTab('plan'); if(typeof initTimer === 'function') initTimer(); }, 100); });";
+        initScript.textContent = "window.addEventListener('DOMContentLoaded', () => { setTimeout(() => { if (typeof switchTab === 'function') switchTab('plan'); if(typeof initTimer === 'function') initTimer(); if(typeof initChecklist === 'function') initChecklist(); }, 100); });";
         cloneDoc.head.appendChild(initScript);
 
         let htmlFinal = '<!DOCTYPE html>\n<html lang="es">\n' + cloneDoc.documentElement.innerHTML + '\n</html>';
@@ -3589,6 +3630,7 @@ let variableDefinitions = {
         renderDaysContainer();
         renderWeekdayConfig();
         attachAllEvents();
+        initChecklist();
     }
 
     function renderGlobalVarsPanel() {
@@ -3679,6 +3721,7 @@ let variableDefinitions = {
         return `
             <div class="exercise-card" data-exercise-id="${exercise.id}" data-day-id="${dayId}">
                 <div class="exercise-header">
+                    <div class="exercise-checkbox client-only-checkbox" data-ex-id="${exercise.id}" data-day-id="${dayId}"></div>
                     <div class="exercise-name">
                         <input type="text" class="exercise-name-input" data-ex-id="${exercise.id}" value="${escapeHtml(exercise.name)}">
                     </div>
@@ -4461,6 +4504,68 @@ staticText.innerHTML = (value || '(Sin definir)').replace(/\n/g, '<br>');
     	
 
     
+
+// ===== CHECKLIST DEL DÍA =====
+    function initChecklist() {
+        const todayStr = new Date().toISOString().split('T')[0];
+        const lsKey = `checklist_${todayStr}`;
+        let checkedIds = [];
+        try {
+            const stored = localStorage.getItem(lsKey);
+            if (stored) checkedIds = JSON.parse(stored);
+        } catch(e) {}
+
+        document.querySelectorAll('.exercise-checkbox').forEach(chk => {
+            const exId = chk.getAttribute('data-ex-id');
+            const card = chk.closest('.exercise-card');
+            
+            // Limpiar eventos previos si se vuelve a renderizar
+            chk.onclick = null;
+            
+            // Estado inicial
+            if (checkedIds.includes(exId)) {
+                chk.classList.add('checked');
+                if(card) card.classList.add('completed');
+            } else {
+                chk.classList.remove('checked');
+                if(card) card.classList.remove('completed');
+            }
+
+            chk.onclick = function(e) {
+                e.stopPropagation();
+                const isChecked = this.classList.toggle('checked');
+                if (card) {
+                    if (isChecked) card.classList.add('completed');
+                    else card.classList.remove('completed');
+                }
+
+                if (isChecked) {
+                    if (!checkedIds.includes(exId)) checkedIds.push(exId);
+                } else {
+                    checkedIds = checkedIds.filter(id => id !== exId);
+                }
+                localStorage.setItem(lsKey, JSON.stringify(checkedIds));
+
+                const dayCard = this.closest('.day-card');
+                if (dayCard && isChecked) {
+                    const allBoxes = dayCard.querySelectorAll('.exercise-checkbox');
+                    const allChecked = Array.from(allBoxes).every(b => b.classList.contains('checked'));
+                    
+                    if (allBoxes.length > 0 && allChecked) {
+                        if (typeof confetti === 'function') {
+                            confetti({
+                                particleCount: 150,
+                                spread: 80,
+                                origin: { y: 0.6 },
+                                colors: ['#00d4ff', '#7b2ff7', '#ffffff']
+                            });
+                        }
+                        toast('🎉 ¡Entrenamiento completado!', 'success');
+                    }
+                }
+            };
+        });
+    }
 
 initPlan();
 </script>
