@@ -828,9 +828,9 @@
             background: #059669;
         }
         .cover-page, .day-card {
-            background: linear-gradient(135deg, rgba(255,255,255,0.05), rgba(255,255,255,0.01));
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
+            background: linear-gradient(135deg, rgba(255,255,255,0.03), transparent);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
             border: 1px solid var(--border2);
             border-radius: 24px;
             margin-bottom: 40px;
@@ -894,7 +894,7 @@
             font-size: 0.75rem;
         }
         .exercise-card {
-            background: linear-gradient(135deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02));
+            background: linear-gradient(135deg, rgba(255,255,255,0.03), transparent);
             backdrop-filter: blur(8px);
             -webkit-backdrop-filter: blur(8px);
             border-radius: 20px;
@@ -975,29 +975,47 @@
             background: #f1f5f9;
             margin: 5px auto;
         }
+        .exercise-image-container {
+            width: 140px;
+            height: 100px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px dashed var(--border2);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            position: relative;
+        }
+        
         .img-placeholder {
             width: 220px;
             height: 120px;
             display: flex;
             align-items: center;
             justify-content: center;
-            background: #f1f5f9;	
+            background: rgba(255, 255, 255, 0.05);
             border-radius: 16px;
-            border: 1px dashed #94a3b8;
+            border: 1px dashed var(--border2);
             font-size: 0.75rem;
-            color: #64748b;
+            color: var(--text2);
             margin: 0 auto;
         }
         .img-upload-label {
             display: inline-block;
-            background: #eef2ff;
+            background: rgba(255, 255, 255, 0.1);
             padding: 4px 12px;
             border-radius: 40px;
             font-size: 0.7rem;
-            font-weight: 500;
+            font-weight: 600;
+            color: var(--text2);
             cursor: pointer;
-            color: #2563eb;
-            margin-top: 5px;
+            margin-top: 8px;
+            transition: all 0.2s;
+            border: 1px solid var(--border2);
+        }
+        .img-upload-label:hover {
+            background: rgba(255, 255, 255, 0.15);
         }
         .variables-row {
             display: flex;
@@ -1017,8 +1035,9 @@
             font-size: 0.7rem;
             font-weight: 600;
             text-transform: uppercase;
-            color: #475569;
+            color: var(--text2);
             display: block;
+            margin-bottom: 4px;
         }
         .var-item input {
             width: 100%;
@@ -1078,7 +1097,7 @@
             background: #fffbeb;
         }
         .global-vars-panel {
-            background: linear-gradient(135deg, rgba(255,255,255,0.05), rgba(255,255,255,0.01));
+            background: linear-gradient(135deg, rgba(255,255,255,0.03), transparent);
             backdrop-filter: blur(8px);
             -webkit-backdrop-filter: blur(8px);
             border: 1px solid var(--border2);
@@ -1554,7 +1573,7 @@
       font-size: 0.72rem;
       font-weight: 700;
       text-transform: uppercase;
-      color: #475569;
+      color: var(--text2);
       text-align: center;
     }
     .weekday-item select {
@@ -1760,8 +1779,8 @@
     <div class="cover-page">
     <!-- NUEVO TÍTULO CENTRAL -->
     <div style="text-align: center; margin-bottom: 30px;">
-    <h1 style="font-size: 1.9rem; font-weight: 800; color: #000000; border-bottom: 4px solid #000000; display: inline-block; padding-bottom: 8px; letter-spacing: 1px;">PLAN DE ENTRENAMIENTO PERSONALIZADO</h1>
-    <p style="font-size: 0.95rem; color: #000000; margin-top: 12px; font-weight: 600;"> |Te enseño el camino y tu lo sigues| </p>
+    <h1 style="font-size: 1.9rem; font-weight: 800; color: #ffffff; border-bottom: 4px solid #ffffff; display: inline-block; padding-bottom: 8px; letter-spacing: 1px;">PLAN DE ENTRENAMIENTO PERSONALIZADO</h1>
+    <p style="font-size: 0.95rem; color: var(--text2); margin-top: 12px; font-weight: 600;"> |Te enseño el camino y tu lo sigues| </p>
 </div>
 <!-- Texto de enganche / Filosofía del método -->
 <div class="philosophy-section">
@@ -3402,19 +3421,19 @@ Un registro completo convierte cada sesi&oacute;n en informaci&oacute;n &uacute;
                 if (el.classList.contains('definition-input')) {
                     const staticText = cloneDoc.createElement('div');
                     staticText.className = 'static-value';
-                    staticText.style.cssText = 'padding: 6px 10px; background: #f1f5f9; border-radius: 12px; font-size: 0.8rem; color: #334155; margin-top: 6px; white-space: pre-wrap;';
-                    staticText.innerHTML = (value || '(Sin definir)').replace(/\\n/g, '<br>');
+                    staticText.style.cssText = 'padding: 6px 10px; background: rgba(255, 255, 255, 0.05); border-radius: 12px; border: 1px solid var(--border2); font-size: 0.8rem; color: var(--text2); margin-top: 6px; white-space: pre-wrap;';
+                    staticText.innerHTML = (value || '(Sin definir)').replace(/\n/g, '<br>');
                     parent.replaceChild(staticText, el);
                 } else if (el.tagName === 'TEXTAREA') {
                     const staticText = cloneDoc.createElement('div');
                     staticText.className = 'static-textarea';
-                    staticText.style.cssText = 'padding: 8px 12px; background: #f5f5f5; border-radius: 12px; border: 1px solid #ddd; font-size: 0.9rem; white-space: pre-wrap;';
+                    staticText.style.cssText = 'padding: 8px 12px; background: rgba(255, 255, 255, 0.05); border-radius: 12px; border: 1px solid var(--border2); font-size: 0.9rem; color: white; white-space: pre-wrap;';
                     staticText.innerText = value;
                     parent.replaceChild(staticText, el);
                 } else {
                     const staticText = cloneDoc.createElement('div');
                     staticText.className = 'static-value';
-                    staticText.style.cssText = 'padding: 8px 12px; background: #f5f5f5; border-radius: 12px; border: 1px solid #ddd; font-size: 0.9rem; color: #000;';
+                    staticText.style.cssText = 'padding: 8px 12px; background: rgba(255, 255, 255, 0.05); border-radius: 12px; border: 1px solid var(--border2); font-size: 0.9rem; color: white;';
                     staticText.innerText = value || '(sin definir)';
                     parent.replaceChild(staticText, el);
                 }
@@ -3610,12 +3629,12 @@ let variableDefinitions = {
     globalVariables.forEach(v => {
         const def = variableDefinitions[v.id] || '';
         html += `
-    <div style="flex: 1; min-width: 250px; background: #f8fafc; border-radius: 16px; padding: 12px 15px; border: 1px solid #e2e8f0;">
+    <div style="flex: 1; min-width: 250px; background: linear-gradient(135deg, rgba(255,255,255,0.03), transparent); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); border-radius: 16px; padding: 12px 15px; border: 1px solid var(--border2);">
         <strong style="color: #f97316; font-size: 0.9rem;">🏷️ ${escapeHtml(v.label)}</strong>
         <textarea class="definition-input" data-var-id="${v.id}" 
                   placeholder="Ej: Número de series por ejercicio" 
                   rows="5"
-                  style="width: 100%; margin-top: 8px; padding: 8px 10px; border: 1px solid #cbd5e1; border-radius: 12px; font-size: 0.8rem; font-family: inherit; resize: vertical;">${escapeHtml(def)}</textarea>
+                  style="width: 100%; margin-top: 8px; padding: 8px 10px; border: 1px solid var(--border2); background: rgba(255, 255, 255, 0.05); color: white; border-radius: 12px; font-size: 0.8rem; font-family: inherit; resize: vertical;">${escapeHtml(def)}</textarea>
     </div>
 `;
     });
@@ -3723,8 +3742,8 @@ let variableDefinitions = {
         <input type="text" class="video-url-input" data-ex-id="${exercise.id}" 
                value="${escapeHtml(exercise.videoUrl || '')}" 
                placeholder="Pega enlace de Drive o YouTube" style="width:100%; margin-bottom:8px;">
-        ${exercise.videoUrl ? `<a href="${exercise.videoUrl}" target="_blank" rel="noopener noreferrer" style="display:inline-block; margin-top:8px; padding:8px 12px; background:#e6f0ff; border-radius:40px; color:#1e40af; text-decoration:none; font-weight:600; text-align:center; border:1px solid #3b82f6;">🎬 Ver video (YouTube/Drive)</a>` : ''}
-        <small style="display:block; margin-top:6px; color:#444; font-size:0.7rem;">💡 Si el video no se abre, mantén presionado el enlace y selecciona "Abrir en navegador".</small>
+        ${exercise.videoUrl ? `<a href="${exercise.videoUrl}" target="_blank" rel="noopener noreferrer" style="display:inline-block; margin-top:8px; padding:8px 12px; background:rgba(59, 130, 246, 0.2); border-radius:40px; color:#60a5fa; text-decoration:none; font-weight:600; text-align:center; border:1px solid #3b82f6;">📹 Ver video (YouTube/Drive)</a>` : ''}
+        <small style="display:block; margin-top:6px; color:var(--text3); font-size:0.7rem;">💡 Si el video no se abre, mantén presionado el enlace y selecciona "Abrir en navegador".</small>
     </div>
 `;
 
@@ -4027,7 +4046,7 @@ function exportToReadOnlyHtml() {
         // Reemplazar el input por un span o div con el mismo texto
         const staticText = document.createElement('div');
         staticText.className = 'static-value';
-        staticText.style.cssText = 'padding: 8px 12px; background: #f5f5f5; border-radius: 12px; border: 1px solid #ddd; font-size: 0.9rem; color: #000;';
+        staticText.style.cssText = 'padding: 8px 12px; background: rgba(255, 255, 255, 0.05); border-radius: 12px; border: 1px solid var(--border2); font-size: 0.9rem; color: white;';
         staticText.innerText = value || '(sin definir)';
         parent.replaceChild(staticText, el);
     });
@@ -4038,8 +4057,8 @@ cloneContainer.querySelectorAll('.definition-input').forEach(el => {
     const value = el.value;
     const staticText = document.createElement('div');
     staticText.className = 'static-value';
-    staticText.style.cssText = 'padding: 6px 10px; background: #f1f5f9; border-radius: 12px; font-size: 0.8rem; color: #334155; margin-top: 6px; white-space: pre-wrap;';
-staticText.innerHTML = (value || '(Sin definir)').replace(/\n/g, '<br>');
+    staticText.style.cssText = 'padding: 6px 10px; background: rgba(255, 255, 255, 0.05); border-radius: 12px; border: 1px solid var(--border2); font-size: 0.8rem; color: var(--text2); margin-top: 6px; white-space: pre-wrap;';
+    staticText.innerHTML = (value || '(Sin definir)').replace(/\n/g, '<br>');
     parent.replaceChild(staticText, el);
 });
     
@@ -4048,7 +4067,7 @@ staticText.innerHTML = (value || '(Sin definir)').replace(/\n/g, '<br>');
         const parent = el.parentNode;
         const staticText = document.createElement('div');
         staticText.className = 'static-textarea';
-        staticText.style.cssText = 'padding: 8px 12px; background: #f5f5f5; border-radius: 12px; border: 1px solid #ddd; font-size: 0.9rem; white-space: pre-wrap;';
+        staticText.style.cssText = 'padding: 8px 12px; background: rgba(255, 255, 255, 0.05); border-radius: 12px; border: 1px solid var(--border2); font-size: 0.9rem; color: white; white-space: pre-wrap;';
         staticText.innerText = el.value;
         parent.replaceChild(staticText, el);
     });
