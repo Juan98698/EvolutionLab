@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8">
@@ -4319,6 +4319,10 @@ function addGlobalVariable() {
         stateScript.textContent = "window.__SAVED_STATE__ = " + JSON.stringify(state).replace(/</g, '\\u003c') + ";";
 
         // 3. Obtener el HTML de toda la página
+        // Limpiar toast antes de capturar para que no quede visible en el borrador
+        const toastEl = document.getElementById('toast');
+        if (toastEl) { toastEl.className = ''; toastEl.textContent = ''; }
+
         let fullHtml = '<!DOCTYPE html>\n<html lang="es">\n' + document.documentElement.innerHTML + '\n</html>';
         
         // Incrustar fondo en Base64 para que el borrador funcione localmente
