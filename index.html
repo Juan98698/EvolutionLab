@@ -828,18 +828,17 @@
             background: #059669;
         }
         .cover-page, .day-card {
-            background: #ffffff;
+            background: linear-gradient(135deg, rgba(255,255,255,0.05), rgba(255,255,255,0.01));
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid var(--border2);
             border-radius: 24px;
             margin-bottom: 40px;
             padding: 25px 30px;
-	    background: rgba(255, 255, 255, 0.20);
-            box-shadow: 0 4px 14px rgba(0,0,0,0.05);
-            border: 1px solid #000;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
         }
         .cover-page {
-            background: linear-gradient(135deg, #f8fafc 0%, #ffffff 100%);
-            border: 1px solid #000 !important;
- 	    background: rgba(255, 255, 255, 0.20);		
+            /* Mantenemos el estilo de cover-page general de glassmorphism */
         }
         .social-row {
             display: flex;
@@ -895,12 +894,14 @@
             font-size: 0.75rem;
         }
         .exercise-card {
-            background: #fefefe;	    
+            background: linear-gradient(135deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02));
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
             border-radius: 20px;
-  	    background: rgba(255, 255, 255, 0.10);		 
             padding: 20px;
             margin-bottom: 20px;
-            border: 1px solid #000;
+            border: 1px solid var(--border2);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
             transition: opacity 0.3s ease;
         }
         .exercise-card.completed {
@@ -944,13 +945,15 @@
             min-width: 160px;
         }
         .exercise-name input {
-        width: 100%;
-        font-size: 1rem;
-        font-weight: 700;
-        padding: 8px 12px;
-        border: 1px solid #000;
-        border-radius: 16px;
-        font-family: 'Inter', sans-serif;
+            width: 100%;
+            font-size: 1rem;
+            font-weight: 700;
+            padding: 8px 12px;
+            border: 1px solid var(--border2);
+            background: rgba(255, 255, 255, 0.05);
+            color: white;
+            border-radius: 16px;
+            font-family: 'Inter', sans-serif;
         white-space: normal;
         word-break: break-word;
         line-height: 1.2;
@@ -1001,7 +1004,8 @@
             flex-wrap: wrap;
             gap: 15px;
             margin: 20px 0 12px 0;
-            background: #f8fafc;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border2);
             padding: 12px 15px;
             border-radius: 20px;
         }
@@ -1019,7 +1023,9 @@
         .var-item input {
             width: 100%;
             padding: 8px 8px;
-            border: 1px solid #000;
+            border: 1px solid var(--border2);
+            background: rgba(255, 255, 255, 0.05);
+            color: white;
             border-radius: 14px;
             font-weight: 500;
         }
@@ -1072,8 +1078,10 @@
             background: #fffbeb;
         }
         .global-vars-panel {
-            background: #f1f5f9;
-	    background: rgba(255, 255, 255, 0.20);	
+            background: linear-gradient(135deg, rgba(255,255,255,0.05), rgba(255,255,255,0.01));
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border: 1px solid var(--border2);
             padding: 12px 18px;
             border-radius: 40px;
             margin-bottom: 25px;
@@ -1104,7 +1112,7 @@
         .video-link-item {
             margin: 15px 0 5px 0;
             padding: 8px 12px;
-            background: rgba(254, 249, 227, 0.2) !important;
+            background: rgba(255, 255, 255, 0.05) !important;
             border-radius: 16px;
         }
         .video-link-item label {
@@ -1256,9 +1264,9 @@
     .video-url-input,.social-item input,
     #userName, #userGoal, #startDate, #trainerName, 
     #whatsappLink, #instagramLink, .note-area textarea {
-        border: 1px solid #000 !important;
-        background: rgba(255, 255, 255, 0.40)!important;
-        color: black !important;
+        border: 1px solid var(--border2) !important;
+        background: rgba(255, 255, 255, 0.05) !important;
+        color: white !important;
         outline: none !important;
     }
     .day-title input{
@@ -2786,10 +2794,10 @@
     }
 
     document.getElementById('metrics').innerHTML = `
-      <div class="mcard" style="background: linear-gradient(135deg, rgba(255,255,255,0.03), transparent); border: 1px solid var(--border2); backdrop-filter: blur(8px);"><div class="mcard-label">Mejor 1RM estimado</div><div class="mcard-value" style="color: var(--accent);">${mejor1RMGlobal > 0 ? mejor1RMGlobal.toFixed(1) : '-'} <span style="font-size:14px; color:var(--text);">kg</span> 🏆</div></div>
-      <div class="mcard" style="background: linear-gradient(135deg, rgba(255,255,255,0.03), transparent); border: 1px solid var(--border2); backdrop-filter: blur(8px);"><div class="mcard-label">Volumen última sesión</div><div class="mcard-value">${ultimoVolumen > 0 ? ultimoVolumen.toLocaleString() : '-'} <span style="font-size:14px; color:var(--text);">kg</span>${trendHtml}</div></div>
-      <div class="mcard" style="background: linear-gradient(135deg, rgba(255,255,255,0.03), transparent); border: 1px solid var(--border2); backdrop-filter: blur(8px);"><div class="mcard-label">${ejercicioFiltro ? 'Sesiones' : 'Ejercicios'}</div><div class="mcard-value">${count} 📈</div></div>
-      <div class="mcard" style="background: linear-gradient(135deg, rgba(255,255,255,0.03), transparent); border: 1px solid var(--border2); backdrop-filter: blur(8px);"><div class="mcard-label">RIR promedio</div><div class="mcard-value">${avgRpe} 🎯</div></div>
+      <div class="mcard" style="background: linear-gradient(135deg, rgba(255,255,255,0.03), transparent); border: 1px solid var(--border2); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);"><div class="mcard-label">Mejor 1RM estimado</div><div class="mcard-value" style="color: var(--accent);">${mejor1RMGlobal > 0 ? mejor1RMGlobal.toFixed(1) : '-'} <span style="font-size:14px; color:var(--text);">kg</span> 🏆</div></div>
+      <div class="mcard" style="background: linear-gradient(135deg, rgba(255,255,255,0.03), transparent); border: 1px solid var(--border2); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);"><div class="mcard-label">Volumen última sesión</div><div class="mcard-value">${ultimoVolumen > 0 ? ultimoVolumen.toLocaleString() : '-'} <span style="font-size:14px; color:var(--text);">kg</span>${trendHtml}</div></div>
+      <div class="mcard" style="background: linear-gradient(135deg, rgba(255,255,255,0.03), transparent); border: 1px solid var(--border2); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);"><div class="mcard-label">${ejercicioFiltro ? 'Sesiones' : 'Ejercicios'}</div><div class="mcard-value">${count} 📊</div></div>
+      <div class="mcard" style="background: linear-gradient(135deg, rgba(255,255,255,0.03), transparent); border: 1px solid var(--border2); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);"><div class="mcard-label">RIR promedio</div><div class="mcard-value">${avgRpe} 🎯</div></div>
     `;
 
     // Update Strongest Exercise
@@ -4050,7 +4058,7 @@ staticText.innerHTML = (value || '(Sin definir)').replace(/\n/g, '<br>');
         link.setAttribute('target', '_blank');
         link.setAttribute('rel', 'noopener noreferrer');
         // Añadir estilo para que se note que es clicable
-        link.style.cssText = 'display: inline-block; margin-top: 8px; padding: 8px 12px; background: #e6f0ff; border-radius: 40px; color: #1e40af; text-decoration: none; font-weight: 600; text-align: center; border: 1px solid #3b82f6;';
+        link.style.cssText = 'display: inline-block; margin-top: 8px; padding: 8px 12px; background: rgba(59, 130, 246, 0.2); border-radius: 40px; color: #60a5fa; text-decoration: none; font-weight: 600; text-align: center; border: 1px solid #3b82f6;';
     });
     
     // Ocultar elementos de edición restantes por si acaso
@@ -4078,12 +4086,20 @@ staticText.innerHTML = (value || '(Sin definir)').replace(/\n/g, '<br>');
             pointer-events: none;
         }
         .var-item input {
-            background: #f5f5f5 !important;
-            border: 1px solid #ddd !important;
+            border: 1px solid var(--border2) !important;
+            background: rgba(255, 255, 255, 0.05) !important;
+            color: white !important;
             pointer-events: none;
         }
         .img-upload-label, .video-url-input {
             display: none !important;
+        }
+        /* Forzar que todo sea solo lectura visual */
+        input:not(.exercise-checkbox), textarea {
+            pointer-events: none !important;
+            background-color: rgba(255, 255, 255, 0.05) !important;
+            color: white !important;
+            border: 1px solid var(--border2) !important;
         }
     `;
     
@@ -4096,11 +4112,11 @@ staticText.innerHTML = (value || '(Sin definir)').replace(/\n/g, '<br>');
         <style>${styles} ${extraStyles}</style>
         <style>
             /* Forzar que todo sea solo lectura visual */
-            input, textarea {
+            input:not(.exercise-checkbox), textarea {
                 pointer-events: none !important;
-                background-color: #fafafa !important;
-                color: #000 !important;
-                border-color: #ccc !important;
+                background-color: rgba(255, 255, 255, 0.05) !important;
+                color: white !important;
+                border-color: var(--border2) !important;
             }
             button, .btn-remove-day, .btn-add-ex, .btn-rem-ex, .img-upload-label {
                 display: none !important;
