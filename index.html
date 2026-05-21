@@ -608,10 +608,10 @@
 
     /* ===== HOOK MOTIVACIONAL ===== */
     .hook-banner {
-      background: transparent;
-      backdrop-filter: none;
-      -webkit-backdrop-filter: none;
-      border: 1px solid rgba(0, 0, 0, 0.5);
+      background: linear-gradient(135deg, rgba(255,255,255,0.06), rgba(255,255,255,0.01));
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid var(--border2);
       color: #fff;
       border-radius: var(--radius-lg);
       padding: 1.25rem 1.25rem 1.1rem;
@@ -905,8 +905,8 @@
         }
         #userName, #userGoal, #startDate, #trainerName, 
         #whatsappLink, #instagramLink, .note-area textarea, .social-item input, .video-url-input {
-            border: 1px solid rgba(0, 0, 0, 0.5) !important;
-            background: transparent !important;
+            border: 1px solid var(--border2) !important;
+            background: rgba(255, 255, 255, 0.05) !important;
             color: white !important;
             outline: none !important;
         }
@@ -925,7 +925,7 @@
             width: 100%;
             padding: 10px;
             border-radius: 20px;
-            border: 1px solid #000 !important;
+            border: 1px solid var(--border2) !important;
         }
         .day-header {
             display: flex;
@@ -958,13 +958,13 @@
             font-size: 0.75rem;
         }
         .exercise-card {
-            background: transparent;
-            backdrop-filter: none;
-            -webkit-backdrop-filter: none;
+            background: linear-gradient(135deg, rgba(255,255,255,0.04), transparent);
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
             border-radius: 20px;
             padding: 20px;
             margin-bottom: 20px;
-            border: 1px solid rgba(0, 0, 0, 0.5);
+            border: 1px solid var(--border2);
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
             transition: opacity 0.3s ease;
         }
@@ -1013,8 +1013,8 @@
             font-size: 1rem;
             font-weight: 700;
             padding: 8px 12px;
-            border: 1px solid rgba(0, 0, 0, 0.5);
-            background: transparent;
+            border: 1px solid var(--border2);
+            background: rgba(255, 255, 255, 0.05);
             color: white;
             border-radius: 16px;
             font-family: 'Inter', sans-serif;
@@ -1042,8 +1042,8 @@
         .exercise-image-container {
             width: 140px;
             height: 100px;
-            background: transparent;
-            border: 1px dashed rgba(0, 0, 0, 0.5);
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px dashed var(--border2);
             border-radius: 12px;
             display: flex;
             align-items: center;
@@ -1058,9 +1058,9 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            background: transparent;
+            background: rgba(255, 255, 255, 0.05);
             border-radius: 16px;
-            border: 1px dashed rgba(0, 0, 0, 0.5);
+            border: 1px dashed var(--border2);
             font-size: 0.75rem;
             color: var(--text2);
             margin: 0 auto;
@@ -1086,8 +1086,8 @@
             flex-wrap: wrap;
             gap: 15px;
             margin: 20px 0 12px 0;
-            background: transparent;
-            border: 1px solid rgba(0, 0, 0, 0.5);
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border2);
             padding: 12px 15px;
             border-radius: 20px;
         }
@@ -1106,8 +1106,8 @@
         .var-item input {
             width: 100%;
             padding: 8px 8px;
-            border: 1px solid rgba(0, 0, 0, 0.5);
-            background: transparent;
+            border: 1px solid var(--border2);
+            background: rgba(255, 255, 255, 0.05);
             color: white;
             border-radius: 14px;
             font-weight: 500;
@@ -3477,19 +3477,19 @@ Un registro completo convierte cada sesi&oacute;n en informaci&oacute;n &uacute;
                 if (el.classList.contains('definition-input')) {
                     const staticText = cloneDoc.createElement('div');
                     staticText.className = 'static-value';
-                    staticText.style.cssText = 'padding: 6px 10px; background: transparent; border-radius: 12px; border: 1px solid rgba(0, 0, 0, 0.5); font-size: 0.8rem; color: var(--text2); margin-top: 6px; white-space: pre-wrap;';
+                    staticText.style.cssText = 'padding: 6px 10px; background: rgba(255, 255, 255, 0.05); border-radius: 12px; border: 1px solid rgba(255, 255, 255, 0.1); font-size: 0.8rem; color: var(--text2); margin-top: 6px; white-space: pre-wrap;';
                     staticText.innerHTML = (value || '(Sin definir)').replace(/\n/g, '<br>');
                     parent.replaceChild(staticText, el);
                 } else if (el.tagName === 'TEXTAREA') {
                     const staticText = cloneDoc.createElement('div');
                     staticText.className = 'static-textarea';
-                    staticText.style.cssText = 'padding: 8px 12px; background: transparent; border-radius: 12px; border: 1px solid rgba(0, 0, 0, 0.5); font-size: 0.9rem; color: white; white-space: pre-wrap;';
+                    staticText.style.cssText = 'padding: 8px 12px; background: rgba(255, 255, 255, 0.05); border-radius: 12px; border: 1px solid rgba(255, 255, 255, 0.1); font-size: 0.9rem; color: white; white-space: pre-wrap;';
                     staticText.innerText = value;
                     parent.replaceChild(staticText, el);
                 } else {
                     const staticText = cloneDoc.createElement('div');
                     staticText.className = 'static-value';
-                    staticText.style.cssText = 'padding: 8px 12px; background: transparent; border-radius: 12px; border: 1px solid rgba(0, 0, 0, 0.5); font-size: 0.9rem; color: white;';
+                    staticText.style.cssText = 'padding: 8px 12px; background: rgba(255, 255, 255, 0.05); border-radius: 12px; border: 1px solid rgba(255, 255, 255, 0.1); font-size: 0.9rem; color: white;';
                     staticText.innerText = value || '(sin definir)';
                     parent.replaceChild(staticText, el);
                 }
@@ -4107,7 +4107,7 @@ function exportToReadOnlyHtml() {
         // Reemplazar el input por un span o div con el mismo texto
         const staticText = document.createElement('div');
         staticText.className = 'static-value';
-        staticText.style.cssText = 'padding: 8px 12px; background: transparent; border-radius: 12px; border: 1px solid rgba(0, 0, 0, 0.5); font-size: 0.9rem; color: white;';
+        staticText.style.cssText = 'padding: 8px 12px; background: rgba(255, 255, 255, 0.05); border-radius: 12px; border: 1px solid rgba(255, 255, 255, 0.1); font-size: 0.9rem; color: white;';
         staticText.innerText = value || '(sin definir)';
         parent.replaceChild(staticText, el);
     });
@@ -4118,7 +4118,7 @@ cloneContainer.querySelectorAll('.definition-input').forEach(el => {
     const value = el.value;
     const staticText = document.createElement('div');
     staticText.className = 'static-value';
-    staticText.style.cssText = 'padding: 6px 10px; background: transparent; border-radius: 12px; border: 1px solid rgba(0, 0, 0, 0.5); font-size: 0.8rem; color: var(--text2); margin-top: 6px; white-space: pre-wrap;';
+    staticText.style.cssText = 'padding: 6px 10px; background: rgba(255, 255, 255, 0.05); border-radius: 12px; border: 1px solid rgba(255, 255, 255, 0.1); font-size: 0.8rem; color: var(--text2); margin-top: 6px; white-space: pre-wrap;';
     staticText.innerHTML = (value || '(Sin definir)').replace(/\n/g, '<br>');
     parent.replaceChild(staticText, el);
 });
@@ -4128,7 +4128,7 @@ cloneContainer.querySelectorAll('.definition-input').forEach(el => {
         const parent = el.parentNode;
         const staticText = document.createElement('div');
         staticText.className = 'static-textarea';
-        staticText.style.cssText = 'padding: 8px 12px; background: transparent; border-radius: 12px; border: 1px solid rgba(0, 0, 0, 0.5); font-size: 0.9rem; color: white; white-space: pre-wrap;';
+        staticText.style.cssText = 'padding: 8px 12px; background: rgba(255, 255, 255, 0.05); border-radius: 12px; border: 1px solid rgba(255, 255, 255, 0.1); font-size: 0.9rem; color: white; white-space: pre-wrap;';
         staticText.innerText = el.value;
         parent.replaceChild(staticText, el);
     });
