@@ -4226,7 +4226,9 @@ let variableDefinitions = {
                         break;
                     }
                 }
-                renderFullApp(); // refrescar para mostrar/ocultar botón
+            };
+            inp.onchange = (e) => {
+                renderFullApp(); // refrescar para mostrar/ocultar botón al perder el foco (o presionar enter)
             };
         });
 
