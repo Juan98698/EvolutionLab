@@ -4840,14 +4840,47 @@ cloneContainer.querySelectorAll('.definition-input').forEach(el => {
     // Inicialización
     // ===== FUNCIÓN GLOBAL: showVarTooltip =====
     window.showVarTooltip = function(varId) {
+      if (!varId) return;
       var ov = document.getElementById('varTooltipOverlay');
       var ti = document.getElementById('varTooltipTitle');
       var bo = document.getElementById('varTooltipBody');
-      var v = (typeof globalVariables !== 'undefined') ? globalVariables.find(function(g){return g.id===varId;}) : null;
-      if (!v && window.__varLabels) v = window.__varLabels.find(function(g){return g.id===varId;});
-      ti.textContent = '🏷️ ' + (v ? v.label : varId);
-      var defs = (typeof variableDefinitions !== 'undefined') ? variableDefinitions : (window.__varDefs || {});
-      bo.textContent = defs[varId] || 'Sin definición disponible.';
+      
+      var cleanId = varId.trim().toLowerCase().replace(/\(.*?\)/g, '').trim();
+      
+      var v = null;
+      if (typeof globalVariables !== 'undefined') {
+        v = globalVariables.find(function(g){
+          return g.id === varId || g.id.trim().toLowerCase() === cleanId || g.label.trim().toLowerCase() === cleanId;
+        });
+      }
+      if (!v && window.__varLabels) {
+        v = window.__varLabels.find(function(g){
+          return g.id === varId || g.id.trim().toLowerCase() === cleanId || g.label.trim().toLowerCase() === cleanId;
+        });
+      }
+      
+      ti.textContent = '🏷️ ' + (v ? v.label : varId.toUpperCase());
+      
+      var defs = window.__varDefs || (typeof variableDefinitions !== 'undefined' ? variableDefinitions : {});
+      
+      var defaultDefs = {
+        "series de aproximacion": "Son series previas con poco peso para calentar los músculos y preparar las articulaciones sin cansarte. Ejemplo: Si vas a levantar 50kg, haces una serie previa con solo la barra o con 20kg.",
+        "series de trabajo": "Son las series reales del plan donde el esfuerzo es alto y cuentan para el progreso. Ejemplo: Hacer 3 series de 10 repeticiones con el peso máximo que dominas.",
+        "repeticiones": "Es el número de veces que realizas el movimiento completo del ejercicio dentro de una serie. Ejemplo: hacer 12 sentadillas seguidas sin parar.",
+        "tempo": "Es la velocidad a la que realizas cada fase del movimiento (bajada, pausa y subida). Ejemplo: En sentadilla, bajar en 3 segundos, hacer 1 segundo de pausa abajo y subir rápido en 1 segundo.",
+        "rir": "Indica cuántas repeticiones sientes que podrías haber hecho antes de llegar al fallo total. Ejemplo: Si haces 10 repeticiones con un RIR 2, significa que terminaste sintiendo que podrías haber hecho 2 más.",
+        "descanso": "El tiempo que esperas entre una serie y otra para recuperar energía. Ejemplo: Cronometrar 2 minutos sentado antes de empezar la siguiente serie."
+      };
+      
+      var definition = defs[varId] || defs[cleanId] || '';
+      if (!definition && v) {
+        definition = defs[v.id] || '';
+      }
+      if (!definition) {
+        definition = defaultDefs[cleanId] || defaultDefs[varId] || '';
+      }
+      
+      bo.textContent = definition || 'Sin definición disponible.';
       ov.classList.add('open');
     };
     // ===== FUNCIÓN GLOBAL: switchDayTab =====
