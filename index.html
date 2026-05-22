@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8">
@@ -1840,6 +1840,120 @@
       transform: translateY(0);
     }
 
+    /* ===== TOOLTIP DE VARIABLES (CLIENTE) ===== */
+    .var-tooltip-trigger {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 18px; height: 18px; border-radius: 50%;
+      background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12);
+      color: rgba(255,255,255,0.4); font-size: 11px; font-weight: 700;
+      cursor: pointer; margin-left: 4px; transition: all 0.2s; flex-shrink: 0;
+      -webkit-tap-highlight-color: transparent; touch-action: manipulation;
+    }
+    .var-tooltip-trigger:hover, .var-tooltip-trigger:active {
+      background: rgba(0,212,255,0.15); border-color: #00d4ff; color: #00d4ff;
+    }
+    .tooltip-overlay {
+      position: fixed; inset: 0; background: rgba(0,0,0,0.55); z-index: 600;
+      display: flex; align-items: flex-end; justify-content: center;
+      padding-bottom: env(safe-area-inset-bottom);
+      opacity: 0; pointer-events: none; transition: opacity 0.2s;
+    }
+    .tooltip-overlay.open { opacity: 1; pointer-events: all; }
+    .tooltip-sheet {
+      background: linear-gradient(135deg, rgba(30,30,28,0.98), rgba(28,28,26,0.98));
+      backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+      border-radius: 20px 20px 0 0; width: 100%; max-width: 480px;
+      padding: 1.5rem 1.25rem 2rem; position: relative;
+      transform: translateY(100%); transition: transform 0.25s cubic-bezier(0.4,0,0.2,1);
+      border: 1px solid rgba(255,255,255,0.1); border-bottom: none;
+    }
+    .tooltip-overlay.open .tooltip-sheet { transform: translateY(0); }
+    .tooltip-sheet-title {
+      font-size: 15px; font-weight: 700; color: #f97316;
+      margin-bottom: 10px; display: flex; align-items: center; gap: 6px;
+    }
+    .tooltip-sheet-body { font-size: 13px; color: rgba(255,255,255,0.65); line-height: 1.7; }
+    .tooltip-sheet-close {
+      position: absolute; top: 14px; right: 16px; background: none; border: none;
+      color: rgba(255,255,255,0.4); font-size: 22px; cursor: pointer; padding: 4px;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    /* ===== BADGES COMPACTOS DE VARIABLES (CLIENTE) ===== */
+    .vars-badges {
+      display: flex; flex-wrap: wrap; gap: 8px; margin: 12px 0;
+    }
+    .var-badge {
+      display: inline-flex; align-items: center; gap: 5px;
+      padding: 6px 12px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 99px; font-size: 12px; font-weight: 600;
+      color: rgba(255,255,255,0.85); white-space: nowrap;
+    }
+    .var-badge-icon { font-size: 13px; }
+    .var-badge-label {
+      color: rgba(255,255,255,0.4); font-weight: 500;
+      text-transform: uppercase; font-size: 10px; letter-spacing: 0.03em;
+    }
+
+    /* ===== FILOSOFÍA COLAPSABLE ===== */
+    .philosophy-toggle {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 16px 20px;
+      background: linear-gradient(135deg, rgba(255,255,255,0.03), transparent);
+      backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 20px; cursor: pointer; margin-bottom: 25px;
+      transition: all 0.2s; -webkit-tap-highlight-color: transparent;
+    }
+    .philosophy-toggle:hover { background: rgba(255,255,255,0.06); }
+    .philosophy-toggle-title { font-weight: 800; font-size: 1rem; color: #f97316; }
+    .philosophy-toggle-icon {
+      font-size: 18px; transition: transform 0.3s; color: rgba(255,255,255,0.4);
+    }
+    .philosophy-toggle.open .philosophy-toggle-icon { transform: rotate(180deg); }
+    .philosophy-collapsible {
+      max-height: 0; overflow: hidden; transition: max-height 0.4s ease;
+    }
+    .philosophy-collapsible.expanded { max-height: 2000px; }
+
+    /* ===== SELECTOR DE DÍAS (CLIENTE) ===== */
+    .day-tabs-bar {
+      display: flex; gap: 4px; padding: 5px;
+      background: rgba(255,255,255,0.04);
+      backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+      border-radius: var(--radius-lg);
+      border: 1px solid rgba(255,255,255,0.08);
+      overflow-x: auto; -webkit-overflow-scrolling: touch;
+      margin-bottom: 20px; scrollbar-width: none;
+    }
+    .day-tabs-bar::-webkit-scrollbar { display: none; }
+    .day-tab-btn {
+      padding: 10px 16px; border-radius: 8px; font-size: 12px; font-weight: 600;
+      cursor: pointer; color: rgba(255,255,255,0.4); background: transparent;
+      border: none; font-family: 'Inter', sans-serif; transition: all 0.15s;
+      white-space: nowrap; flex-shrink: 0;
+      -webkit-tap-highlight-color: transparent; touch-action: manipulation;
+    }
+    .day-tab-btn:hover { color: rgba(255,255,255,0.7); background: rgba(255,255,255,0.05); }
+    .day-tab-btn.active {
+      background: linear-gradient(135deg, rgba(0,212,255,0.12), rgba(123,47,247,0.12));
+      color: #00d4ff; border: 1px solid rgba(0,212,255,0.2);
+    }
+
+    /* ===== FAB CALCULADORA 1RM ===== */
+    .fab-1rm {
+      position: fixed; bottom: calc(24px + env(safe-area-inset-bottom)); right: 20px;
+      width: 52px; height: 52px; border-radius: 50%;
+      background: linear-gradient(135deg, #7b2ff7, #00d4ff);
+      color: #fff; border: none; font-size: 20px; cursor: pointer;
+      box-shadow: 0 4px 20px rgba(123,47,247,0.35); z-index: 100;
+      display: flex; align-items: center; justify-content: center;
+      transition: all 0.2s; -webkit-tap-highlight-color: transparent;
+    }
+    .fab-1rm:active { transform: scale(0.9); }
+
   /* ESTILOS DEL PLAN */
 </style>
 </head>
@@ -3672,7 +3786,6 @@ Un registro completo convierte cada sesi&oacute;n en informaci&oacute;n &uacute;
                 footerClone = originalFooter.cloneNode(true);
             }
 
-            // Eliminar la barra de herramientas (.toolbar) por completo para el cliente
             const toolbar = cloneContainer.querySelector('.toolbar');
             if (toolbar) toolbar.remove();
 
@@ -3705,19 +3818,100 @@ Un registro completo convierte cada sesi&oacute;n en informaci&oacute;n &uacute;
                     const staticText = cloneDoc.createElement('div');
                     staticText.className = 'static-value';
                     staticText.style.cssText = 'padding: 8px 12px; background: rgba(255, 255, 255, 0.05); border-radius: 12px; border: 1px solid var(--border2); font-size: 0.9rem; color: white;';
-                    staticText.innerText = value || '(sin definir)';
+                    staticText.innerText = value;
                     parent.replaceChild(staticText, el);
                 }
             });
 
-            cloneContainer.querySelectorAll('a').forEach(link => {
-                link.setAttribute('target', '_blank');
-                link.setAttribute('rel', 'noopener noreferrer');
-                link.style.cssText = 'display: inline-block; margin-top: 8px; padding: 8px 12px; background: #e6f0ff; border-radius: 40px; color: #1e40af; text-decoration: none; font-weight: 600; text-align: center; border: 1px solid #3b82f6;';
-            });
-            
             // Eliminar cualquier otro botón de manera segura (el cliente no debe tener botones en el plan principal)
             cloneContainer.querySelectorAll('button').forEach(btn => btn.remove());
+
+            // ===== MEJORA 1: Ocultar diccionario de variables + agregar ⓘ tooltips =====
+            const defsSection = cloneContainer.querySelector('.definitions-section');
+            if (defsSection) defsSection.style.display = 'none';
+
+            // ===== MEJORA 2: Convertir variables-row a badges compactos =====
+            const _iconMap = {
+              'series de aproximacion': '🔄', 'series de trabajo': '📈',
+              'repeticiones': '🏃', 'tempo': '⏳', 'rir': '🔥',
+              'descanso': '⏱️'
+            };
+            cloneContainer.querySelectorAll('.variables-row').forEach(row => {
+              const items = row.querySelectorAll('.var-item');
+              const badgesDiv = cloneDoc.createElement('div');
+              badgesDiv.className = 'vars-badges';
+              items.forEach(item => {
+                const label = item.querySelector('label');
+                const valEl = item.querySelector('.static-value, input');
+                if (!label || !valEl) return;
+                const labelText = label.textContent.trim();
+                const value = (valEl.value || valEl.textContent || '').trim();
+                if (!value || value === '(sin definir)') return;
+                // Detect varId from input data-var-id or match by label
+                let varId = '';
+                const inp = item.querySelector('[data-var-id]');
+                if (inp) varId = inp.getAttribute('data-var-id');
+                const icon = _iconMap[varId] || _iconMap[labelText.toLowerCase()] || '📊';
+                const hasDef = variableDefinitions[varId];
+                const tipBtn = hasDef ? ' <span class="var-tooltip-trigger" onclick="showVarTooltip(\'' + varId.replace(/'/g, '') + '\')">ⓘ</span>' : '';
+                const badge = cloneDoc.createElement('div');
+                badge.className = 'var-badge';
+                badge.innerHTML = '<span class="var-badge-icon">' + icon + '</span>' +
+                  '<span class="var-badge-label">' + labelText + ':</span> ' + value + tipBtn;
+                badgesDiv.appendChild(badge);
+              });
+              row.parentNode.replaceChild(badgesDiv, row);
+            });
+
+            // ===== MEJORA 3: Filosofía colapsable =====
+            const philoSection = cloneContainer.querySelector('.philosophy-section');
+            if (philoSection) {
+              const toggle = cloneDoc.createElement('div');
+              toggle.className = 'philosophy-toggle';
+              toggle.setAttribute('onclick', "this.classList.toggle('open'); this.nextElementSibling.classList.toggle('expanded')");
+              toggle.innerHTML = '<span class="philosophy-toggle-title">⚡ Nuestra Filosofía de Entrenamiento</span>' +
+                '<span class="philosophy-toggle-icon">▼</span>';
+              const wrapper = cloneDoc.createElement('div');
+              wrapper.className = 'philosophy-collapsible';
+              philoSection.parentNode.insertBefore(toggle, philoSection);
+              philoSection.parentNode.insertBefore(wrapper, philoSection);
+              wrapper.appendChild(philoSection);
+            }
+
+            // ===== MEJORA 4: Tabs de días =====
+            const daysContainer = cloneContainer.querySelector('#daysContainer');
+            if (daysContainer) {
+              const dayCards = daysContainer.querySelectorAll('.day-card');
+              if (dayCards.length > 1) {
+                const tabBar = cloneDoc.createElement('div');
+                tabBar.className = 'day-tabs-bar';
+                tabBar.id = 'dayTabsBar';
+                dayCards.forEach((card, idx) => {
+                  const titleEl = card.querySelector('.day-title .static-value') ||
+                    card.querySelector('.day-title input') || card.querySelector('.day-name-input');
+                  const dayName = titleEl ? (titleEl.value || titleEl.textContent || 'Día ' + (idx+1)).trim() : 'Día ' + (idx+1);
+                  // Shorten name for tab: take first ~25 chars
+                  const shortName = dayName.length > 28 ? dayName.substring(0, 25) + '…' : dayName;
+                  const btn = cloneDoc.createElement('button');
+                  btn.className = 'day-tab-btn' + (idx === 0 ? ' active' : '');
+                  btn.textContent = shortName;
+                  btn.setAttribute('onclick', 'switchDayTab(' + idx + ')');
+                  tabBar.appendChild(btn);
+                  if (idx > 0) card.style.display = 'none';
+                  card.setAttribute('data-day-tab-idx', idx);
+                });
+                daysContainer.insertBefore(tabBar, daysContainer.firstChild);
+              }
+            }
+
+            // ===== MEJORA 5: FAB de calculadora 1RM =====
+            const fab = cloneDoc.createElement('button');
+            fab.className = 'fab-1rm';
+            fab.id = 'fab1RMBtn';
+            fab.innerHTML = '🧮';
+            fab.setAttribute('title', 'Calculadora 1RM');
+            fab.setAttribute('onclick', "document.getElementById('modal-1rm').classList.add('open'); document.getElementById('input1RMPeso').focus();");
+            cloneDoc.body.appendChild(fab);
 
             // Agregar el pie de página de marca al final del contenedor principal
             if (footerClone) {
@@ -3739,6 +3933,31 @@ Un registro completo convierte cada sesi&oacute;n en informaci&oacute;n &uacute;
         // Ocultar configurador de días (solo para entrenador)
         const weekdayCfg = cloneDoc.getElementById('weekdayConfigSection');
         if (weekdayCfg) weekdayCfg.remove();
+
+        // Inyectar variableDefinitions y funciones del cliente (tooltips, tabs de días)
+        const clientFnsScript = cloneDoc.createElement('script');
+        clientFnsScript.textContent = `
+          window.__varDefs = ${JSON.stringify(variableDefinitions).replace(/</g, '\\u003c')};
+          window.__varLabels = ${JSON.stringify(globalVariables.map(v => ({id:v.id, label:v.label}))).replace(/</g, '\\u003c')};
+          function showVarTooltip(varId) {
+            var ov = document.getElementById('varTooltipOverlay');
+            var ti = document.getElementById('varTooltipTitle');
+            var bo = document.getElementById('varTooltipBody');
+            var v = window.__varLabels.find(function(g){return g.id===varId;});
+            ti.textContent = '🏷️ ' + (v ? v.label : varId);
+            bo.textContent = window.__varDefs[varId] || 'Sin definición disponible.';
+            ov.classList.add('open');
+          }
+          function switchDayTab(idx) {
+            document.querySelectorAll('#daysContainer .day-card').forEach(function(c, i) {
+              c.style.display = i === idx ? '' : 'none';
+            });
+            document.querySelectorAll('.day-tab-btn').forEach(function(b, i) {
+              b.classList.toggle('active', i === idx);
+            });
+          }
+        `;
+        cloneDoc.head.appendChild(clientFnsScript);
         
         // Ensure starting tab is "plan" for clients
         const initScript = cloneDoc.createElement('script');
@@ -4812,6 +5031,28 @@ cloneContainer.querySelectorAll('.definition-input').forEach(el => {
     }
 
     // Inicialización
+    // ===== FUNCIÓN GLOBAL: showVarTooltip =====
+    window.showVarTooltip = function(varId) {
+      var ov = document.getElementById('varTooltipOverlay');
+      var ti = document.getElementById('varTooltipTitle');
+      var bo = document.getElementById('varTooltipBody');
+      var v = (typeof globalVariables !== 'undefined') ? globalVariables.find(function(g){return g.id===varId;}) : null;
+      if (!v && window.__varLabels) v = window.__varLabels.find(function(g){return g.id===varId;});
+      ti.textContent = '🏷️ ' + (v ? v.label : varId);
+      var defs = (typeof variableDefinitions !== 'undefined') ? variableDefinitions : (window.__varDefs || {});
+      bo.textContent = defs[varId] || 'Sin definición disponible.';
+      ov.classList.add('open');
+    };
+    // ===== FUNCIÓN GLOBAL: switchDayTab =====
+    window.switchDayTab = function(idx) {
+      document.querySelectorAll('#daysContainer .day-card').forEach(function(c, i) {
+        c.style.display = i === idx ? '' : 'none';
+      });
+      document.querySelectorAll('.day-tab-btn').forEach(function(b, i) {
+        b.classList.toggle('active', i === idx);
+      });
+    };
+
     function initPlan() {
         // CRÍTICO: Si es un cliente, no renderizamos la app editable. Dejamos el HTML estático intacto.
         if (typeof MODO_CLIENTE !== 'undefined' && MODO_CLIENTE) {
@@ -5098,6 +5339,15 @@ document.addEventListener('DOMContentLoaded', () => {
         </table>
       </div>
     </div>
+  </div>
+</div>
+
+<!-- Tooltip overlay para definiciones de variables -->
+<div class="tooltip-overlay" id="varTooltipOverlay" onclick="if(event.target===this)this.classList.remove('open')">
+  <div class="tooltip-sheet">
+    <button class="tooltip-sheet-close" onclick="document.getElementById('varTooltipOverlay').classList.remove('open')">&times;</button>
+    <div class="tooltip-sheet-title" id="varTooltipTitle">🏷️ Variable</div>
+    <div class="tooltip-sheet-body" id="varTooltipBody"></div>
   </div>
 </div>
 
