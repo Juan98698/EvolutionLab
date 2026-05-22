@@ -744,11 +744,6 @@
     .save-config-btn { background: var(--green); color: #fff; }
     .reset-config-btn { background: transparent; border: 1px solid var(--border2); color: var(--text2); }
   
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-          }
 	   @page {
    	   margin: 1.5cm;
            size: A4;
@@ -1419,7 +1414,7 @@
         -webkit-print-color-adjust: exact;
         print-color-adjust: exact;
     }
-	video-link-item a {
+	.video-link-item a {
         display: inline-block !important;
         color: #0000ee !important;
         background: #eef2ff !important;
@@ -1437,7 +1432,6 @@
 }
       body {
       background-color: #1a1a2e !important;
-          border: 1px solid #000 !important;
       }
       /* Fix para iOS y Mobile: Se usa un seudoelemento fijo para el fondo, ya que background-attachment: fixed falla en iPhone */
       body::before {
@@ -1892,25 +1886,25 @@
     }
     .tooltip-overlay {
       position: fixed; inset: 0; background: rgba(0, 0, 0, 0.65); z-index: 3000;
-      display: flex; align-items: flex-end; justify-content: center;
-      padding-bottom: env(safe-area-inset-bottom);
+      display: flex; align-items: center; justify-content: center;
+      padding: 20px;
       opacity: 0; pointer-events: none; transition: opacity 0.25s ease;
     }
     .tooltip-overlay.open { opacity: 1; pointer-events: all; }
     .tooltip-sheet {
       background: linear-gradient(165deg, rgba(20, 20, 24, 0.98), rgba(12, 12, 16, 0.99));
       backdrop-filter: blur(30px); -webkit-backdrop-filter: blur(30px);
-      border-radius: 24px 24px 0 0; width: 100%; max-width: 500px;
-      padding: 1.75rem 1.5rem 2.5rem; position: relative;
-      transform: translateY(100%); transition: transform 0.28s cubic-bezier(0.32, 0.94, 0.6, 1);
-      border: 1px solid rgba(255, 255, 255, 0.15); border-bottom: none;
-      box-shadow: 0 -10px 40px rgba(0, 0, 0, 0.5);
+      border-radius: 24px; width: 100%; max-width: 500px;
+      padding: 2rem 1.5rem 2rem; position: relative;
+      transform: translateY(20px) scale(0.95); opacity: 0;
+      transition: transform 0.3s cubic-bezier(0.32, 0.94, 0.6, 1), opacity 0.3s ease;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
     }
     .tooltip-sheet-handle {
-      width: 45px; height: 5px; background: rgba(255, 255, 255, 0.25);
-      border-radius: 99px; margin: -0.75rem auto 1.25rem;
+      display: none;
     }
-    .tooltip-overlay.open .tooltip-sheet { transform: translateY(0); }
+    .tooltip-overlay.open .tooltip-sheet { transform: translateY(0) scale(1); opacity: 1; }
     .tooltip-sheet-title {
       font-size: 1.3rem; font-weight: 750; color: #f97316;
       margin-bottom: 12px; display: flex; align-items: center; gap: 8px;
@@ -2163,16 +2157,16 @@
         <button id="addCustomVarBtn">➕ Añadir variable global</button>
         <button id="exportHtmlBtn" class="btn-print" style="background:#4b5563;">💾 Guardar Borrador Editable</button>
         <button id="calc1RMBtn" style="background:#7b2ff7;">🧮 Calculadora 1RM</button>
-<div style="text-align: center; margin-top: 40px; padding-top: 20px; border-top: 2px solid #e2e8f0; font-size: 0.75rem; color: #64748b;">
-    👑 Exclusivo para ti por Evolution Lab | 🔬 Diseñado bajo evidencia científica|​ El cuerpo hace lo que la mente ordena.
-</div>	
     </div>
+<div id="planFooterBrand" style="text-align: center; margin-top: 40px; padding-top: 20px; border-top: 2px solid #e2e8f0; font-size: 0.75rem; color: #64748b;">
+    🏋️ Plan generado con 💪 | wwwSERE.tuweb.com | No es el gimnasio, no es la rutina, no es el entrenador, eres tú.
+</div>
     <!-- PORTADA (con datos de la autora/entrenador y redes) -->
     <div class="cover-page">
     <!-- NUEVO TÍTULO CENTRAL -->
     <div style="text-align: center; margin-bottom: 30px;">
     <h1 style="font-size: 1.9rem; font-weight: 800; color: #ffffff; border-bottom: 4px solid #ffffff; display: inline-block; padding-bottom: 8px; letter-spacing: 1px;">PLAN DE ENTRENAMIENTO PERSONALIZADO</h1>
-    <p style="font-size: 0.95rem; color: var(--text2); margin-top: 12px; font-weight: 600;"> Estrategia inteligente, ejecución implacable </p>
+    <p style="font-size: 0.95rem; color: var(--text2); margin-top: 12px; font-weight: 600;"> |Te enseño el camino y tu lo sigues| </p>
 </div>
 <!-- Texto de enganche / Filosofía del método -->
 <div class="philosophy-section">
@@ -3161,6 +3155,9 @@
       <div class="mcard" style="background: linear-gradient(135deg, rgba(255,255,255,0.03), transparent); border: 1px solid var(--border2); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);"><div class="mcard-label">${ejercicioFiltro ? 'Sesiones' : 'Ejercicios'}</div><div class="mcard-value">${count} 📊</div></div>
       <div class="mcard" style="background: linear-gradient(135deg, rgba(255,255,255,0.03), transparent); border: 1px solid var(--border2); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);"><div class="mcard-label">RIR promedio</div><div class="mcard-value">${avgRpe} 🎯</div></div>
     `;
+    // Update header session count
+    const headerCountEl = document.getElementById('headerCount');
+    if (headerCountEl) headerCountEl.textContent = sesiones.length + ' sesion' + (sesiones.length !== 1 ? 'es' : '');
     // Update Strongest Exercise
     const panelStrong = document.getElementById('strongestExercisePanel');
     const textStrong = document.getElementById('strongestExerciseText');
@@ -3740,10 +3737,11 @@ Un registro completo convierte cada sesi&oacute;n en informaci&oacute;n &uacute;
         const cloneContainer = cloneDoc.getElementById('trainingPlanContainer');
         if (cloneContainer) {
             // Extraer el div del footer de marca antes de eliminar la barra de herramientas
-            const originalFooter = cloneContainer.querySelector('.toolbar div');
+            const originalFooter = cloneContainer.querySelector('#planFooterBrand');
             let footerClone = null;
             if (originalFooter) {
                 footerClone = originalFooter.cloneNode(true);
+                originalFooter.remove();
             }
             const toolbar = cloneContainer.querySelector('.toolbar');
             if (toolbar) toolbar.remove();
@@ -4046,7 +4044,7 @@ Un registro completo convierte cada sesi&oacute;n en informaci&oacute;n &uacute;
       if (el) el.parentNode.removeChild(el);
     });
   }
-  window.eliminarEjercicio = eliminarEjercicio;
+
   window.switchTab = switchTab;
   renderAll();
 // --------------------------------------------------------------
@@ -4514,151 +4512,7 @@ function addGlobalVariable() {
         document.body.removeChild(a);
         URL.revokeObjectURL(url);
     }
-function exportToReadOnlyHtml() {
-    const originalContainer = document.getElementById('trainingPlanContainer');
-    
-    // Sincronizar valores actuales
-    originalContainer.querySelectorAll('input, textarea').forEach(el => {
-        if (el.value !== undefined) {
-            el.setAttribute('value', el.value);
-        }
-        if (el.tagName === 'TEXTAREA') {
-            el.innerHTML = el.value;
-        }
-    });
-    
-    const cloneContainer = originalContainer.cloneNode(true);
-    
-    // Eliminar el panel de variables activas de la versión final del cliente
-    const globalVarsPanel = cloneContainer.querySelector('#globalVarsPanelContainer');
-    if (globalVarsPanel) globalVarsPanel.remove();
-    
-    // Eliminar elementos de edición
-    const editElements = cloneContainer.querySelectorAll('.toolbar, .add-day-btn, .btn-remove-day, .exercise-actions, .btn-add-ex, .btn-rem-ex, .img-upload-label, .global-vars-panel button, #quickAddVarBtn, .remove-var-btn, .hidden-file-upload, .video-url-input');
-    editElements.forEach(el => el.remove());
-    
-    // CONVERTIR todos los inputs y textareas a texto estático
-    cloneContainer.querySelectorAll('input, textarea').forEach(el => {
-        const parent = el.parentNode;
-        const value = el.value !== undefined && el.value !== '' ? el.value : el.getAttribute('value') || '';
-        // Reemplazar el input por un span o div con el mismo texto
-        const staticText = document.createElement('div');
-        staticText.className = 'static-value';
-        staticText.style.cssText = 'padding: 8px 12px; background: rgba(255, 255, 255, 0.05); border-radius: 12px; border: 1px solid var(--border2); font-size: 0.9rem; color: white;';
-        staticText.innerText = value || '(sin definir)';
-        parent.replaceChild(staticText, el);
-    });
-	// Convertir también los inputs de definiciones a texto estático
-cloneContainer.querySelectorAll('.definition-input').forEach(el => {
-    const parent = el.parentNode;
-    const value = el.value !== undefined && el.value !== '' ? el.value : el.getAttribute('value') || '';
-    const staticText = document.createElement('div');
-    staticText.className = 'static-value';
-    staticText.style.cssText = 'padding: 6px 10px; background: rgba(255, 255, 255, 0.05); border-radius: 12px; border: 1px solid var(--border2); font-size: 0.8rem; color: var(--text2); margin-top: 6px; white-space: pre-wrap;';
-    staticText.innerHTML = (value || '(Sin definir)').replace(/\n/g, '<br>');
-    parent.replaceChild(staticText, el);
-});
-    
-    // También convertir textareas
-    cloneContainer.querySelectorAll('textarea').forEach(el => {
-        const parent = el.parentNode;
-        const staticText = document.createElement('div');
-        staticText.className = 'static-textarea';
-        staticText.style.cssText = 'padding: 8px 12px; background: rgba(255, 255, 255, 0.05); border-radius: 12px; border: 1px solid var(--border2); font-size: 0.9rem; color: white; white-space: pre-wrap;';
-        staticText.innerText = el.value;
-        parent.replaceChild(staticText, el);
-    });
-    
-    // Asegurar enlaces externos
-    cloneContainer.querySelectorAll('a').forEach(link => {
-        link.setAttribute('target', '_blank');
-        link.setAttribute('rel', 'noopener noreferrer');
-        // Añadir estilo para que se note que es clicable
-        link.style.cssText = 'display: inline-block; margin-top: 8px; padding: 8px 12px; background: rgba(59, 130, 246, 0.2); border-radius: 40px; color: #60a5fa; text-decoration: none; font-weight: 600; text-align: center; border: 1px solid #3b82f6;';
-    });
-    
-    // Ocultar elementos de edición restantes por si acaso
-    const remainingButtons = cloneContainer.querySelectorAll('button');
-    remainingButtons.forEach(btn => btn.remove());
-    
-    // Estilos adicionales para la versión de solo lectura
-    const styles = document.querySelector('style').innerHTML;
-    const extraStyles = `
-        .static-value, .static-textarea {
-            width: 100%;
-            box-sizing: border-box;
-        }
-        .day-title input {
-            border: none !important;
-            background: transparent !important;
-            font-weight: bold;
-            font-size: 1.4rem;
-            pointer-events: none;
-        }
-        .exercise-name input {
-            border: none !important;
-            background: transparent !important;
-            font-weight: bold;
-            pointer-events: none;
-        }
-        .var-item input {
-            border: 1px solid var(--border2) !important;
-            background: rgba(255, 255, 255, 0.05) !important;
-            color: white !important;
-            pointer-events: none;
-        }
-        .img-upload-label, .video-url-input {
-            display: none !important;
-        }
-        /* Forzar que todo sea solo lectura visual */
-        input:not(.exercise-checkbox), textarea {
-            pointer-events: none !important;
-            background-color: rgba(255, 255, 255, 0.05) !important;
-            color: white !important;
-            border: 1px solid var(--border2) !important;
-        }
-    `;
-    
-    const fullHtml = `<!DOCTYPE html>
-    <html lang="es">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-        <title>Plan Entrenamiento Personalizado - Solo Lectura</title>
-        <style>${styles} ${extraStyles}</style>
-        <style>
-            /* Forzar que todo sea solo lectura visual */
-            input:not(.exercise-checkbox), textarea {
-                pointer-events: none !important;
-                background-color: rgba(255, 255, 255, 0.05) !important;
-                color: white !important;
-                border-color: var(--border2) !important;
-            }
-            button, .btn-remove-day, .btn-add-ex, .btn-rem-ex, .img-upload-label {
-                display: none !important;
-            }
-            .toolbar {
-                display: none !important;
-            }
-        </style>
-    </head>
-    <body>
-        <div class="document-container" style="max-width:1200px; margin:0 auto; background:rgba(255,255,255,0.0); border-radius:28px; padding:30px;">
-            ${cloneContainer.innerHTML}
-        </div>
-    </body>
-    </html>`;
-    
-    const blob = new Blob([fullHtml], { type: 'text/html' });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = 'plan_entrenamiento_cliente.html';
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-    URL.revokeObjectURL(url);
-}
+
     // ==============================================================
     // ===== PARSEO DE DESCANSO =====
     // ==============================================================
@@ -5062,8 +4916,7 @@ cloneContainer.querySelectorAll('.definition-input').forEach(el => {
         if (addVarToolbar) addVarToolbar.onclick = addGlobalVariable;
 	const exportHtmlBtn = document.getElementById('exportHtmlBtn');
         if (exportHtmlBtn) exportHtmlBtn.onclick = exportToHtml;
-	const exportReadOnlyBtn = document.getElementById('exportReadOnlyHtmlBtn');
-        if (exportReadOnlyBtn) exportReadOnlyBtn.onclick = exportToReadOnlyHtml;
+
         // Delegación para eliminar variables
         document.addEventListener('click', function(e) {
             if (e.target.classList && e.target.classList.contains('remove-var-btn')) {
