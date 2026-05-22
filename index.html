@@ -30,7 +30,6 @@
         --green-light: #1a2e0e; --red-light: #2e1010;
       }
     }
-
     html, body {
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
       background: var(--bg3);
@@ -42,7 +41,6 @@
       text-size-adjust: 100%;
       min-height: 100vh;
     }
-
     header {
       background: rgba(15, 15, 20, 0.92);
       backdrop-filter: blur(16px);
@@ -115,9 +113,7 @@
       white-space: nowrap;
       border: 1px solid rgba(255,255,255,0.06);
     }
-
     .container { max-width: 1100px; margin: 0 auto; padding: 1rem; }
-
     .top-bar {
       display: flex;
       gap: 10px;
@@ -125,7 +121,6 @@
       flex-wrap: wrap;
       margin-bottom: 1rem;
     }
-
     select, input, textarea {
       background: var(--bg);
       color: var(--text);
@@ -149,7 +144,6 @@
       box-shadow: 0 0 0 3px rgba(56,138,221,0.18);
     }
     textarea { resize: vertical; min-height: 64px; }
-
     .nav-container {
       display: flex;
       align-items: stretch;
@@ -192,7 +186,6 @@
       background: rgba(255,255,255,0.08);
       align-self: stretch;
     }
-
     .tab-row {
       display: flex;
       gap: 3px;
@@ -234,7 +227,6 @@
       border: 1px solid rgba(0,212,255,0.2);
     }
     .tab-disabled { opacity: 0.45; pointer-events: none; }
-
     @media (max-width: 600px) {
       .nav-container {
         flex-direction: column;
@@ -251,7 +243,6 @@
         padding: 7px 10px;
       }
     }
-
     .metrics {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
@@ -269,7 +260,6 @@
     }
     .mcard-label { font-size: 11px; color: var(--text2); margin-bottom: 4px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.04em; }
     .mcard-value { font-size: 22px; font-weight: 700; }
-
     .section-title {
       font-size: 11px;
       font-weight: 700;
@@ -278,7 +268,6 @@
       letter-spacing: 0.08em;
       margin: 1.25rem 0 0.625rem;
     }
-
     .table-wrap {
       background: linear-gradient(135deg, rgba(255,255,255,0.03), transparent);
       backdrop-filter: blur(8px);
@@ -308,7 +297,6 @@
     }
     tbody tr:last-child td { border-bottom: none; }
     tbody tr:hover { background: rgba(255,255,255,0.05); }
-
     .badge {
       display: inline-block;
       padding: 2px 8px;
@@ -330,13 +318,11 @@
       .badge-Brazos { background: #4B1528; color: #F4C0D1; }
       .badge-Core { background: #2C2C2A; color: #D3D1C7; }
     }
-
     .delta-up { color: var(--green); font-weight: 600; }
     .delta-dn { color: var(--red); font-weight: 600; }
     .delta-eq { color: var(--text3); }
     .num { text-align: right; }
     .center { text-align: center; }
-
     .chart-card {
       background: linear-gradient(135deg, rgba(255,255,255,0.03), transparent);
       border-radius: var(--radius-lg);
@@ -347,7 +333,6 @@
     }
     .chart-legend { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 12px; font-size: 12px; }
     .legend-sq { width: 10px; height: 10px; border-radius: 2px; display: inline-block; }
-
     .form-section {
       background: linear-gradient(135deg, rgba(255,255,255,0.03), transparent);
       backdrop-filter: blur(8px);
@@ -356,7 +341,6 @@
       border: 1px solid var(--border2);
       padding: 1.25rem;
     }
-
     .ejercicio-group {
       background: rgba(255, 255, 255, 0.03);
       backdrop-filter: blur(8px);
@@ -383,7 +367,6 @@
       border-color: var(--blue) !important;
       box-shadow: 0 0 0 3px rgba(56,138,221,0.2) !important;
     }
-
     .remove-ejercicio {
       position: absolute;
       top: 8px;
@@ -406,7 +389,6 @@
       justify-content: center;
     }
     .remove-ejercicio:active { background: var(--bg3); }
-
     .form-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -416,12 +398,10 @@
     @media (min-width: 640px) {
       .form-grid { grid-template-columns: repeat(3, 1fr); }
     }
-
     .form-group { display: flex; flex-direction: column; gap: 6px; }
     .form-group label { font-size: 12px; color: var(--text2); font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em; }
     .form-group input, .form-group select { width: 100%; }
     .form-wide { grid-column: 1 / -1; }
-
     .f-preview {
       font-size: 12px;
       color: var(--text2);
@@ -435,14 +415,12 @@
       flex-wrap: wrap;
     }
     .f-preview span { color: var(--text); font-weight: 600; }
-
     .btn-row {
       display: flex;
       gap: 8px;
       flex-wrap: wrap;
       margin-top: 1rem;
     }
-
     .btn {
       padding: 11px 18px;
       border-radius: var(--radius);
@@ -465,7 +443,6 @@
     .btn-ghost { background: transparent; border: 1px solid var(--border2); color: var(--text); }
     .btn-ghost:hover { background: var(--bg2); }
     .btn-danger { background: transparent; color: var(--red); border: 1px solid var(--border); }
-
     .del-btn {
       background: none;
       border: none;
@@ -483,10 +460,8 @@
       justify-content: center;
     }
     .del-btn:hover, .del-btn:active { color: var(--red); background: var(--bg2); }
-
     .empty { text-align: center; padding: 3rem 1rem; color: var(--text3); font-size: 14px; }
     .empty p { margin-bottom: 6px; }
-
     /* ===== TOAST ===== */
     #toast {
       position: fixed;
@@ -510,7 +485,6 @@
     #toast.toast-success { background: var(--green); color: #fff; }
     #toast.toast-error { background: var(--red); color: #fff; }
     #toast.toast-info { background: var(--text); color: var(--bg); }
-
     /* ===== MODAL ===== */
     .modal-overlay {
       position: fixed;
@@ -549,7 +523,6 @@
       padding: 13px; font-size: 15px; font-weight: 600; cursor: pointer; font-family: inherit;
       -webkit-tap-highlight-color: transparent; touch-action: manipulation;
     }
-
     /* ===== VALIDATION BANNER ===== */
     .validation-banner {
       background: #FFEAEA;
@@ -570,10 +543,8 @@
     @media (prefers-color-scheme: dark) {
       .validation-banner { background: #3a0a0a; border-color: #e05050; color: #f49090; }
     }
-
     .reps-help { font-size: 11px; color: var(--text3); margin-top: 2px; }
     .export-btn { background: var(--blue); color: white; border: none; margin-left: auto; }
-
     .aviso-bloqueo {
       display: none;
       background: var(--amber);
@@ -586,7 +557,6 @@
       font-size: 14px;
     }
     .aviso-bloqueo a { color: black; text-decoration: underline; }
-
     /* ===== SERIES BUILDER ===== */
     .series-count-row {
       display: flex; align-items: center; gap: 10px; flex-wrap: wrap; margin-bottom: 12px;
@@ -615,7 +585,6 @@
     .reps-btn:active { background: var(--border); }
     .reps-val { font-size: 22px; font-weight: 800; min-width: 36px; text-align: center; color: var(--text); }
     .reps-unit { font-size: 12px; color: var(--text3); font-weight: 600; }
-
     .input-error {
       border-color: #cc0000 !important;
       box-shadow: 0 0 0 3px rgba(200,0,0,0.25) !important;
@@ -624,9 +593,7 @@
     @media (prefers-color-scheme: dark) {
       .input-error { background: #2e0a0a !important; }
     }
-
     .container { padding-bottom: calc(1.5rem + env(safe-area-inset-bottom)); }
-
     /* ===== HOOK MOTIVACIONAL ===== */
     .hook-banner {
       background: linear-gradient(135deg, rgba(255,255,255,0.03), transparent);
@@ -674,7 +641,6 @@
       color: #fff;
       letter-spacing: 0.01em;
     }
-
     /* ===== NOTIFICACIÓN DE SOBRECARGA PROGRESIVA ===== */
     .sp-notif-banner {
       border-radius: var(--radius-lg);
@@ -709,7 +675,6 @@
       -webkit-tap-highlight-color: transparent;
     }
     #sp-notif-container { margin-bottom: 0.5rem; }
-
     /* ===== PANEL DE CONFIGURACIÓN DE REGLAS ===== */
     #panel-config { display: none; }
     .config-section {
@@ -875,7 +840,6 @@
             color: white !important;
             outline: none !important;
         }
-
         .social-item {
             flex: 1;
             min-width: 180px;
@@ -1200,14 +1164,12 @@
             display: block;
             margin-bottom: 5px;
         }
-
 	/* Sección de filosofía / enganche */
 .philosophy-section {
     margin-top: 40px;
     padding: 20px 0;
     border-top: 2px solid #e2e8f0;
 }
-
 .philosophy-title {
     font-family: 'Poppins', sans-serif;
     font-size: 1.9rem;
@@ -1217,7 +1179,6 @@
     letter-spacing: 2px;
     margin-bottom: 10px;
 }
-
 .philosophy-author {
     text-align: center;
     font-size: 1.9rem;
@@ -1225,7 +1186,6 @@
     color: #000000;
     margin-bottom: 30px;
 }
-
 .philosophy-quote {
     text-align: center;
     font-size: 1.6rem;
@@ -1239,7 +1199,6 @@
     border-left: 6px solid #f97316;
     border-right: 6px solid #f97316;
 }
-
 .philosophy-description {
     font-size: 1.1rem;
     line-height: 1.5;
@@ -1248,7 +1207,6 @@
     margin: 20px 0;
     font-weight: 500;
 }
-
 .philosophy-subtitle {
     font-family: 'Poppins', sans-serif;
     font-size: 1.3rem;
@@ -1258,13 +1216,11 @@
     border-left: 5px solid #f97316;
     padding-left: 15px;
 }
-
 .philosophy-list {
     list-style: none;
     padding: 0;
     margin: 0;
 }
-
 .philosophy-list li {
     background: #f8fafc;
     background: rgba(254, 249, 227, 0.2) !important;
@@ -1276,14 +1232,12 @@
     line-height: 1.4;
     color: #000000;
 }
-
 .philosophy-list li strong {
     color: #f97316;
     display: block;
     margin-bottom: 6px;
     font-size: 1rem;
 }
-
 .philosophy-footer {
     text-align: center;
     margin-top: 40px;
@@ -1325,7 +1279,6 @@
         padding: 0.5in;
         background: white !important;
     }
-
     /* Evitar que otros elementos se peguen a la portada */
     .global-vars-panel,
     .definitions-section {
@@ -1361,8 +1314,6 @@
     padding: 0 !important;
     font-size: 0.8rem !important;
     }
-
-
     /* Asegurar que la nota también tenga borde negro */
     .note-area {
         border: 1px solid #000 !important;
@@ -1384,13 +1335,11 @@
         font-weight: 500 !important;
         border: 1px solid #ccc !important;
     }
-
     .video-link-item a {
         font-size: 0.9rem !important;
         padding: 8px 14px !important;
     }
 }
-
       body {
       background-color: #1a1a2e !important;
           border: 1px solid #000 !important;
@@ -1414,7 +1363,6 @@
           background-size: auto !important;
   	background-attachment: scroll !important;
       }
-
       /* Fix Definitivo para iOS (Safari/iPhone/iPad) */
       @supports (-webkit-touch-callout: none) {
           body {
@@ -1481,7 +1429,6 @@
       touch-action: manipulation;
     }
     .today-banner-btn:active { transform: scale(0.95); }
-
     /* ===== TEMPORIZADOR DE DESCANSO ===== */
     .rest-timer-btn {
       display: inline-flex;
@@ -1584,7 +1531,6 @@
       0%, 100% { transform: scale(1); }
       50% { transform: scale(1.03); }
     }
-
     /* ===== CONFIG DÍAS DE SEMANA ===== */
     .weekday-config {
       margin-top: 20px;
@@ -1642,7 +1588,6 @@
       background: rgba(100,116,139,0.15);
       color: #64748b;
     }
-
     /* ===== DAY HIGHLIGHT ANIMATION ===== */
     .day-card-highlight {
       animation: dayHighlightPulse 2.5s ease-out forwards;
@@ -1652,7 +1597,6 @@
       70% { box-shadow: 0 0 0 4px #00d4ff, 0 0 20px rgba(0,212,255,0.3); }
       100% { box-shadow: 0 4px 14px rgba(0,0,0,0.05); }
     }
-
     /* ===== MODAL CALCULADORA 1RM (GLASSMORPHISM) ===== */
     #modal-1rm {
       position: fixed;
@@ -1839,7 +1783,6 @@
     .modal-1rm-btn-calc:active {
       transform: translateY(0);
     }
-
     /* ===== TOOLTIP DE VARIABLES (CLIENTE) ===== */
     .var-tooltip-trigger {
       display: inline-flex; align-items: center; justify-content: center;
@@ -1878,7 +1821,6 @@
       color: rgba(255,255,255,0.4); font-size: 22px; cursor: pointer; padding: 4px;
       -webkit-tap-highlight-color: transparent;
     }
-
     /* ===== BADGES COMPACTOS DE VARIABLES (CLIENTE) ===== */
     .vars-badges {
       display: flex; flex-wrap: wrap; gap: 8px; margin: 12px 0;
@@ -1896,7 +1838,6 @@
       color: rgba(255,255,255,0.4); font-weight: 500;
       text-transform: uppercase; font-size: 10px; letter-spacing: 0.03em;
     }
-
     /* ===== FILOSOFÍA COLAPSABLE ===== */
     .philosophy-toggle {
       display: flex; align-items: center; justify-content: space-between;
@@ -1917,7 +1858,6 @@
       max-height: 0; overflow: hidden; transition: max-height 0.4s ease;
     }
     .philosophy-collapsible.expanded { max-height: 2000px; }
-
     /* ===== SELECTOR DE DÍAS (CLIENTE) ===== */
     .day-tabs-bar {
       display: flex; gap: 4px; padding: 5px;
@@ -1941,7 +1881,6 @@
       background: linear-gradient(135deg, rgba(0,212,255,0.12), rgba(123,47,247,0.12));
       color: #00d4ff; border: 1px solid rgba(0,212,255,0.2);
     }
-
     /* ===== FAB CALCULADORA 1RM ===== */
     .fab-1rm {
       position: fixed; bottom: calc(24px + env(safe-area-inset-bottom)); right: 20px;
@@ -1953,12 +1892,10 @@
       transition: all 0.2s; -webkit-tap-highlight-color: transparent;
     }
     .fab-1rm:active { transform: scale(0.9); }
-
   /* ESTILOS DEL PLAN */
 </style>
 </head>
 <body>
-
 <header>
   <div class="brand">
     <div class="brand-name">Evolution Lab</div>
@@ -1974,7 +1911,6 @@
   <div id="clienteNombreHeader" style="display:none; font-size:13px; color:rgba(255,255,255,0.5); background:rgba(255,255,255,0.08); padding:4px 12px; border-radius:99px; white-space:nowrap;"></div>
   <button id="generarLinkBtn" class="btn export-btn" style="display:none; font-family:'Orbitron',sans-serif; font-size:9px; padding:6px 12px;">⬇️ Exportar Cliente</button>
 </header>
-
 <!-- Panel generador de HTML (solo entrenador) -->
 <div id="panelGenerarLink" style="display:none; background:var(--bg); border-bottom:1px solid var(--border); padding:1rem;">
   <div style="max-width:520px; margin:0 auto;">
@@ -1990,19 +1926,14 @@
     <div style="margin-top:8px; font-size:12px; color:var(--text3);">💡 Esto descargará un archivo HTML con todas las reglas incrustadas. Súbelo a tu GitHub (ej. github pages) con este nombre.</div>
   </div>
 </div>
-
 <div class="container">
-
   <!-- Banner Tu Entrenamiento de Hoy -->
   <div id="todayBanner" style="display:none;"></div>
-
   <div class="aviso-bloqueo" id="avisoBloqueo">
     🔒 Tu plan de 31 días ha finalizado. <a href="#" id="renovarLink">Contacta a tu entrenador para renovar</a>.
   </div>
-
   <!-- Notificaciones de sobrecarga progresiva -->
   <div id="sp-notif-container"></div>
-
   <div class="top-bar">
     <div class="nav-container">
       <!-- Grupo 1: Plan de Entrenamiento -->
@@ -2024,7 +1955,6 @@
       </div>
     </div>
   </div>
-
   <!-- HISTORIAL -->
   <div id="panel-hist">
     <div class="top-bar" style="margin-top:-0.5rem; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px;">
@@ -2033,14 +1963,11 @@
         <option value="">Todos los ejercicios</option>
       </select>
     </div>
-
     <div class="metrics" id="metrics"></div>
-
     <div id="strongestExercisePanel" style="margin-top: 1rem; padding: 12px 16px; background: var(--bg2); border-radius: var(--radius-lg); border: 1px solid var(--border); display: none;">
       <div style="font-size: 11px; color: var(--text2); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 4px;">Tu ejercicio más fuerte</div>
       <div id="strongestExerciseText" style="font-weight: 600; font-size: 15px; color: var(--accent);"></div>
     </div>
-
     <!-- HOOK MOTIVACIONAL -->
     <div class="hook-banner" id="dynamicHookBanner">
       <span class="hook-quote-mark">&ldquo;</span>
@@ -2053,7 +1980,6 @@
       </p>
       <span class="hook-closing" id="dynamicHookSubtext">&#9888;&#65039; Sin historial no hay progresi&oacute;n inteligente, registra tu entrenamiento hoy y super&aacute;te ma&ntilde;ana.&#128293;</span>
     </div>
-
     <div class="section-title">Historial de sesiones</div>
     <div class="table-wrap">
       <div class="table-scroll">
@@ -2070,7 +1996,6 @@
       </div>
     </div>
   </div>
-
   <!-- PROGRESIÓN -->
   <div id="panel-chart" style="display:none">
     <div class="section-title" id="chartTitle">Progresión</div>
@@ -2082,7 +2007,6 @@
       <div style="position:relative; width:100%; height:260px;"><canvas id="mainChart"></canvas></div>
     </div>
   </div>
-
   <!-- AGREGAR SESIÓN -->
   <div id="panel-add" style="display:none">
     <div class="section-title">Nueva sesión</div>
@@ -2109,7 +2033,6 @@
       </div>
     </div>
   </div>
-
   <div id="panel-plan" style="display:none">
 <div class="document-container" id="trainingPlanContainer">
     <!-- Toolbar -->
@@ -2119,12 +2042,10 @@
         <button id="addCustomVarBtn">➕ Añadir variable global</button>
         <button id="exportHtmlBtn" class="btn-print" style="background:#4b5563;">💾 Guardar Borrador Editable</button>
         <button id="calc1RMBtn" style="background:#7b2ff7;">🧮 Calculadora 1RM</button>
-
 <div style="text-align: center; margin-top: 40px; padding-top: 20px; border-top: 2px solid #e2e8f0; font-size: 0.75rem; color: #64748b;">
     🏋️ Plan generado con 💪 | wwwSERE.tuweb.com | No es el gimnasio, no es la rutina, no es el entrenador, eres tú.
 </div>	
     </div>
-
     <!-- PORTADA (con datos de la autora/entrenador y redes) -->
     <div class="cover-page">
     <!-- NUEVO TÍTULO CENTRAL -->
@@ -2171,14 +2092,12 @@
             <label style="font-weight:600;">📅 Fecha inicio</label>
             <input type="date" id="startDate" style="padding:10px; border-radius:20px; border: 1px solid #000;" value="2026-05-10">
         </div>
-
         <!-- Configuración de días de la semana -->
         <div class="weekday-config" id="weekdayConfigSection">
             <div class="weekday-config-title">📅 Días de entrenamiento por semana</div>
             <p style="font-size:0.78rem; color:#475569; margin-bottom:12px;">Asigna cada día del plan a un día de la semana. El cliente verá automáticamente qué le toca hoy.</p>
             <div class="weekday-grid" id="weekdayGrid"></div>
         </div>
-
         <!-- Nuevos campos para el elaborador / entrenador -->
         <div style="margin-bottom: 20px; border-top: 2px solid #eef2f6; padding-top: 15px;">
             <label style="font-weight:600;">✍️ Elaborado por</label>
@@ -2194,7 +2113,6 @@
                 <input type="text" id="instagramLink" placeholder="https://instagram.com/tuusuario" value="https://instagram.com/tu_perfil">
             </div>
         </div>
-
         <div class="note-area">
             <label style="font-weight:600;">📝 Nota / Descripción</label>
             <textarea id="globalNote" rows="3">🏋️ Recuerda calentar 10 min antes. Respeta el RIR y tempo indicado. Hidrátate bien.</textarea>
@@ -2204,18 +2122,13 @@
     <h2 style="font-size: 1.4rem; font-weight: 700; color: #f97316; border-left: 5px solid #f97316; padding-left: 15px; margin-bottom: 15px;">📖 Diccionario de variables</h2>
     <div id="definitionsContainer"></div>
 </div>
-
     <div id="globalVarsPanelContainer"></div>
     <div id="daysContainer"></div>
 </div>
-
-
 </div>
-
   <!-- ===== PANEL CONFIGURACIÓN DE REGLAS ===== -->
   <div id="panel-config">
     <div class="section-title">⚙️ Motor de sobrecarga progresiva — Configuración de reglas</div>
-
     <div class="config-section">
       <div class="config-section-title">📊 Parámetros generales de análisis</div>
       <div class="config-grid">
@@ -2251,21 +2164,18 @@
         </div>
       </div>
     </div>
-
     <!-- REGLAS INDIVIDUALES -->
     <div class="config-section">
       <div class="config-section-title">📋 Reglas de notificación</div>
       <p style="font-size:13px; color:var(--text2); margin-bottom:1rem;">Cada regla tiene una condición que se evalúa automáticamente al abrir el historial. Podés activar/desactivar cada una y editar los mensajes. Usá <code style="background:var(--bg2);padding:1px 5px;border-radius:4px;">{ejercicio}</code>, <code style="background:var(--bg2);padding:1px 5px;border-radius:4px;">{valor}</code>, <code style="background:var(--bg2);padding:1px 5px;border-radius:4px;">{peso}</code>, <code style="background:var(--bg2);padding:1px 5px;border-radius:4px;">{porciento}</code> como variables en los textos.</p>
       <div id="rules-editor"></div>
     </div>
-
     <div class="btn-row">
       <button class="btn save-config-btn" id="saveConfigBtn">💾 Guardar configuración</button>
       <button class="btn reset-config-btn" id="resetConfigBtn">↺ Restaurar valores por defecto</button>
     </div>
   </div>
 </div>
-
 <!-- Modal confirmación -->
 <div class="modal-overlay" id="modalOverlay">
   <div class="modal-box">
@@ -2277,11 +2187,8 @@
     </div>
   </div>
 </div>
-
 <div id="toast"></div>
-
 <datalist id="ejercicios_sugeridos"></datalist>
-
 <script>
   // ================= CONFIGURACIÓN =================
   var _urlParams = new URLSearchParams(window.location.search);
@@ -2290,18 +2197,15 @@
   let STORAGE_KEY = _clienteId ? ('sp_cliente_' + _clienteId) : 'sobrecarga_v5';
   let CICLO_KEY   = _clienteId ? ('sp_ciclo_'   + _clienteId) : 'fechaInicioCiclo';
   const CONFIG_KEY = 'sp_config_v1';
-
   let sesiones = [];
   let nextSesionId = 1;
   let nextEjercicioId = 1;
   let activeTab = 'hist';
   let chart = null;
   let tempEjercicios = [];
-
   // ===============================================================
   // ===== MOTOR DE SOBRECARGA PROGRESIVA — REGLAS POR DEFECTO =====
   // ===============================================================
-
   const DEFAULT_CONFIG = {
     minSesiones: 3,          // mínimo de sesiones para evaluar un ejercicio
     ventana: 4,              // cuántas sesiones recientes mirar
@@ -2310,7 +2214,6 @@
     sesionesRegresionAlerta: 3,
     semanasEstancamiento: 5, // semanas sin mejora de 1RM
   };
-
   // Reglas por defecto. Cada regla tiene:
   //   id, tipo (subir|bajar|mantener|descanso|cambio|info), activa, titulo, mensaje
   // Variables disponibles en mensajes: {ejercicio} {valor} {peso} {porciento}
@@ -2438,14 +2341,11 @@
       semanas_consecutivas: 6,
     },
   ];
-
   // ============================================================
   // ===== ESTADO DE CONFIGURACIÓN (carga desde localStorage) ===
   // ============================================================
-
   let CONFIG = JSON.parse(JSON.stringify(DEFAULT_CONFIG));
   let RULES  = JSON.parse(JSON.stringify(DEFAULT_RULES));
-
   function loadConfig() {
     try {
       // Si hay config inyectada en el HTML exportado (modo cliente)
@@ -2477,25 +2377,19 @@
       }
     } catch(e) { console.error('Error cargando config:', e); }
   }
-
   function saveConfig() {
     storageSet(CONFIG_KEY, JSON.stringify({ config: CONFIG, rules: RULES }));
   }
-
   // ============================================================
   // ===== MOTOR DE ANÁLISIS DE SOBRECARGA PROGRESIVA ===========
   // ============================================================
-
   function analizarSobrecargaProgresiva() {
     const ejercicios = obtenerTodosEjercicios();
     const notifs = [];
-
     for (const nombre of ejercicios) {
       const filas = obtenerFilas(nombre);
       if (filas.length === 0) continue;
-
       const n = filas.length;
-
       // --- Primera sesión ---
       if (n === 1) {
         const r = RULES.find(r => r.id === 'primer_sesion');
@@ -2504,42 +2398,34 @@
         }
         continue;
       }
-
       if (n < CONFIG.minSesiones) continue;
-
       const ventana = Math.min(CONFIG.ventana, n);
       const recientes = filas.slice(-ventana);
       const ultima = filas[n - 1];
       const penultima = n >= 2 ? filas[n - 2] : null;
-
       // Días desde última sesión
       const diasDesdeUltima = penultima
         ? Math.round((parsearFechaISO(ultima.fecha) - parsearFechaISO(penultima.fecha)) / (1000*60*60*24))
         : null;
-
       // Promedios de la ventana
       const avgRIR = recientes.reduce((s, f) => s + f.rpe, 0) / recientes.length;
       const avgDescanso = recientes.reduce((s, f) => s + f.descanso, 0) / recientes.length;
-
       // Variación de volumen entre las últimas 2 sesiones
       const volActual = ultima.volumen;
       const volAnterior = penultima ? penultima.volumen : null;
       const deltaPct = volAnterior ? ((volActual - volAnterior) / volAnterior) * 100 : null;
-
       // Verificar regresión consecutiva de volumen
       let regresionCount = 0;
       for (let i = n - 1; i >= 1; i--) {
         if (filas[i].volumen < filas[i-1].volumen) regresionCount++;
         else break;
       }
-
       // Verificar racha positiva de volumen
       let rachaPositiva = 0;
       for (let i = n - 1; i >= 1; i--) {
         if (filas[i].volumen > filas[i-1].volumen) rachaPositiva++;
         else break;
       }
-
       // Estancamiento de 1RM
       let sesionsSin1RMMejora = 0;
       const rm1Max = Math.max(...filas.map(f => f.rm));
@@ -2555,7 +2441,6 @@
         else break;
       }
       const totalSinMejora = sesionsSinMejora;
-
       // Estancamiento de peso+reps: cuántas sesiones seguidas sin superar el peso ni las reps totales
       let sesionsSinMejoraPesoReps = 0;
       const pesoUltima = filas[n-1].peso;
@@ -2567,9 +2452,7 @@
         if (pesoI >= pesoUltima - 0.01 && repsI >= repsUltima) sesionsSinMejoraPesoReps++;
         else break;
       }
-
       // ====== EVALUAR REGLAS ======
-
       // 1. DESCANSO EXCESIVO
       const rDescansoEx = RULES.find(r => r.id === 'descanso_excesivo');
       if (rDescansoEx && rDescansoEx.activa && diasDesdeUltima !== null && diasDesdeUltima > CONFIG.diasDescansoExcesivo) {
@@ -2584,7 +2467,6 @@
         });
         continue; // descanso excesivo tiene prioridad
       }
-
       // 2. REGRESIÓN CONSECUTIVA
       const rReg = RULES.find(r => r.id === 'bajar_peso_regresion');
       if (rReg && rReg.activa && regresionCount >= CONFIG.sesionesRegresionAlerta) {
@@ -2598,7 +2480,6 @@
           })
         });
       }
-
       // 3. RIR BAJO + VOLUMEN CAYENDO → bajar peso (el peso es demasiado alto para sostener progresión)
       const rRirAlto = RULES.find(r => r.id === 'bajar_peso_rir_alto');
       if (rRirAlto && rRirAlto.activa && avgRIR <= rRirAlto.rir_umbral_bajo && regresionCount >= rRirAlto.sesiones_consecutivas) {
@@ -2612,7 +2493,6 @@
           })
         });
       }
-
       // 4. RIR ALTO (≥ umbral) → subir peso (el peso es demasiado fácil)
       const rSubir = RULES.find(r => r.id === 'subir_peso_reps');
       if (rSubir && rSubir.activa) {
@@ -2632,7 +2512,6 @@
           });
         }
       }
-
       // 5. REPS OBJETIVO POR EJERCICIO → subir peso
       const rRepsObj = RULES.find(r => r.id === 'subir_peso_reps_objetivo');
       if (rRepsObj && rRepsObj.activa && n >= rRepsObj.sesiones_consecutivas) {
@@ -2669,7 +2548,6 @@
           }
         }
       }
-
       // 6. CRECIMIENTO DE VOLUMEN → sugerir más reps antes de subir peso
       const rReps = RULES.find(r => r.id === 'subir_reps_antes_peso');
       if (rReps && rReps.activa && deltaPct !== null && deltaPct >= rReps.umbral_crecimiento_vol && rachaPositiva >= rReps.sesiones_consecutivas) {
@@ -2681,7 +2559,6 @@
           })
         });
       }
-
       // 6. VOLUMEN ESTABLE → mantener
       const rMantener = RULES.find(r => r.id === 'mantener_peso');
       if (rMantener && rMantener.activa && deltaPct !== null
@@ -2695,7 +2572,6 @@
           })
         });
       }
-
       // 7. DESCANSO ALTO → reducir
       const rDescansoCorto = RULES.find(r => r.id === 'descanso_corto');
       if (rDescansoCorto && rDescansoCorto.activa && avgDescanso >= rDescansoCorto.umbral_descanso_alto) {
@@ -2707,7 +2583,6 @@
           })
         });
       }
-
       // 8. ESTANCAMIENTO — se activa si hay estancamiento de 1RM O de peso+reps
       const rEstanc = RULES.find(r => r.id === 'estancamiento');
       if (rEstanc && rEstanc.activa) {
@@ -2728,7 +2603,6 @@
           });
         }
       }
-
       // 9. RACHA POSITIVA
       const rRacha = RULES.find(r => r.id === 'racha_positiva');
       if (rRacha && rRacha.activa && rachaPositiva >= rRacha.sesiones_racha) {
@@ -2755,7 +2629,6 @@
           });
         }
       }
-
       // 11. DELOAD SUGERIDO
       const rDeload = RULES.find(r => r.id === 'deload_sugerido');
       if (rDeload && rDeload.activa) {
@@ -2781,31 +2654,24 @@
         }
       }
     }
-
     return notifs;
   }
-
   function interpolar(texto, vars) {
     return texto.replace(/\{(\w+)\}/g, (_, k) => vars[k] !== undefined ? vars[k] : `{${k}}`);
   }
-
   function redondearPeso(kg) {
     return Math.round(kg / 2.5) * 2.5;
   }
-
   // ============================================================
   // ===== RENDERIZAR NOTIFICACIONES ============================
   // ============================================================
-
   function renderNotificaciones() {
     const container = document.getElementById('sp-notif-container');
     if (!container) return;
     container.innerHTML = '';
     if (sesiones.length === 0) return;
-
     const notifs = analizarSobrecargaProgresiva();
     if (notifs.length === 0) return;
-
     notifs.forEach((n, i) => {
       const div = document.createElement('div');
       div.className = `sp-notif-banner sp-${n.tipo}`;
@@ -2819,11 +2685,9 @@
       container.appendChild(div);
     });
   }
-
   // ============================================================
   // ===== PANEL DE CONFIGURACIÓN — RENDER =====================
   // ============================================================
-
   function renderConfigPanel() {
     // Llenar valores generales
     document.getElementById('cfg_minSesiones').value = CONFIG.minSesiones;
@@ -2832,11 +2696,9 @@
     document.getElementById('cfg_diasOptimo').value = CONFIG.diasOptimo;
     document.getElementById('cfg_sesionesRegresionAlerta').value = CONFIG.sesionesRegresionAlerta;
     document.getElementById('cfg_semanasEstancamiento').value = CONFIG.semanasEstancamiento;
-
     // Renderizar cards de reglas
     const editor = document.getElementById('rules-editor');
     editor.innerHTML = '';
-
     RULES.forEach((rule, idx) => {
       const card = document.createElement('div');
       card.className = 'rule-card';
@@ -2864,7 +2726,6 @@
       `;
       editor.appendChild(card);
     });
-
     // Bind checkboxes
     editor.querySelectorAll('input[type=checkbox][data-rule]').forEach(cb => {
       cb.addEventListener('change', function() {
@@ -2874,7 +2735,6 @@
         if (label) label.textContent = this.checked ? 'Activa' : 'Inactiva';
       });
     });
-
     // Bind campos de texto/textarea
     editor.querySelectorAll('[data-rule][data-field]').forEach(el => {
       el.addEventListener('input', function() {
@@ -2882,7 +2742,6 @@
         if (rule) rule[this.dataset.field] = this.value;
       });
     });
-
     // Bind parámetros numéricos
     editor.querySelectorAll('[data-rule][data-param]').forEach(el => {
       el.addEventListener('input', function() {
@@ -2890,7 +2749,6 @@
         if (rule) rule[this.dataset.param] = parseFloat(this.value) || 0;
       });
     });
-
     // Bind umbrales de reps por ejercicio
     editor.querySelectorAll('[data-rule][data-param-ejercicio]').forEach(el => {
       el.addEventListener('input', function() {
@@ -2904,7 +2762,6 @@
       });
     });
   }
-
   function renderRuleParams(rule) {
     const paramFields = {
       'subir_peso_reps': [
@@ -2947,7 +2804,6 @@
         { param: 'semanas_consecutivas', label: 'Semanas consecutivas', hint: 'Cuántas semanas entrenando sin descansos de más de 14 días para sugerir una descarga.' },
       ],
     };
-
     const params = paramFields[rule.id];
     if (params === null && rule.id === 'subir_peso_reps_objetivo') {
       // Render especial: umbrales por ejercicio
@@ -2963,7 +2819,6 @@
       return `
         <div class="config-group config-wide" style="grid-column:1/-1">
           <div class="hint" style="margin-bottom:8px">⚙️ Reps objetivo por ejercicio — la notificación se activa cuando el cliente iguala o supera este número en al menos N series.<br><b>Nota:</b> Para los ejercicios nuevos que no estén en esta lista, la meta será igual a las repeticiones que el cliente haga en su primera serie.</div>
-
           <label style="font-size:12px; color:var(--text); font-weight:700;">Objetivos Específicos / Excepciones</label>
           <div id="lista_reps_ejercicios" style="display:flex; flex-direction:column; gap:8px;">
             ${ejerciciosHTML}
@@ -2994,7 +2849,6 @@
       `;
     }
     if (!params) return '';
-
     return params.map(p => `
       <div class="config-group">
         <label>${escapeHtml(p.label)}</label>
@@ -3003,12 +2857,10 @@
       </div>
     `).join('');
   }
-
   function tipoLabel(tipo) {
     const m = { subir: '⬆️ Subir', bajar: '⬇️ Bajar', mantener: '= Mantener', descanso: '😴 Descanso', cambio: '🔄 Cambio', info: 'ℹ️ Info' };
     return m[tipo] || tipo;
   }
-
   // ============================================================
   // ===== MODAL =================
   // ============================================================
@@ -3031,7 +2883,6 @@
   document.getElementById('modalOverlay').addEventListener('click', function(e) {
     if (e.target === this) { this.classList.remove('open'); modalCallback = null; }
   });
-
   // ===== TOAST =====
   let toastTimer = null;
   function toast(msg, tipo) {
@@ -3045,7 +2896,6 @@
     clearTimeout(toastTimer);
     toastTimer = setTimeout(() => t.classList.remove('show'), 2800);
   }
-
   // ===== BANNER DE VALIDACIÓN =====
   function mostrarError(msg) {
     const banner = document.getElementById('validationBanner');
@@ -3065,7 +2915,6 @@
       try { el.scrollIntoView({ behavior: 'smooth', block: 'center' }); } catch(e) { el.scrollIntoView(true); }
     }
   }
-
   // ===== FECHAS =====
   function parsearFechaISO(fechaISO) {
     if (!fechaISO) return null;
@@ -3086,7 +2935,6 @@
     const hoyLocal = new Date(hoy.getFullYear(), hoy.getMonth(), hoy.getDate());
     return (hoyLocal - fechaInicio) / (1000 * 60 * 60 * 24) > 31;
   }
-
   // ===== FUNCIONES BASE =====
   function volumenEjercicio(ej) { return ej.peso * ej.repsArray.reduce((a,b) => a+b, 0); }
   function mejor1RM(ej) {
@@ -3108,7 +2956,6 @@
   function escapeHtml(str) {
     return String(str).replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
   }
-
   // ===== DATOS =====
   function obtenerFilas(ejercicioFiltro) {
     const filas = [];
@@ -3128,7 +2975,6 @@
     filas.sort((a,b) => a.fecha.localeCompare(b.fecha));
     return filas;
   }
-
   // ===== MÉTRICAS =====
   function renderMetrics() {
     const ejercicioFiltro = document.getElementById('ejercicioSelect').value;
@@ -3138,7 +2984,6 @@
     // Para el dashboard
     let bestExName = '';
     let bestExRM = 0;
-
     for (let i = 0; i < filas.length; i++) {
       let f = filas[i];
       if (f.rm > mejor1RMGlobal) mejor1RMGlobal = f.rm;
@@ -3153,7 +2998,6 @@
     }
     const avgRpe = countRPE ? (sumaRPE / countRPE).toFixed(1) : '-';
     const count = ejercicioFiltro ? filas.length : ejerciciosUnicos.size;
-
     let trendHtml = '';
     if (ejercicioFiltro && ultimoVolumen && penultimoVolumen) {
       const diff = ultimoVolumen - penultimoVolumen;
@@ -3161,14 +3005,12 @@
       if (percent > 0) trendHtml = `<span style="color:var(--green); font-size:12px; margin-left:6px; font-weight:700;">↑ +${percent.toFixed(1)}%</span>`;
       else if (percent < 0) trendHtml = `<span style="color:var(--red); font-size:12px; margin-left:6px; font-weight:700;">↓ ${percent.toFixed(1)}%</span>`;
     }
-
     document.getElementById('metrics').innerHTML = `
       <div class="mcard" style="background: linear-gradient(135deg, rgba(255,255,255,0.03), transparent); border: 1px solid var(--border2); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);"><div class="mcard-label">Mejor 1RM estimado</div><div class="mcard-value" style="color: var(--accent);">${mejor1RMGlobal > 0 ? mejor1RMGlobal.toFixed(1) : '-'} <span style="font-size:14px; color:var(--text);">kg</span> 🏆</div></div>
       <div class="mcard" style="background: linear-gradient(135deg, rgba(255,255,255,0.03), transparent); border: 1px solid var(--border2); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);"><div class="mcard-label">Volumen última sesión</div><div class="mcard-value">${ultimoVolumen > 0 ? ultimoVolumen.toLocaleString() : '-'} <span style="font-size:14px; color:var(--text);">kg</span>${trendHtml}</div></div>
       <div class="mcard" style="background: linear-gradient(135deg, rgba(255,255,255,0.03), transparent); border: 1px solid var(--border2); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);"><div class="mcard-label">${ejercicioFiltro ? 'Sesiones' : 'Ejercicios'}</div><div class="mcard-value">${count} 📊</div></div>
       <div class="mcard" style="background: linear-gradient(135deg, rgba(255,255,255,0.03), transparent); border: 1px solid var(--border2); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);"><div class="mcard-label">RIR promedio</div><div class="mcard-value">${avgRpe} 🎯</div></div>
     `;
-
     // Update Strongest Exercise
     const panelStrong = document.getElementById('strongestExercisePanel');
     const textStrong = document.getElementById('strongestExerciseText');
@@ -3180,7 +3022,6 @@
         panelStrong.style.display = 'none';
       }
     }
-
     // Update Greeting
     const greetingEl = document.getElementById('dashboardGreeting');
     if (greetingEl) {
@@ -3204,7 +3045,6 @@
       
       greetingEl.innerHTML = `Hola, ${nombreMostrar} 👋 <div style="font-size: 11px; font-weight: 500; color: var(--text2); margin-top: 2px;">Semana ${semana > 0 ? semana : 1} de entrenamiento</div>`;
     }
-
     // Update dynamic banner
     const dynamicHookBanner = document.getElementById('dynamicHookBanner');
     const dynamicHookText = document.getElementById('dynamicHookText');
@@ -3228,7 +3068,6 @@ Un registro completo convierte cada sesi&oacute;n en informaci&oacute;n &uacute;
         }
     }
   }
-
   // ===== HISTORIAL =====
   function renderHistorial() {
     const ejercicioFiltro = document.getElementById('ejercicioSelect').value;
@@ -3285,7 +3124,6 @@ Un registro completo convierte cada sesi&oacute;n en informaci&oacute;n &uacute;
     }
     tbody.innerHTML = html;
   }
-
   // ===== GRÁFICA =====
   function renderChart() {
     const ejercicio = document.getElementById('ejercicioSelect').value;
@@ -3322,7 +3160,6 @@ Un registro completo convierte cada sesi&oacute;n en informaci&oacute;n &uacute;
       }
     });
   }
-
   // ===== FORMULARIO DINÁMICO =====
   function parseRepsString(str) {
     if (!str) return [];
@@ -3378,7 +3215,6 @@ Un registro completo convierte cada sesi&oacute;n en informaci&oacute;n &uacute;
   }
   window.setSeriesCount = setSeriesCount;
   window.cambiarReps = cambiarReps;
-
   function calcularPreview(ej) {
     const repsArray = (ej.repsArray && ej.repsArray.length > 0) ? ej.repsArray : parseRepsString(ej.repsStr);
     if (!ej.nombre || !ej.peso || repsArray.length === 0) return '<span style="color:var(--text3);">Completa ejercicio, peso y repeticiones.</span>';
@@ -3388,7 +3224,6 @@ Un registro completo convierte cada sesi&oacute;n en informaci&oacute;n &uacute;
     const rm = ej.peso * (1 + maxReps / 30);
     return `Volumen: <span>${volumen.toLocaleString()} kg</span> · 1RM estimado: <span>${rm.toFixed(1)} kg</span> · Series: <span>${repsArray.length}</span> · Reps totales: <span>${sumaReps}</span>`;
   }
-
   function renderFormulario() {
     const oldContainer = document.getElementById('ejerciciosContainer');
     if (!oldContainer) return;
@@ -3478,7 +3313,6 @@ Un registro completo convierte cada sesi&oacute;n en informaci&oacute;n &uacute;
       btn.addEventListener('click', function() { eliminarTempEjercicio(parseInt(this.dataset.idx)); });
     });
   }
-
   function eliminarTempEjercicio(idx) {
     if (MODO_CLIENTE && tempEjercicios.length <= 1) { toast('Debe haber al menos un ejercicio en la sesión', 'error'); return; }
     tempEjercicios.splice(idx, 1);
@@ -3492,7 +3326,6 @@ Un registro completo convierte cada sesi&oacute;n en informaci&oacute;n &uacute;
       if (grupos.length > 0) grupos[grupos.length-1].scrollIntoView({ behavior: 'smooth', block: 'nearest' });
     }, 100);
   }
-
   // ===== GUARDAR SESIÓN =====
   function guardarSesion() {
     ocultarError();
@@ -3540,12 +3373,10 @@ Un registro completo convierte cada sesi&oacute;n en informaci&oacute;n &uacute;
     renderAll();
     toast(`✅ Sesión guardada con ${ejerciciosGuardar.length} ejercicio${ejerciciosGuardar.length !== 1 ? 's' : ''}`, 'success');
   }
-
   function getTodayISO() {
     const d = new Date();
     return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
   }
-
   // ===== ELIMINAR =====
   function eliminarEjercicio(idSesion, idEj) {
     if (MODO_CLIENTE) { toast('Solo el entrenador puede eliminar registros', 'error'); return; }
@@ -3573,7 +3404,6 @@ Un registro completo convierte cada sesi&oacute;n en informaci&oacute;n &uacute;
     }
   }
   window.eliminarEjercicio = eliminarEjercicio;
-
   // ===== BORRAR TODO =====
   function clearAll() {
     if (MODO_CLIENTE) return;
@@ -3583,7 +3413,6 @@ Un registro completo convierte cada sesi&oacute;n en informaci&oacute;n &uacute;
       updateSelect(); renderAll(); toast('Todos los datos borrados', 'info');
     });
   }
-
   // ===== NAVEGACIÓN =====
   function switchTab(tab) {
     if (tab === 'add' && haPasadoElPlazo()) { toast('⛔ Han pasado más de 31 días. Contacta a tu entrenador.', 'error'); return; }
@@ -3596,14 +3425,12 @@ Un registro completo convierte cada sesi&oacute;n en informaci&oacute;n &uacute;
     document.getElementById('panel-plan').style.display = tab === 'plan' ? 'block' : 'none';
     const tabPlan = document.getElementById('tab-plan');
     if (tabPlan) tabPlan.classList.toggle('active', tab === 'plan');
-
     document.getElementById('tab-hist').classList.toggle('active', tab === 'hist');
     document.getElementById('tab-chart').classList.toggle('active', tab === 'chart');
     document.getElementById('tab-add').classList.toggle('active', tab === 'add');
     document.getElementById('tab-config').classList.toggle('active', tab === 'config');
     // Ocultar notificaciones en config
     document.getElementById('sp-notif-container').style.display = tab === 'config' ? 'none' : 'block';
-
     // Mostrar/ocultar banner "Tu Entrenamiento de Hoy" sólo en pestaña "Mi Plan"
     const todayBannerEl = document.getElementById('todayBanner');
     if (todayBannerEl) {
@@ -3613,7 +3440,6 @@ Un registro completo convierte cada sesi&oacute;n en informaci&oacute;n &uacute;
             todayBannerEl.style.display = 'none';
         }
     }
-
     if (tab === 'chart') renderChart();
     else if (tab === 'add') {
       if (tempEjercicios.length === 0) agregarEjercicioAlForm();
@@ -3623,7 +3449,6 @@ Un registro completo convierte cada sesi&oacute;n en informaci&oacute;n &uacute;
     } else if (tab === 'hist') renderHistorial();
     else if (tab === 'config') renderConfigPanel();
   }
-
   function updateSelect() {
     const sel = document.getElementById('ejercicioSelect');
     const prev = sel.value;
@@ -3631,14 +3456,12 @@ Un registro completo convierte cada sesi&oacute;n en informaci&oacute;n &uacute;
     sel.innerHTML = '<option value="">Todos los ejercicios</option>' +
       nombres.map(n => `<option value="${n}" ${n===prev?'selected':''}>${escapeHtml(n)}</option>`).join('');
   }
-
   function mostrarAvisoBloqueo() {
     const aviso = document.getElementById('avisoBloqueo');
     const bloqueado = haPasadoElPlazo() && sesiones.length > 0;
     aviso.style.display = bloqueado ? 'block' : 'none';
     document.getElementById('tab-add').classList.toggle('tab-disabled', bloqueado);
   }
-
   function renderAll() {
     updateSelect();
     mostrarAvisoBloqueo();
@@ -3648,7 +3471,6 @@ Un registro completo convierte cada sesi&oacute;n en informaci&oacute;n &uacute;
     renderNotificaciones();
     if (typeof actualizarDatalistEjercicios === 'function') actualizarDatalistEjercicios();
   }
-
   function actualizarDatalistEjercicios() {
     const dl = document.getElementById('ejercicios_sugeridos');
     if (!dl) return;
@@ -3658,7 +3480,6 @@ Un registro completo convierte cada sesi&oacute;n en informaci&oacute;n &uacute;
     const setEj = new Set([...ejerciciosRegla, ...ejerciciosHistorial]);
     dl.innerHTML = Array.from(setEj).sort().map(ej => `<option value="${escapeHtml(ej)}"></option>`).join('');
   }
-
   window.eliminarEjercicioRegla = function(nombre) {
     const rule = RULES.find(r => r.id === 'subir_peso_reps_objetivo');
     if (rule && rule.reps_por_ejercicio) {
@@ -3668,7 +3489,6 @@ Un registro completo convierte cada sesi&oacute;n en informaci&oacute;n &uacute;
       actualizarDatalistEjercicios();
     }
   };
-
   window.agregarEjercicioRegla = function() {
     const nombre = document.getElementById('nuevo_ejercicio_regla').value.trim();
     const reps = parseInt(document.getElementById('nuevo_reps_regla').value);
@@ -3683,7 +3503,6 @@ Un registro completo convierte cada sesi&oacute;n en informaci&oacute;n &uacute;
       actualizarDatalistEjercicios();
     }
   };
-
   // ===== STORAGE SEGURO =====
   var _localStorageDisponible = (function() {
     try { var t='__test__'; localStorage.setItem(t,t); localStorage.removeItem(t); return true; } catch(e) { return false; }
@@ -3692,14 +3511,12 @@ Un registro completo convierte cada sesi&oacute;n en informaci&oacute;n &uacute;
   function storageGet(key) { return _localStorageDisponible ? localStorage.getItem(key) : (_memoriaFallback[key] !== undefined ? _memoriaFallback[key] : null); }
   function storageSet(key, value) { if (_localStorageDisponible) localStorage.setItem(key, value); else _memoriaFallback[key] = value; }
   function storageRemove(key) { if (_localStorageDisponible) localStorage.removeItem(key); else delete _memoriaFallback[key]; }
-
   if (!_localStorageDisponible) {
     var avisoStorage = document.createElement('div');
     avisoStorage.style.cssText = 'position:fixed;top:0;left:0;right:0;z-index:9999;background:#cc0000;color:#fff;padding:14px 16px;font-size:14px;font-weight:700;text-align:center;line-height:1.5;';
     avisoStorage.innerHTML = '⚠️ Para que la app guarde tus datos, abrí este archivo en <strong>Safari</strong>.<br><span style="font-weight:400;font-size:13px;">Tocá el ícono de compartir → "Abrir en Safari"</span>';
     document.body.insertBefore(avisoStorage, document.body.firstChild);
   }
-
   function loadData() {
     try {
       const saved = storageGet(STORAGE_KEY);
@@ -3724,7 +3541,6 @@ Un registro completo convierte cada sesi&oacute;n en informaci&oacute;n &uacute;
       }
     } catch(e) { console.error('Error cargando datos:', e); sesiones = []; updateNextIds(); }
   }
-
   // ===== EXPORTADOR DE HTML PARA CLIENTES =====
   function abrirPanelLink() { document.getElementById('panelGenerarLink').style.display = 'block'; document.getElementById('inputNombreCliente').focus(); }
   function cerrarPanelLink() { document.getElementById('panelGenerarLink').style.display = 'none'; }
@@ -3752,7 +3568,6 @@ Un registro completo convierte cada sesi&oacute;n en informaci&oacute;n &uacute;
     
     document.getElementById('saveConfigBtn').click();
     toast('Generando archivo HTML...', 'info');
-
     try {
         const originalContainer = document.getElementById('trainingPlanContainer');
         if (originalContainer) {
@@ -3761,22 +3576,17 @@ Un registro completo convierte cada sesi&oacute;n en informaci&oacute;n &uacute;
                 if (el.tagName === 'TEXTAREA') el.innerHTML = el.value;
             });
         }
-
         // Ocultar el toast ANTES de clonar para que no se incluya en el export
         const toastEl = document.getElementById('toast');
         if (toastEl) { toastEl.classList.remove('show'); toastEl.className = ''; toastEl.textContent = ''; }
-
         const parser = new DOMParser();
         const cloneDoc = parser.parseFromString('<!DOCTYPE html><html lang="es">' + document.documentElement.innerHTML + '</html>', 'text/html');
-
         // Asegurar que el toast del clon esté limpio
         const cloneToast = cloneDoc.getElementById('toast');
         if (cloneToast) { cloneToast.className = ''; cloneToast.textContent = ''; }
-
         // Eliminar el estado guardado del borrador para que no pese ni interfiera
         const savedStateScript = cloneDoc.getElementById('saved-state');
         if (savedStateScript) savedStateScript.remove();
-
         const cloneContainer = cloneDoc.getElementById('trainingPlanContainer');
         if (cloneContainer) {
             // Extraer el div del footer de marca antes de eliminar la barra de herramientas
@@ -3785,20 +3595,84 @@ Un registro completo convierte cada sesi&oacute;n en informaci&oacute;n &uacute;
             if (originalFooter) {
                 footerClone = originalFooter.cloneNode(true);
             }
-
             const toolbar = cloneContainer.querySelector('.toolbar');
             if (toolbar) toolbar.remove();
-
             // Eliminar el panel de variables activas de la versión final del cliente
             const globalVarsPanel = cloneContainer.querySelector('#globalVarsPanelContainer');
             if (globalVarsPanel) globalVarsPanel.remove();
-
             const editElements = cloneContainer.querySelectorAll('#addGlobalDayBtn, #addCustomVarBtn, #exportHtmlBtn, .add-day-btn, .btn-remove-day, .exercise-actions, .btn-add-ex, .btn-rem-ex, .img-upload-label, .global-vars-panel button, #quickAddVarBtn, .remove-var-btn, .hidden-file-upload, .video-url-input');
             editElements.forEach(el => el.remove());
             
             // Limpiar temporizadores activos o botones de temporizador estáticos
             cloneContainer.querySelectorAll('.rest-timer-active, .rest-timer-btn').forEach(el => el.remove());
-
+            // ===== MEJORA 2: Convertir variables-row a badges compactos =====
+            const _iconMap = {
+              'series de aproximacion': '🔄', 'series de trabajo': '📈',
+              'repeticiones': '🏃', 'tempo': '⏳', 'rir': '🔥',
+              'descanso': '⏱️'
+            };
+            cloneContainer.querySelectorAll('.variables-row').forEach(row => {
+              const items = row.querySelectorAll('.var-item');
+              const badgesDiv = cloneDoc.createElement('div');
+              badgesDiv.className = 'vars-badges';
+              items.forEach(item => {
+                const label = item.querySelector('label');
+                const valEl = item.querySelector('input'); // Leer del input original activo
+                if (!label || !valEl) return;
+                const labelText = label.textContent.trim();
+                const value = (valEl.value || '').trim();
+                if (!value || value === '(sin definir)') return;
+                
+                // Obtener ID real de la variable desde data-var-id y normalizar
+                let varId = (valEl.getAttribute('data-var-id') || '').trim().toLowerCase();
+                const cleanLabel = labelText.toLowerCase().replace(/\(.*?\)/g, '').trim();
+                
+                if (!varId) {
+                  varId = cleanLabel;
+                }
+                
+                const icon = _iconMap[varId] || _iconMap[cleanLabel] || '📊';
+                
+                // Buscar la definición en variableDefinitions (intentando varias claves)
+                let definition = variableDefinitions[varId] || variableDefinitions[cleanLabel] || '';
+                
+                // Si no hay definición pero es una de las variables estándar, usar el fallback por defecto
+                if (!definition) {
+                  const defaultDefs = {
+                    "series de aproximacion": "Son series previas con poco peso para calentar los músculos y preparar las articulaciones sin cansarte. Ejemplo: Si vas a levantar 50kg, haces una serie previa con solo la barra o con 20kg.",
+                    "series de trabajo": "Son las series reales del plan donde el esfuerzo es alto y cuentan para el progreso. Ejemplo: Hacer 3 series de 10 repeticiones con el peso máximo que dominas.",
+                    "repeticiones": "Es el número de veces que realizas el movimiento completo del ejercicio dentro de una serie. Ejemplo: hacer 12 sentadillas seguidas sin parar.",
+                    "tempo": "Es la velocidad a la que realizas cada fase del movimiento (bajada, pausa y subida). Ejemplo: En sentadilla, bajar en 3 segundos, hacer 1 segundo de pausa abajo y subir rápido en 1 segundo.",
+                    "rir": "Indica cuántas repeticiones sientes que podrías haber hecho antes de llegar al fallo total. Ejemplo: Si haces 10 repeticiones con un RIR 2, significa que terminaste sintiendo que podrías haber hecho 2 más.",
+                    "descanso": "El tiempo que esperas entre una serie y otra para recuperar energía. Ejemplo: Cronometrar 2 minutos sentado antes de empezar la siguiente serie."
+                  };
+                  definition = defaultDefs[varId] || defaultDefs[cleanLabel] || '';
+                  if (definition) {
+                    variableDefinitions[varId] = definition; // Guardarla en el objeto dinámico
+                  }
+                }
+                
+                const hasDef = !!definition;
+                const tipBtn = hasDef ? ' <span class="var-tooltip-trigger" onclick="showVarTooltip(\'' + varId.replace(/'/g, '') + '\')">ⓘ</span>' : '';
+                const badge = cloneDoc.createElement('div');
+                
+                // Si es la variable de descanso, asignarle clase especial y data-descanso-val para el cronómetro
+                const isDescanso = varId === 'descanso' || 
+                                   cleanLabel.includes('descanso') || 
+                                   labelText.toLowerCase().includes('descanso');
+                if (isDescanso) {
+                  badge.className = 'var-badge badge-descanso';
+                  badge.setAttribute('data-descanso-val', value);
+                } else {
+                  badge.className = 'var-badge';
+                }
+                
+                badge.innerHTML = '<span class="var-badge-icon">' + icon + '</span>' +
+                  '<span class="var-badge-label">' + labelText + ':</span> ' + value + tipBtn;
+                badgesDiv.appendChild(badge);
+              });
+              row.parentNode.replaceChild(badgesDiv, row);
+            });
             cloneContainer.querySelectorAll('input, textarea').forEach(el => {
                 const parent = el.parentNode;
                 const value = el.value;
@@ -3822,47 +3696,11 @@ Un registro completo convierte cada sesi&oacute;n en informaci&oacute;n &uacute;
                     parent.replaceChild(staticText, el);
                 }
             });
-
             // Eliminar cualquier otro botón de manera segura (el cliente no debe tener botones en el plan principal)
             cloneContainer.querySelectorAll('button').forEach(btn => btn.remove());
-
             // ===== MEJORA 1: Ocultar diccionario de variables + agregar ⓘ tooltips =====
             const defsSection = cloneContainer.querySelector('.definitions-section');
             if (defsSection) defsSection.style.display = 'none';
-
-            // ===== MEJORA 2: Convertir variables-row a badges compactos =====
-            const _iconMap = {
-              'series de aproximacion': '🔄', 'series de trabajo': '📈',
-              'repeticiones': '🏃', 'tempo': '⏳', 'rir': '🔥',
-              'descanso': '⏱️'
-            };
-            cloneContainer.querySelectorAll('.variables-row').forEach(row => {
-              const items = row.querySelectorAll('.var-item');
-              const badgesDiv = cloneDoc.createElement('div');
-              badgesDiv.className = 'vars-badges';
-              items.forEach(item => {
-                const label = item.querySelector('label');
-                const valEl = item.querySelector('.static-value, input');
-                if (!label || !valEl) return;
-                const labelText = label.textContent.trim();
-                const value = (valEl.value || valEl.textContent || '').trim();
-                if (!value || value === '(sin definir)') return;
-                // Detect varId from input data-var-id or match by label
-                let varId = '';
-                const inp = item.querySelector('[data-var-id]');
-                if (inp) varId = inp.getAttribute('data-var-id');
-                const icon = _iconMap[varId] || _iconMap[labelText.toLowerCase()] || '📊';
-                const hasDef = variableDefinitions[varId];
-                const tipBtn = hasDef ? ' <span class="var-tooltip-trigger" onclick="showVarTooltip(\'' + varId.replace(/'/g, '') + '\')">ⓘ</span>' : '';
-                const badge = cloneDoc.createElement('div');
-                badge.className = 'var-badge';
-                badge.innerHTML = '<span class="var-badge-icon">' + icon + '</span>' +
-                  '<span class="var-badge-label">' + labelText + ':</span> ' + value + tipBtn;
-                badgesDiv.appendChild(badge);
-              });
-              row.parentNode.replaceChild(badgesDiv, row);
-            });
-
             // ===== MEJORA 3: Filosofía colapsable =====
             const philoSection = cloneContainer.querySelector('.philosophy-section');
             if (philoSection) {
@@ -3877,7 +3715,6 @@ Un registro completo convierte cada sesi&oacute;n en informaci&oacute;n &uacute;
               philoSection.parentNode.insertBefore(wrapper, philoSection);
               wrapper.appendChild(philoSection);
             }
-
             // ===== MEJORA 4: Tabs de días =====
             const daysContainer = cloneContainer.querySelector('#daysContainer');
             if (daysContainer) {
@@ -3903,7 +3740,6 @@ Un registro completo convierte cada sesi&oacute;n en informaci&oacute;n &uacute;
                 daysContainer.insertBefore(tabBar, daysContainer.firstChild);
               }
             }
-
             // ===== MEJORA 5: FAB de calculadora 1RM =====
             const fab = cloneDoc.createElement('button');
             fab.className = 'fab-1rm';
@@ -3912,14 +3748,12 @@ Un registro completo convierte cada sesi&oacute;n en informaci&oacute;n &uacute;
             fab.setAttribute('title', 'Calculadora 1RM');
             fab.setAttribute('onclick', "document.getElementById('modal-1rm').classList.add('open'); document.getElementById('input1RMPeso').focus();");
             cloneDoc.body.appendChild(fab);
-
             // Agregar el pie de página de marca al final del contenedor principal
             if (footerClone) {
                 footerClone.style.cssText = 'text-align: center; margin-top: 50px; padding-top: 25px; border-top: 1px solid rgba(255, 255, 255, 0.08); font-size: 0.8rem; color: var(--text3);';
                 cloneContainer.appendChild(footerClone);
             }
         }
-
         const cfgPayload = btoa(unescape(encodeURIComponent(JSON.stringify({ config: CONFIG, rules: RULES }))));
         const scriptIny = cloneDoc.createElement('script');
         scriptIny.textContent = `window.INJECTED_CLIENT_CONFIG = "${cfgPayload}"; window.INJECTED_CLIENT_ID = "${id}"; window.INJECTED_WEEKDAY_MAPPING = '${JSON.stringify(weekdayMapping)}';`;
@@ -3933,7 +3767,6 @@ Un registro completo convierte cada sesi&oacute;n en informaci&oacute;n &uacute;
         // Ocultar configurador de días (solo para entrenador)
         const weekdayCfg = cloneDoc.getElementById('weekdayConfigSection');
         if (weekdayCfg) weekdayCfg.remove();
-
         // Inyectar variableDefinitions y funciones del cliente (tooltips, tabs de días)
         const clientFnsScript = cloneDoc.createElement('script');
         clientFnsScript.textContent = `
@@ -3943,9 +3776,22 @@ Un registro completo convierte cada sesi&oacute;n en informaci&oacute;n &uacute;
             var ov = document.getElementById('varTooltipOverlay');
             var ti = document.getElementById('varTooltipTitle');
             var bo = document.getElementById('varTooltipBody');
-            var v = window.__varLabels.find(function(g){return g.id===varId;});
-            ti.textContent = '🏷️ ' + (v ? v.label : varId);
-            bo.textContent = window.__varDefs[varId] || 'Sin definición disponible.';
+            var cleanId = varId.trim().toLowerCase().replace(/\\(.*?\\)/g, '').trim();
+            var v = window.__varLabels.find(function(g){
+              return g.id === varId || g.id.trim().toLowerCase() === cleanId;
+            });
+            ti.textContent = '🏷️ ' + (v ? v.label : varId.toUpperCase());
+            
+            var defaultDefs = {
+              "series de aproximacion": "Son series previas con poco peso para calentar los músculos y preparar las articulaciones sin cansarte. Ejemplo: Si vas a levantar 50kg, haces una serie previa con solo la barra o con 20kg.",
+              "series de trabajo": "Son las series reales del plan donde el esfuerzo es alto y cuentan para el progreso. Ejemplo: Hacer 3 series de 10 repeticiones con el peso máximo que dominas.",
+              "repeticiones": "Es el número de veces que realizas el movimiento completo del ejercicio dentro de una serie. Ejemplo: hacer 12 sentadillas seguidas sin parar.",
+              "tempo": "Es la velocidad a la que realizas cada fase del movimiento (bajada, pausa y subida). Ejemplo: En sentadilla, bajar en 3 segundos, hacer 1 segundo de pausa abajo y subir rápido en 1 segundo.",
+              "rir": "Indica cuántas repeticiones sientes que podrías haber hecho antes de llegar al fallo total. Ejemplo: Si haces 10 repeticiones con un RIR 2, significa que terminaste sintiendo que podrías haber hecho 2 más.",
+              "descanso": "El tiempo que esperas entre una serie y otra para recuperar energía. Ejemplo: Cronometrar 2 minutos sentado antes de empezar la siguiente serie."
+            };
+            
+            bo.textContent = window.__varDefs[varId] || window.__varDefs[cleanId] || defaultDefs[varId] || defaultDefs[cleanId] || 'Sin definición disponible.';
             ov.classList.add('open');
           }
           function switchDayTab(idx) {
@@ -3963,15 +3809,12 @@ Un registro completo convierte cada sesi&oacute;n en informaci&oacute;n &uacute;
         const initScript = cloneDoc.createElement('script');
         initScript.textContent = "window.addEventListener('DOMContentLoaded', () => { setTimeout(() => { if (typeof switchTab === 'function') switchTab('plan'); if(typeof initTimer === 'function') initTimer(); if(typeof initChecklist === 'function') initChecklist(); }, 100); });";
         cloneDoc.head.appendChild(initScript);
-
         let htmlFinal = '<!DOCTYPE html>\n<html lang="es">\n' + cloneDoc.documentElement.innerHTML + '\n</html>';
-
         // Incrustar fondo en Base64 para que la exportación de cliente funcione localmente/offline
         const base64Bg = await getBgBase64();
         if (base64Bg) {
             htmlFinal = htmlFinal.replace(/\/fondo\.jpg/g, base64Bg);
         }
-
         const blob = new Blob([htmlFinal], { type: 'text/html;charset=utf-8' });
         const url = URL.createObjectURL(blob);
         const a = document.createElement('a');
@@ -3989,30 +3832,23 @@ Un registro completo convierte cada sesi&oacute;n en informaci&oacute;n &uacute;
         toast('Error al exportar HTML', 'error');
     }
   }
-
-
   window.cerrarPanelLink = cerrarPanelLink;
   window.exportarHTMLCliente = exportarHTMLCliente;
-
   // ===== INICIALIZACIÓN =====
   loadData();
   loadConfig();
-
   // Tabs
   document.getElementById('tab-hist').addEventListener('click', () => switchTab('hist'));
   document.getElementById('tab-chart').addEventListener('click', () => switchTab('chart'));
   document.getElementById('tab-add').addEventListener('click', () => switchTab('add'));
   document.getElementById('tab-config').addEventListener('click', () => switchTab('config'));
   const tabPlanBtn = document.getElementById('tab-plan'); if (tabPlanBtn) tabPlanBtn.addEventListener('click', () => switchTab('plan'));
-
   // Selector de ejercicio
   document.getElementById('ejercicioSelect').addEventListener('change', () => renderAll());
-
   // Botones formulario
   document.getElementById('agregarEjercicioBtn').addEventListener('click', agregarEjercicioAlForm);
   document.getElementById('guardarSesionBtn').addEventListener('click', guardarSesion);
   document.getElementById('cancelarBtn').addEventListener('click', () => switchTab('hist'));
-
   // Botón guardar config
   document.getElementById('saveConfigBtn').addEventListener('click', function() {
     // Leer valores generales desde el DOM
@@ -4026,7 +3862,6 @@ Un registro completo convierte cada sesi&oacute;n en informaci&oacute;n &uacute;
     renderNotificaciones();
     toast('✅ Configuración guardada', 'success');
   });
-
   // Botón restaurar defaults
   document.getElementById('resetConfigBtn').addEventListener('click', function() {
     mostrarModal('¿Restaurar valores por defecto?', 'Se restablecerán todos los parámetros y mensajes de las reglas.', function() {
@@ -4038,7 +3873,6 @@ Un registro completo convierte cada sesi&oacute;n en informaci&oacute;n &uacute;
       toast('↺ Valores restaurados', 'info');
     });
   });
-
   // Exportar / borrar (solo modo entrenador)
   if (!MODO_CLIENTE) {
     const linkBtn = document.getElementById('generarLinkBtn');
@@ -4062,12 +3896,9 @@ Un registro completo convierte cada sesi&oacute;n en informaci&oacute;n &uacute;
       if (el) el.parentNode.removeChild(el);
     });
   }
-
   window.eliminarEjercicio = eliminarEjercicio;
   window.switchTab = switchTab;
-
   renderAll();
-
 // --------------------------------------------------------------
     // DATOS GLOBALES
     // --------------------------------------------------------------
@@ -4089,10 +3920,8 @@ let variableDefinitions = {
     "rir": "Indica cuántas repeticiones sientes que podrías haber hecho antes de llegar al fallo total. Ejemplo: Si haces 10 repeticiones con un RIR 2, significa que terminaste sintiendo que podrías haber hecho 2 más.",
     "descanso": "El tiempo que esperas entre una serie y otra para recuperar energía. Ejemplo: Cronometrar 2 minutos sentado antes de empezar la siguiente serie."
 };
-
     // Mapeo de días de la semana (0=Dom, 1=Lun, ..., 6=Sab) → índice de trainingDays (-1 = descanso)
     let weekdayMapping = { 0: -1, 1: -1, 2: -1, 3: -1, 4: -1, 5: -1, 6: -1 };
-
     // Generar ejercicios con las variables actuales
     function createEmptyExercise(nameSuffix = 1) {
         let varValues = {};
@@ -4105,7 +3934,6 @@ let variableDefinitions = {
             variables: { ...varValues }
         };
     }
-
     function generateEmptyExercises(count) {
         let exercises = [];
         for (let i = 0; i < count; i++) {
@@ -4113,7 +3941,6 @@ let variableDefinitions = {
         }
         return exercises;
     }
-
     // Días de entrenamiento
     let trainingDays = [
         { id: "day_1", name: "Día 1 - Pecho y Tríceps", exercises: generateEmptyExercises(3) },
@@ -4122,7 +3949,6 @@ let variableDefinitions = {
         { id: "day_4", name: "Día 4 - Hombros y Abdominales", exercises: generateEmptyExercises(3) },
         { id: "day_5", name: "Día 5 - Full Body / Cardio", exercises: generateEmptyExercises(3) }
     ];
-
     // Helper escape
     
     function renderDefinitions() {
@@ -4153,7 +3979,6 @@ let variableDefinitions = {
         };
     });
 }
-
     // --------------------------------------------------------------
     // RENDER PRINCIPAL
     // --------------------------------------------------------------
@@ -4165,7 +3990,6 @@ let variableDefinitions = {
         attachAllEvents();
         initChecklist();
     }
-
     function renderGlobalVarsPanel() {
         const container = document.getElementById("globalVarsPanelContainer");
         if (!container) return;
@@ -4180,7 +4004,6 @@ let variableDefinitions = {
                 </div>`;
         container.innerHTML = html;
     }
-
     function renderDaysContainer() {
         const container = document.getElementById("daysContainer");
         if (!container) return;
@@ -4215,7 +4038,6 @@ let variableDefinitions = {
         addDayBtn.textContent = '+ Agregar nuevo día de entrenamiento';
         container.appendChild(addDayBtn);
     }
-
     function renderExerciseCard(exercise, dayId) {
         let varsHtml = '';
         globalVariables.forEach(v => {
@@ -4231,14 +4053,12 @@ let variableDefinitions = {
                 </div>
             `;
         });
-
         let imgHtml = '';
         if (exercise.imageData && exercise.imageData.startsWith('data:')) {
             imgHtml = `<img src="${exercise.imageData}" class="img-preview" alt="preview">`;
         } else {
             imgHtml = `<div class="img-placeholder">📷 Sin imagen</div>`;
         }
-
         // Video HTML con botón oscuro
         let videoHtml = `
     <div class="video-link-item">
@@ -4250,7 +4070,6 @@ let variableDefinitions = {
         <small style="display:block; margin-top:6px; color:var(--text3); font-size:0.7rem;">💡 Si el video no se abre, mantén presionado el enlace y selecciona "Abrir en navegador".</small>
     </div>
 `;
-
         return `
             <div class="exercise-card" data-exercise-id="${exercise.id}" data-day-id="${dayId}">
                 <div class="exercise-header">
@@ -4274,7 +4093,6 @@ let variableDefinitions = {
             </div>
         `;
     }
-
     // --------------------------------------------------------------
     // MANEJADORES DE EVENTOS
     // --------------------------------------------------------------
@@ -4291,7 +4109,6 @@ let variableDefinitions = {
                 renderFullApp();
             };
         });
-
         // Editar nombre del día (actualiza en tiempo real el selector de días de la semana)
         document.querySelectorAll('.day-name-input').forEach(inp => {
             inp.oninput = (e) => {
@@ -4306,7 +4123,6 @@ let variableDefinitions = {
                 }
             };
         });
-
         // Agregar ejercicio
         document.querySelectorAll('.btn-add-ex').forEach(btn => {
             btn.onclick = (e) => {
@@ -4319,7 +4135,6 @@ let variableDefinitions = {
                 }
             };
         });
-
         // Eliminar ejercicio
         document.querySelectorAll('.btn-rem-ex').forEach(btn => {
             btn.onclick = (e) => {
@@ -4332,7 +4147,6 @@ let variableDefinitions = {
                 }
             };
         });
-
         // Cambiar nombre del ejercicio
         document.querySelectorAll('.exercise-name-input').forEach(inp => {
             inp.onchange = (e) => {
@@ -4346,7 +4160,6 @@ let variableDefinitions = {
                 }
             };
         });
-
         // Cambiar valores de variables
         document.querySelectorAll('.var-input').forEach(inp => {
             inp.oninput = (e) => {
@@ -4395,7 +4208,6 @@ let variableDefinitions = {
                 }
             };
         });
-
         // Subir imágenes
         document.querySelectorAll('.img-upload-label').forEach(btn => {
             btn.onclick = (e) => {
@@ -4432,7 +4244,6 @@ let variableDefinitions = {
                 fileInput.click();
             };
         });
-
         // Guardar URL del video
         document.querySelectorAll('.video-url-input').forEach(inp => {
             inp.oninput = (e) => {
@@ -4450,14 +4261,12 @@ let variableDefinitions = {
                 renderFullApp(); // refrescar para mostrar/ocultar botón al perder el foco (o presionar enter)
             };
         });
-
         // Agregar día (botones)
         const addDayToolbar = document.getElementById('addGlobalDayBtn');
         if (addDayToolbar) addDayToolbar.onclick = () => addNewDay();
         const dynamicAddBtn = document.getElementById('dynamicAddDayBtn');
         if (dynamicAddBtn) dynamicAddBtn.onclick = () => addNewDay();
     }
-
     function addNewDay() {
         const newId = "day_" + Date.now();
         let defaultEx = createEmptyExercise(1);
@@ -4468,7 +4277,6 @@ let variableDefinitions = {
         });
         renderFullApp();
     }
-
     // Variables globales
 function addGlobalVariable() {
     let newLabel = prompt("Nombre de la nueva variable (ej: 'RPE', 'Peso (kg)'):");
@@ -4489,7 +4297,6 @@ function addGlobalVariable() {
     }
     renderFullApp();
 }
-
   function removeGlobalVariable(varId) {
     if (globalVariables.length <= 1) {
         alert("Debe haber al menos una variable en el plan.");
@@ -4504,7 +4311,6 @@ function addGlobalVariable() {
     }
     renderFullApp();
 }
-
     // Exportar a PDF (Ctrl+P)
     function printToPdf() {
         window.print();
@@ -4516,11 +4322,9 @@ function addGlobalVariable() {
             if (el.value !== undefined) el.setAttribute('value', el.value);
             if (el.tagName === 'TEXTAREA') el.innerHTML = el.value;
         });
-
         // Asegurar que las reglas están actualizadas antes de guardar el borrador
         const btnGuardar = document.getElementById('saveConfigBtn');
         if(btnGuardar) btnGuardar.click();
-
         // 2. Guardar el estado JSON en un script en el head
         let stateScript = document.getElementById('saved-state');
         if (!stateScript) {
@@ -4538,12 +4342,10 @@ function addGlobalVariable() {
         };
         // Evitamos usar caracteres problemáticos dentro del string para no romper el HTML final
         stateScript.textContent = "window.__SAVED_STATE__ = " + JSON.stringify(state).replace(/</g, '\\u003c') + ";";
-
         // 3. Obtener el HTML de toda la página
         // Limpiar toast antes de capturar para que no quede visible en el borrador
         const toastEl = document.getElementById('toast');
         if (toastEl) { toastEl.className = ''; toastEl.textContent = ''; }
-
         let fullHtml = '<!DOCTYPE html>\n<html lang="es">\n' + document.documentElement.innerHTML + '\n</html>';
         
         // Incrustar fondo en Base64 para que el borrador funcione localmente
@@ -4551,7 +4353,6 @@ function addGlobalVariable() {
         if (base64Bg) {
             fullHtml = fullHtml.replace(/\/fondo\.jpg/g, base64Bg);
         }
-
         // 4. Descargar el archivo
         const blob = new Blob([fullHtml], { type: 'text/html;charset=utf-8' });
         const url = URL.createObjectURL(blob);
@@ -4597,7 +4398,6 @@ function exportToReadOnlyHtml() {
         staticText.innerText = value || '(sin definir)';
         parent.replaceChild(staticText, el);
     });
-
 	// Convertir también los inputs de definiciones a texto estático
 cloneContainer.querySelectorAll('.definition-input').forEach(el => {
     const parent = el.parentNode;
@@ -4709,7 +4509,6 @@ cloneContainer.querySelectorAll('.definition-input').forEach(el => {
     document.body.removeChild(a);
     URL.revokeObjectURL(url);
 }
-
     // ==============================================================
     // ===== PARSEO DE DESCANSO =====
     // ==============================================================
@@ -4731,18 +4530,15 @@ cloneContainer.querySelectorAll('.definition-input').forEach(el => {
         // Si <= 10: interpretar como minutos
         return Math.round(num * 60);
     }
-
     function formatTimerDisplay(totalSec) {
         const m = Math.floor(totalSec / 60);
         const s = totalSec % 60;
         return (m > 0 ? m + ':' + String(s).padStart(2, '0') : s + 's');
     }
-
     // ==============================================================
     // ===== TEMPORIZADOR DE DESCANSO =====
     // ==============================================================
     let activeTimerInterval = null;
-
     function initRestTimers() {
         // Buscar todas las exercise-card en el panel-plan
         const cards = document.querySelectorAll('#panel-plan .exercise-card');
@@ -4772,13 +4568,18 @@ cloneContainer.querySelectorAll('.definition-input').forEach(el => {
                     });
                 }
             }
+            // NUEVO: También buscar en vars-badges (vista cliente)
+            if (!descansoVal) {
+                const descansoBadge = card.querySelector('.badge-descanso');
+                if (descansoBadge) {
+                    descansoVal = descansoBadge.getAttribute('data-descanso-val') || descansoBadge.textContent.replace(/.*?:/, '').trim();
+                }
+            }
             if (!descansoVal) return;
             const totalSec = parseDescanso(descansoVal);
             if (totalSec <= 0) return;
-
             // No agregar duplicados
             if (card.querySelector('.rest-timer-btn')) return;
-
             const btn = document.createElement('button');
             btn.className = 'rest-timer-btn';
             btn.innerHTML = `⏱ Iniciar descanso (${formatTimerDisplay(totalSec)})`;
@@ -4786,24 +4587,21 @@ cloneContainer.querySelectorAll('.definition-input').forEach(el => {
                 e.preventDefault();
                 startRestTimer(card, btn, totalSec);
             };
-            // Insertar después de variables-row o al final de la card
-            const varsRow = card.querySelector('.variables-row');
+            // Insertar después de variables-row o vars-badges o al final de la card
+            const varsRow = card.querySelector('.variables-row') || card.querySelector('.vars-badges');
             if (varsRow) varsRow.after(btn);
             else card.appendChild(btn);
         });
     }
-
     function startRestTimer(card, triggerBtn, totalSec) {
         // Limpiar timer previo si existe
         if (activeTimerInterval) clearInterval(activeTimerInterval);
         const existing = card.querySelector('.rest-timer-active');
         if (existing) existing.remove();
         triggerBtn.style.display = 'none';
-
         const circumference = 2 * Math.PI * 54;
         let remaining = totalSec;
         let paused = false;
-
         const timerDiv = document.createElement('div');
         timerDiv.className = 'rest-timer-active';
         timerDiv.innerHTML = `
@@ -4824,12 +4622,10 @@ cloneContainer.querySelectorAll('.definition-input').forEach(el => {
         `;
         triggerBtn.after(timerDiv);
         timerDiv.scrollIntoView({ behavior: 'smooth', block: 'center' });
-
         const progressCircle = timerDiv.querySelector('.timer-progress');
         const timeDisplay = timerDiv.querySelector('.rest-timer-time');
         const pauseBtn = timerDiv.querySelector('.timer-pause');
         const resetBtn = timerDiv.querySelector('.timer-reset');
-
         function updateDisplay() {
             timeDisplay.textContent = formatTimerDisplay(remaining);
             const offset = circumference * (1 - remaining / totalSec);
@@ -4839,7 +4635,6 @@ cloneContainer.querySelectorAll('.definition-input').forEach(el => {
             else if (remaining <= 10) progressCircle.style.stroke = '#f0a830';
             else progressCircle.style.stroke = '#00d4ff';
         }
-
         activeTimerInterval = setInterval(() => {
             if (paused) return;
             remaining--;
@@ -4872,7 +4667,6 @@ cloneContainer.querySelectorAll('.definition-input').forEach(el => {
                 } catch(e) {}
             }
         }, 1000);
-
         pauseBtn.onclick = () => {
             paused = !paused;
             pauseBtn.textContent = paused ? '▶ Reanudar' : '⏸ Pausar';
@@ -4884,7 +4678,6 @@ cloneContainer.querySelectorAll('.definition-input').forEach(el => {
             triggerBtn.style.display = '';
         };
     }
-
     // ==============================================================
     // ===== BANNER TU ENTRENAMIENTO DE HOY =====
     // ==============================================================
@@ -4899,13 +4692,11 @@ cloneContainer.querySelectorAll('.definition-input').forEach(el => {
         // Solo mostrar si hay mapeo configurado
         const hasConfig = Object.values(weekdayMapping).some(v => v !== -1);
         if (!hasConfig) { container.style.display = 'none'; return; }
-
         const hoy = new Date();
         const diaSemana = hoy.getDay();
         const diaIndex = weekdayMapping[diaSemana];
         const diasSemana = ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'];
         const hoyStr = hoy.toLocaleDateString('es-ES', { weekday: 'long', day: 'numeric', month: 'long' });
-
         // Calcular ciclo
         let cicloStr = '';
         const startEl = document.getElementById('startDate');
@@ -4937,7 +4728,6 @@ cloneContainer.querySelectorAll('.definition-input').forEach(el => {
                 }
             }
         }
-
         // Obtener nombres de los días del plan desde el DOM
         function getDayName(idx) {
             const dayCards = document.querySelectorAll('#daysContainer .day-card');
@@ -4950,9 +4740,7 @@ cloneContainer.querySelectorAll('.definition-input').forEach(el => {
             if (typeof trainingDays !== 'undefined' && trainingDays[idx]) return trainingDays[idx].name;
             return 'Día ' + (idx + 1);
         }
-
         container.style.display = 'block';
-
         if (diaIndex === -1 || diaIndex === undefined || diaIndex === null) {
             // Día de descanso — buscar próximo entrenamiento
             let nextInfo = '';
@@ -4983,7 +4771,6 @@ cloneContainer.querySelectorAll('.definition-input').forEach(el => {
             `;
         }
     }
-
     function scrollToDayAndHighlight(dayIndex) {
         // Cambiar a tab plan
         if (typeof switchTab === 'function') switchTab('plan');
@@ -4998,7 +4785,6 @@ cloneContainer.querySelectorAll('.definition-input').forEach(el => {
         }, 200);
     }
     window.scrollToDayAndHighlight = scrollToDayAndHighlight;
-
     // ==============================================================
     // ===== RENDER CONFIGURACIÓN DÍAS DE SEMANA =====
     // ==============================================================
@@ -5029,7 +4815,6 @@ cloneContainer.querySelectorAll('.definition-input').forEach(el => {
             };
         });
     }
-
     // Inicialización
     // ===== FUNCIÓN GLOBAL: showVarTooltip =====
     window.showVarTooltip = function(varId) {
@@ -5052,7 +4837,6 @@ cloneContainer.querySelectorAll('.definition-input').forEach(el => {
         b.classList.toggle('active', i === idx);
       });
     };
-
     function initPlan() {
         // CRÍTICO: Si es un cliente, no renderizamos la app editable. Dejamos el HTML estático intacto.
         if (typeof MODO_CLIENTE !== 'undefined' && MODO_CLIENTE) {
@@ -5065,10 +4849,11 @@ cloneContainer.querySelectorAll('.definition-input').forEach(el => {
             init1RMCalculator();
             return;
         }
-
         if (window.__SAVED_STATE__) {
             globalVariables = window.__SAVED_STATE__.globalVariables || globalVariables;
-            variableDefinitions = window.__SAVED_STATE__.variableDefinitions || variableDefinitions;
+            if (window.__SAVED_STATE__.variableDefinitions) {
+                variableDefinitions = Object.assign({}, variableDefinitions, window.__SAVED_STATE__.variableDefinitions);
+            }
             trainingDays = window.__SAVED_STATE__.trainingDays || trainingDays;
             if (window.__SAVED_STATE__.weekdayMapping) weekdayMapping = window.__SAVED_STATE__.weekdayMapping;
             if (window.__SAVED_STATE__.trackerConfig) {
@@ -5084,13 +4869,10 @@ cloneContainer.querySelectorAll('.definition-input').forEach(el => {
         if (printBtn) printBtn.onclick = printToPdf;
         const addVarToolbar = document.getElementById('addCustomVarBtn');
         if (addVarToolbar) addVarToolbar.onclick = addGlobalVariable;
-
 	const exportHtmlBtn = document.getElementById('exportHtmlBtn');
         if (exportHtmlBtn) exportHtmlBtn.onclick = exportToHtml;
-
 	const exportReadOnlyBtn = document.getElementById('exportReadOnlyHtmlBtn');
         if (exportReadOnlyBtn) exportReadOnlyBtn.onclick = exportToReadOnlyHtml;
-
         // Delegación para eliminar variables
         document.addEventListener('click', function(e) {
             if (e.target.classList && e.target.classList.contains('remove-var-btn')) {
@@ -5112,7 +4894,6 @@ cloneContainer.querySelectorAll('.definition-input').forEach(el => {
         trainerNameInput.addEventListener('input', updateTrainerName);
         updateTrainerName();
         }
-
         // Sincronizar saludo "Hola Atleta" en tiempo real con inputNombreCliente
         const inputNombreCli = document.getElementById('inputNombreCliente');
         if (inputNombreCli) {
@@ -5133,11 +4914,9 @@ cloneContainer.querySelectorAll('.definition-input').forEach(el => {
                 }
             });
         }
-
         // Inicializar Calculadora 1RM
         init1RMCalculator();
     }
-
     // ===== LÓGICA DE LA CALCULADORA 1RM =====
     function init1RMCalculator() {
         const calcBtn = document.getElementById('calc1RMBtn');
@@ -5223,9 +5002,7 @@ cloneContainer.querySelectorAll('.definition-input').forEach(el => {
         }
     }
     	
-
     
-
 // ===== CHECKLIST DEL DÍA =====
     function initChecklist() {
         const todayStr = new Date().toISOString().split('T')[0];
@@ -5235,7 +5012,6 @@ cloneContainer.querySelectorAll('.definition-input').forEach(el => {
             const stored = localStorage.getItem(lsKey);
             if (stored) checkedIds = JSON.parse(stored);
         } catch(e) {}
-
         document.querySelectorAll('.exercise-checkbox').forEach(chk => {
             const exId = chk.getAttribute('data-ex-id');
             const card = chk.closest('.exercise-card');
@@ -5251,7 +5027,6 @@ cloneContainer.querySelectorAll('.definition-input').forEach(el => {
                 chk.classList.remove('checked');
                 if(card) card.classList.remove('completed');
             }
-
             chk.onclick = function(e) {
                 e.stopPropagation();
                 const isChecked = this.classList.toggle('checked');
@@ -5259,14 +5034,12 @@ cloneContainer.querySelectorAll('.definition-input').forEach(el => {
                     if (isChecked) card.classList.add('completed');
                     else card.classList.remove('completed');
                 }
-
                 if (isChecked) {
                     if (!checkedIds.includes(exId)) checkedIds.push(exId);
                 } else {
                     checkedIds = checkedIds.filter(id => id !== exId);
                 }
                 localStorage.setItem(lsKey, JSON.stringify(checkedIds));
-
                 const dayCard = this.closest('.day-card');
                 if (dayCard && isChecked) {
                     const allBoxes = dayCard.querySelectorAll('.exercise-checkbox');
@@ -5287,12 +5060,10 @@ cloneContainer.querySelectorAll('.definition-input').forEach(el => {
             };
         });
     }
-
 document.addEventListener('DOMContentLoaded', () => {
     initPlan();
 });
 </script>
-
 <!-- Modal de Calculadora 1RM (Dark Glassmorphism) -->
 <div id="modal-1rm">
   <div class="modal-1rm-box">
@@ -5341,7 +5112,6 @@ document.addEventListener('DOMContentLoaded', () => {
     </div>
   </div>
 </div>
-
 <!-- Tooltip overlay para definiciones de variables -->
 <div class="tooltip-overlay" id="varTooltipOverlay" onclick="if(event.target===this)this.classList.remove('open')">
   <div class="tooltip-sheet">
@@ -5350,6 +5120,5 @@ document.addEventListener('DOMContentLoaded', () => {
     <div class="tooltip-sheet-body" id="varTooltipBody"></div>
   </div>
 </div>
-
 </body>
 </html>
