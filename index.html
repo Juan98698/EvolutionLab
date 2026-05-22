@@ -1167,88 +1167,183 @@
 	/* Sección de filosofía / enganche */
 .philosophy-section {
     margin-top: 40px;
-    padding: 20px 0;
-    border-top: 2px solid #e2e8f0;
+    padding: 25px 0;
+    border-top: 1px solid var(--border2);
 }
 .philosophy-title {
-    font-family: 'Poppins', sans-serif;
-    font-size: 1.9rem;
-    font-weight: 800;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.8rem;
+    font-weight: 900;
     text-align: center;
-    color: #000000;
-    letter-spacing: 2px;
-    margin-bottom: 10px;
+    color: var(--text);
+    letter-spacing: 3px;
+    margin-bottom: 8px;
+    text-transform: uppercase;
 }
 .philosophy-author {
     text-align: center;
-    font-size: 1.9rem;
-    font-weight: 800;
-    color: #000000;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: var(--text2);
+    letter-spacing: 1px;
     margin-bottom: 30px;
+    text-transform: uppercase;
+}
+.philosophy-author span {
+    color: #f97316;
+    font-weight: 700;
 }
 .philosophy-quote {
     text-align: center;
-    font-size: 1.6rem;
-    font-weight: 800;
-    color: #000000;
-    background: #fef9e3;
-    background: rgba(254, 249, 227, 0.2) !important;
-    padding: 20px;
-    border-radius: 28px;
-    margin: 20px 0;
-    border-left: 6px solid #f97316;
-    border-right: 6px solid #f97316;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--text);
+    background: linear-gradient(135deg, rgba(249, 115, 22, 0.15), rgba(249, 115, 22, 0.02)) !important;
+    padding: 24px 30px;
+    border-radius: 20px;
+    margin: 30px 0;
+    border: 1px solid rgba(249, 115, 22, 0.3);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15), inset 0 0 20px rgba(249, 115, 22, 0.05);
+    letter-spacing: 1px;
+    line-height: 1.4;
+    position: relative;
+    overflow: hidden;
+}
+.philosophy-quote::before {
+    content: '"';
+    position: absolute;
+    top: -10px;
+    left: 20px;
+    font-size: 5rem;
+    font-family: 'Georgia', serif;
+    color: rgba(249, 115, 22, 0.12);
+    line-height: 1;
+}
+.philosophy-quote p {
+    margin: 0;
+    background: linear-gradient(135deg, var(--text) 60%, rgba(255, 255, 255, 0.7));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 .philosophy-description {
-    font-size: 1.1rem;
-    line-height: 1.5;
+    font-family: 'Inter', sans-serif;
+    font-size: 1.05rem;
+    line-height: 1.6;
     text-align: center;
-    color: #000000;
-    margin: 20px 0;
-    font-weight: 500;
+    color: var(--text);
+    max-width: 800px;
+    margin: 25px auto;
+    font-weight: 400;
 }
 .philosophy-subtitle {
-    font-family: 'Poppins', sans-serif;
-    font-size: 1.3rem;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.2rem;
     font-weight: 700;
-    color: #000000;
-    margin: 30px 0 20px 0;
-    border-left: 5px solid #f97316;
-    padding-left: 15px;
-}
-.philosophy-list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
-.philosophy-list li {
-    background: #f8fafc;
-    background: rgba(254, 249, 227, 0.2) !important;
-    margin-bottom: 16px;
-    padding: 15px 20px;
-    border-radius: 20px;
-    border: 1px solid #e2e8f0;
-    font-size: 0.95rem;
-    line-height: 1.4;
-    color: #000000;
-}
-.philosophy-list li strong {
     color: #f97316;
+    text-align: center;
+    margin: 45px 0 25px 0;
+    letter-spacing: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+}
+.philosophy-subtitle::before, .philosophy-subtitle::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(to right, transparent, rgba(249, 115, 22, 0.5), transparent);
+    max-width: 100px;
+}
+.philosophy-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    margin: 30px 0;
+}
+.philosophy-card {
+    background: linear-gradient(135deg, var(--bg), var(--bg2)) !important;
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    border: 1px solid var(--border);
+    border-left: 4px solid #f97316;
+    border-radius: 16px;
+    padding: 22px 24px;
+    font-size: 0.95rem;
+    line-height: 1.5;
+    color: var(--text);
+    transition: all 0.35s cubic-bezier(0.25, 0.8, 0.25, 1);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+.philosophy-card:hover {
+    transform: translateY(-5px);
+    background: linear-gradient(135deg, var(--bg2), var(--bg)) !important;
+    border-color: rgba(249, 115, 22, 0.4);
+    box-shadow: 0 12px 30px rgba(249, 115, 22, 0.08);
+}
+.philosophy-card .pillar-number {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: #f97316;
+    display: inline-block;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    background: rgba(249, 115, 22, 0.1);
+    padding: 4px 10px;
+    border-radius: 20px;
+    width: fit-content;
+    margin-bottom: 4px;
+}
+.philosophy-card strong {
+    font-family: 'Inter', sans-serif;
+    color: var(--text);
     display: block;
-    margin-bottom: 6px;
-    font-size: 1rem;
+    font-size: 1.05rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    margin-top: 2px;
+}
+.philosophy-card p {
+    margin: 0;
+    font-size: 0.92rem;
+    color: var(--text2);
+    line-height: 1.6;
+}
+.philosophy-card.full-width {
+    grid-column: span 2;
+    background: linear-gradient(135deg, rgba(249, 115, 22, 0.05), var(--bg2)) !important;
+    border-left-color: #f97316;
 }
 .philosophy-footer {
     text-align: center;
-    margin-top: 40px;
-    padding: 20px;
-    background: rgba(254, 249, 227, 0.2) !important;
-    background: #1e293b;
-    border-radius: 28px;
-    color: #000000;
-    font-weight: 800;
-    font-size: 1.2rem;
-    letter-spacing: 1px;
+    margin-top: 45px;
+    padding: 24px 30px;
+    background: linear-gradient(135deg, var(--bg2), transparent) !important;
+    border-radius: 20px;
+    border: 1px dashed rgba(249, 115, 22, 0.35);
+    color: var(--text);
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 700;
+    font-size: 1rem;
+    letter-spacing: 1.5px;
+    line-height: 1.5;
+    text-shadow: 0 0 10px rgba(249, 115, 22, 0.1);
+    box-shadow: inset 0 0 15px rgba(255, 255, 255, 0.01);
+}
+@media (max-width: 768px) {
+    .philosophy-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+    .philosophy-card.full-width {
+        grid-column: span 1;
+    }
 }
         /* Estilos de impresión (PDF) */
    @media print {
@@ -1855,19 +1950,31 @@
     /* ===== FILOSOFÍA COLAPSABLE ===== */
     .philosophy-toggle {
       display: flex; align-items: center; justify-content: space-between;
-      padding: 16px 20px;
-      background: linear-gradient(135deg, rgba(255,255,255,0.03), transparent);
-      backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
-      border: 1px solid rgba(255,255,255,0.1);
+      padding: 18px 24px;
+      background: linear-gradient(135deg, var(--bg2), var(--bg3)) !important;
+      border: 1px solid var(--border2);
       border-radius: 20px; cursor: pointer; margin-bottom: 25px;
-      transition: all 0.2s; -webkit-tap-highlight-color: transparent;
+      transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+      -webkit-tap-highlight-color: transparent;
     }
-    .philosophy-toggle:hover { background: rgba(255,255,255,0.06); }
-    .philosophy-toggle-title { font-weight: 800; font-size: 1rem; color: #f97316; }
+    .philosophy-toggle:hover {
+      background: linear-gradient(135deg, var(--bg3), var(--bg2)) !important;
+      border-color: rgba(249, 115, 22, 0.4);
+      box-shadow: 0 8px 25px rgba(249, 115, 22, 0.08);
+    }
+    .philosophy-toggle-title {
+      font-family: 'Orbitron', sans-serif;
+      font-weight: 700; font-size: 1.05rem; color: #f97316;
+      letter-spacing: 1px;
+    }
     .philosophy-toggle-icon {
-      font-size: 18px; transition: transform 0.3s; color: rgba(255,255,255,0.4);
+      font-size: 16px; transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1); color: var(--text2);
     }
-    .philosophy-toggle.open .philosophy-toggle-icon { transform: rotate(180deg); }
+    .philosophy-toggle.open .philosophy-toggle-icon {
+      transform: rotate(180deg);
+      color: #f97316;
+    }
     .philosophy-collapsible {
       max-height: 0; overflow: hidden; transition: max-height 0.4s ease;
     }
@@ -2082,13 +2189,42 @@
     
     <h3 class="philosophy-subtitle">¿QUÉ HACE DIFERENTE ESTE MÉTODO?</h3>
     
-    <ul class="philosophy-list">
-        <li><strong>✅ ENTRENAMIENTO BASADO EN ESTÍMULO REAL</strong><br>Cada ejercicio tiene una función específica dentro del programa. Nada está puesto al azar.</li>
-        <li><strong>✅ INTENSIDAD CONTROLADA</strong><br>No buscamos agotarte. Buscamos generar adaptación. La intensidad se utiliza estratégicamente para progresar sin destruir la recuperación.</li>
-        <li><strong>✅ TÉCNICA COMO PRIORIDAD</strong><br>La ejecución determina qué músculo trabaja realmente. Menos ego. Más control. Más resultados.</li>
-        <li><strong>✅ PROGRESIÓN MEDIBLE</strong><br>El objetivo no es “sentir” que entrenaste fuerte. El objetivo es mejorar rendimiento, composición corporal y capacidad física semana tras semana.</li>
-        <li><strong>✅ RECUPERACIÓN PLANIFICADA</strong><br>Dormir, recuperarse y manejar la fatiga también hacen parte del progreso.</li>
-    </ul>
+    <div class="philosophy-grid">
+        <!-- Pilar 1 -->
+        <div class="philosophy-card">
+            <span class="pillar-number">Pilar 01</span>
+            <strong>ENTRENAMIENTO BASADO EN ESTÍMULO REAL</strong>
+            <p>Cada ejercicio tiene una función específica dentro del programa. Nada está puesto al azar.</p>
+        </div>
+        
+        <!-- Pilar 2 -->
+        <div class="philosophy-card">
+            <span class="pillar-number">Pilar 02</span>
+            <strong>INTENSIDAD CONTROLADA</strong>
+            <p>No buscamos agotarte. Buscamos generar adaptación. La intensidad se utiliza estratégicamente para progresar sin destruir la recuperación.</p>
+        </div>
+        
+        <!-- Pilar 3 -->
+        <div class="philosophy-card">
+            <span class="pillar-number">Pilar 03</span>
+            <strong>TÉCNICA COMO PRIORIDAD</strong>
+            <p>La ejecución determina qué músculo trabaja realmente. Menos ego. Más control. Más resultados.</p>
+        </div>
+        
+        <!-- Pilar 4 -->
+        <div class="philosophy-card">
+            <span class="pillar-number">Pilar 04</span>
+            <strong>PROGRESIÓN MEDIBLE</strong>
+            <p>El objetivo no es “sentir” que entrenaste fuerte. El objetivo es mejorar rendimiento, composición corporal y capacidad física semana tras semana.</p>
+        </div>
+        
+        <!-- Pilar 5 -->
+        <div class="philosophy-card full-width">
+            <span class="pillar-number">Pilar 05</span>
+            <strong>RECUPERACIÓN PLANIFICADA</strong>
+            <p>Dormir, recuperarse y manejar la fatiga también hacen parte del progreso.</p>
+        </div>
+    </div>
     
     <div class="philosophy-footer">
         <p>AQUÍ NO SE ENTRENA POR MOTIVACIÓN.<br>SE ENTRENA CON ESTRUCTURA, PROPÓSITO Y DIRECCIÓN.</p>
